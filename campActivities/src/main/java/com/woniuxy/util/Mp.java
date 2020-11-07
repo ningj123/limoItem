@@ -15,7 +15,7 @@ public class Mp {
         //1. 全局配置
         GlobalConfig config = new GlobalConfig();
         config.setAuthor("cgx") //作者
-                .setOutputDir("D:\\ideapackage\\mybatis-plus-demo1\\src\\main\\java")//生成路径
+                .setOutputDir("D:\\gitwork\\limoItem\\campActivities\\src\\main\\java")//生成路径
                 .setFileOverride(true)//是否文件覆盖，如果多次
                 .setIdType(IdType.AUTO) //主键策略
                 .setServiceName("%sService") //设置生成的service接口名首字母不用I开头
@@ -24,22 +24,22 @@ public class Mp {
         //2. 数据源配置
         DataSourceConfig dsConfig = new DataSourceConfig();
         dsConfig.setDbType(DbType.MYSQL)
-                .setUrl("jdbc:mysql://localhost:3306/lzj")
+                .setUrl("jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo")
                 .setDriverName("com.mysql.jdbc.Driver")
                 .setUsername("root")
-                .setPassword("123456");
+                .setPassword("item1234");
         //3.策略配置
         StrategyConfig stConfig = new StrategyConfig();
         stConfig.setCapitalMode(true) // 全局大写命名
                 .setNaming(NamingStrategy.underline_to_camel) //下划线转驼峰
-                .setInclude("cla");//生成的表,参数为数组
+                .setInclude("limo_order_detail");//生成的表,参数为数组
         //4.包名策略
         PackageConfig pkConfig = new PackageConfig();
-        pkConfig.setParent("com.woniu.cq")//父包名
+        pkConfig.setParent("com.woniuxy")//父包名
                 .setController("controller")
-                .setEntity("entity")
+                .setEntity("doman")
                 .setService("service")
-                .setMapper("mapper")
+                .setMapper("dao")
                 .setXml("mapper");
         //5.整合配置
         AutoGenerator ag = new AutoGenerator().setGlobalConfig(config)

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.dao.LimoCollectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoCollect">
+        <id column="co_id" property="coId" />
+        <result column="p_id" property="pId" />
+        <result column="u_id" property="uId" />
+        <result column="c_id" property="cId" />
+        <result column="a_id" property="aId" />
+        <result column="co_type" property="coType" />
+        <result column="co_time" property="coTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        co_id, p_id, u_id, c_id, a_id, co_type, co_time
+    </sql>
+
+</mapper>
