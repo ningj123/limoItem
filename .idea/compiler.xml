@@ -7,13 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="campFoods" />
-        <module name="gateWay" />
+        <module name="campFood" />
         <module name="utils" />
         <module name="campActivities" />
+        <module name="campFoods" />
         <module name="travel" />
+        <module name="gateWay" />
         <module name="campLimo" />
-        <module name="campFood" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
