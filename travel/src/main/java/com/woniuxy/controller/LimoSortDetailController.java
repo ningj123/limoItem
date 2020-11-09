@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class LimoSortDetailController {
     //新增旅游文章
     @PostMapping
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public JSONResult insertTravelSort(LSDParam param){
+    public JSONResult insertTravelSort(@RequestBody LSDParam param){
 
         LimoSortDetail limo = new LimoSortDetail();
         BeanUtils.copyProperties(param, limo);
@@ -43,5 +44,7 @@ public class LimoSortDetailController {
         limoSortDetailService.save(limo);
         return new JSONResult("200","success",null,null);
     }
+    //查询旅游攻略（4个类别）
+
 }
 

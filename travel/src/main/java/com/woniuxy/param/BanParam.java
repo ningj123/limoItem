@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BanParam implements Serializable {
+public class BanParam {
 
     private Integer id;
 
@@ -29,7 +29,7 @@ public class BanParam implements Serializable {
     /**
      * 0.首页广告，1 活动 2美食 3旅游指南
      */
-    private Integer type;
+   // private Integer type;
 
     private Integer lianId;
 }
