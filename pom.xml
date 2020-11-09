@@ -13,6 +13,7 @@
         <module>gateWay</module>
         <module>utils</module>
         <module>travel</module>
+        <module>campFoods</module>
         <module>campActivities</module>
     </modules>
     <parent>
