@@ -19,7 +19,6 @@
     <bytecodeTargetLevel>
       <module name="campactivitie" target="1.8" />
       <module name="campFood" target="1.8" />
-      <module name="campItem" target="1.7" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

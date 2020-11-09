@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -56,4 +58,8 @@ public class LimoActivityParam {
     private String aCity;
 
     private Integer aTwo;
+
+    @NotNull(message = "页码不能为空")
+    private Integer pageIndex;
+    private Integer pageNumber;
 }
