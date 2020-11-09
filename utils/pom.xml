@@ -55,6 +55,10 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!--springboot整合redis -->
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
