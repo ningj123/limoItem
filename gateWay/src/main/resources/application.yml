@@ -1,0 +1,20 @@
+server:
+  port: 80
+spring:
+  application:
+    name: gateWay
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+management:
+  endpoint:
+    gateway:
+      enabled: true
+#ahas:
+#  namespace: default
+#  license: 63c7f03fc5b048d18ca7676fff36cf96
