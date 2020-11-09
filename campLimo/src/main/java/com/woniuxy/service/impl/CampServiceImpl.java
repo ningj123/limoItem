@@ -27,9 +27,12 @@ public class CampServiceImpl implements CampService {
     @Resource
     private LimoCampMapper limoCampMapper;
     @Override
-    public PageInfo<CampDto> selectCampsByCity(String city, PageVO pageVO) throws Exception {
+    public PageInfo<CampDto> selectCampsByCity(String city,String context, PageVO pageVO) throws Exception {
         LimoCampExample example = new LimoCampExample();
         example.createCriteria().andCCityLike(city);
+        if(context!=null||!context.isEmpty()){
+            example.createCriteria().andCNameLike(context);
+        }
         PageHelper.startPage(pageVO.getPageNum(),pageVO.getPageSize());
         List<LimoCamp> list = limoCampMapper.selectByExample(example);
         List<CampDto> campDtos = new ArrayList<>();

@@ -12,7 +12,6 @@
         <module>campLimo</module>
         <module>gateWay</module>
         <module>utils</module>
-        <module>campFoods</module>
         <module>travel</module>
         <module>campActivities</module>
     </modules>
