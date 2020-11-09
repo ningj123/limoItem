@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="limo@cdb-rt2lrzfm.cd.tencentcdb.com" uuid="1083be61-c0e6-4d6c-b0ca-85a5a5ea9964">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo</jdbc-url>
+    </data-source>
+  </component>
+</project>
