@@ -8,3 +8,15 @@ spring:
     username: root
     type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter
     driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: campFoods
+mybatis-plus:
+  configuration:
+    #打印日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #转驼峰
+    map-underscore-to-camel-case: true
+#  #扫描配置文件地址
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #别名所在包
+  type-aliases-package: com.woniuxy.domain

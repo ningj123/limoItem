@@ -58,5 +58,4 @@ public class ProductParam extends Page implements Serializable {
 
     private Integer pTwo;
 
-
 }
