@@ -58,5 +58,7 @@ public class LimoActivityDto {
 
     private Integer aTwo;
 
+    private Integer pageIndex;
+    private Integer pageNumber;
 
 }
