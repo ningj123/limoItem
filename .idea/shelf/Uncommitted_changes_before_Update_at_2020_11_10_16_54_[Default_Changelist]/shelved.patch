@@ -1,0 +1,89 @@
+Index: travel/target/classes/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server.port=8088\r\n#数据源配置\r\nspring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true\r\n\r\nspring.datasource.username=root\r\nspring.datasource.password=item1234\r\nspring.datasource.driver-class-name=com.mysql.jdbc.Driver\r\nspring.datasource.type=com.alibaba.druid.pool.DruidDataSource\r\n#mybatis_Plus\r\n#xml的配置位置\r\nmybatis-plus.mapper-locations=classpath*:mapper/**/*.xml\r\n#别名所在包\r\nmybatis-plus.type-aliases-package=com.woniuxy.doman\r\n#转驼峰\r\nmybatis-plus.configuration.map-underscore-to-camel-case=true\r\n#日志\r\nmybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl\r\nlogging.level.com.squirrel.gitdemo=debug\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- travel/target/classes/application.properties	(revision 269fba34c9f0cc469248c59d76a13ae601c7ca9c)
++++ travel/target/classes/application.properties	(date 1604973894039)
+@@ -1,7 +1,7 @@
+ server.port=8088
+ #数据源配置
+ spring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true
+-
++spring.application.name=travel
+ spring.datasource.username=root
+ spring.datasource.password=item1234
+ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"RemoteRepositoriesConfiguration\">\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Maven Central repository\" />\r\n      <option name=\"url\" value=\"https://repo1.maven.org/maven2\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Central Repository\" />\r\n      <option name=\"url\" value=\"http://maven.aliyun.com/nexus/content/groups/public/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"jboss.community\" />\r\n      <option name=\"name\" value=\"JBoss Community repository\" />\r\n      <option name=\"url\" value=\"https://repository.jboss.org/nexus/content/repositories/public/\" />\r\n    </remote-repository>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/jarRepositories.xml	(revision 269fba34c9f0cc469248c59d76a13ae601c7ca9c)
++++ .idea/jarRepositories.xml	(date 1604904693857)
+@@ -3,13 +3,13 @@
+   <component name="RemoteRepositoriesConfiguration">
+     <remote-repository>
+       <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
++      <option name="name" value="Central Repository" />
++      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
+     </remote-repository>
+     <remote-repository>
+       <option name="id" value="central" />
+-      <option name="name" value="Central Repository" />
+-      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
+     </remote-repository>
+     <remote-repository>
+       <option name="id" value="jboss.community" />
+Index: travel/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server.port=8088\r\n#数据源配置\r\nspring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true\r\n\r\nspring.datasource.username=root\r\nspring.datasource.password=item1234\r\nspring.datasource.driver-class-name=com.mysql.jdbc.Driver\r\nspring.datasource.type=com.alibaba.druid.pool.DruidDataSource\r\n#mybatis_Plus\r\n#xml的配置位置\r\nmybatis-plus.mapper-locations=classpath*:mapper/**/*.xml\r\n#别名所在包\r\nmybatis-plus.type-aliases-package=com.woniuxy.doman\r\n#转驼峰\r\nmybatis-plus.configuration.map-underscore-to-camel-case=true\r\n#日志\r\nmybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl\r\nlogging.level.com.squirrel.gitdemo=debug\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- travel/src/main/resources/application.properties	(revision 269fba34c9f0cc469248c59d76a13ae601c7ca9c)
++++ travel/src/main/resources/application.properties	(date 1604912182115)
+@@ -1,7 +1,7 @@
+ server.port=8088
+ #数据源配置
+ spring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true
+-
++spring.application.name=travel
+ spring.datasource.username=root
+ spring.datasource.password=item1234
+ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile default=\"true\" name=\"Default\" enabled=\"true\" />\r\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <module name=\"campFoods\" />\r\n        <module name=\"gateWay\" />\r\n        <module name=\"utils\" />\r\n        <module name=\"campActivities\" />\r\n        <module name=\"travel\" />\r\n        <module name=\"campLimo\" />\r\n        <module name=\"campFood\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n    <bytecodeTargetLevel>\r\n      <module name=\"campactivitie\" target=\"1.8\" />\r\n      <module name=\"campFood\" target=\"1.8\" />\r\n      <module name=\"campItem\" target=\"1.7\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"campActivities\" options=\"-parameters\" />\r\n      <module name=\"campFood\" options=\"-parameters\" />\r\n      <module name=\"campFoods\" options=\"-parameters\" />\r\n      <module name=\"campLimo\" options=\"-parameters\" />\r\n      <module name=\"gateWay\" options=\"-parameters\" />\r\n      <module name=\"travel\" options=\"-parameters\" />\r\n      <module name=\"utils\" options=\"-parameters\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision 269fba34c9f0cc469248c59d76a13ae601c7ca9c)
++++ .idea/compiler.xml	(date 1604996694620)
+@@ -7,13 +7,13 @@
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+         <outputRelativeToContentRoot value="true" />
+-        <module name="campFoods" />
+-        <module name="gateWay" />
++        <module name="campFood" />
+         <module name="utils" />
+         <module name="campActivities" />
++        <module name="campFoods" />
+         <module name="travel" />
++        <module name="gateWay" />
+         <module name="campLimo" />
+-        <module name="campFood" />
+       </profile>
+     </annotationProcessing>
+     <bytecodeTargetLevel>
