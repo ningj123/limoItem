@@ -1,46 +1,26 @@
 server:
   port: 8082
 spring:
+#配置数据源
+  datasource:
+    url: jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    password: item1234
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter
+    driver-class-name: com.mysql.jdbc.Driver
   application:
     name: food
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
-  #    sentinel:
-  #      transport:
-  #        dashboard: localhost:8080
-  #      web-context-unify: false
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useUnicode=true&characterEncoding=UTF-8&useSSL=false
-    username: root
-    password: item1234
-    type: com.alibaba.druid.pool.DruidDataSource
-  mvc:
-    format:
-      date: yyyy-MM-dd
-  jackson:
-    date-format: yyyy-MM-dd
-    default-property-inclusion: non_null
-#  redis:
-#    #    host: 192.168.223.128
-#    #    port: 6379
-#    cluster:
-#      nodes:
-#        - 192.168.223.128:6379
-#        - 192.168.223.128:6380
-#        - 192.168.223.128:6381
-#        - 192.168.223.128:6382
-#        - 192.168.223.128:6383
-#        - 192.168.223.128:6384
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
 mybatis-plus:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: com.woniuxy.domain
   configuration:
+    #打印日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #转驼峰
+    map-underscore-to-camel-case: true
+#  #扫描配置文件地址
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #别名所在包
+  type-aliases-package: com.woniuxy.domain

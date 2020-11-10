@@ -4,15 +4,18 @@ package com.woniuxy.controller;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.woniuxy.domain.LimoCamp;
 import com.woniuxy.domain.LimoProduct;
+import com.woniuxy.param.CampParam;
 import com.woniuxy.param.ProductParam;
+import com.woniuxy.service.LimoCampService;
 import com.woniuxy.service.LimoProductService;
 import com.woniuxy.util.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,7 +31,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class LimoProductController {
     @Autowired
     private LimoProductService limoProductService;
-
+    @Autowired
+    private LimoCampService limoCampService;
+//    @Autowired
+//    private BannerFeignClient bannerFeignClient;
     /**
      * 分页条件查询商品
      * @param product
@@ -83,6 +89,7 @@ public class LimoProductController {
         return JSON.toJSONString(page);
     }
 
+
     /**
      * 查询单个商品信息
      * @param pId
@@ -93,6 +100,25 @@ public class LimoProductController {
    public JSONResult selectProductById(Integer pId)throws Exception{
         return new JSONResult("200","success",null,limoProductService.getById(pId));
    }
+
+    /**
+     * 查询对应城市的所有营地
+     * @param camp
+     * @return
+     * @throws Exception
+     */
+   @RequestMapping("/selectCampByCity")
+    public JSONResult selectCampByCity(CampParam camp)throws Exception{
+       Page<LimoCamp> page = new Page<>(camp.getPageNum(),camp.getPageSize());
+       QueryWrapper<LimoCamp> queryWrapper = new QueryWrapper<>();
+       queryWrapper.eq("c_city",camp.getCCity());
+       limoCampService.page(page,queryWrapper);
+       return new JSONResult("200","success",null,page);
+   }
+//   @RequestMapping("/selectBanner")
+//    public JSONResult selectBanner(Integer type)throws Exception{
+//        return bannerFeignClient.queryBannerByType(type);
+//   }
 
 }
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.mapper.LimoOrderDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.domain.LimoOrderDetail">
+        <id column="or_id" property="orId" />
+        <result column="p_id" property="pId" />
+        <result column="p_num" property="pNum" />
+        <result column="p_price" property="pPrice" />
+        <result column="p_total" property="pTotal" />
+        <result column="or_type" property="orType" />
+        <result column="or_status" property="orStatus" />
+        <result column="o_id" property="oId" />
+        <result column="or_start_time" property="orStartTime" />
+        <result column="or_end_time" property="orEndTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        or_id, p_id, p_num, p_price, p_total, or_type, or_status, o_id, or_start_time, or_end_time
+    </sql>
+
+</mapper>
