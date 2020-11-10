@@ -13,7 +13,7 @@ public class Test {
 	public static void main(String[] args) {
 		//1. 全局配置
 	    GlobalConfig config = new GlobalConfig();
-	    config.setAuthor("zhuyuli") //作者
+	    config.setAuthor("lx") //作者
 	        .setOutputDir("D:\\limoItem-git\\campFoods\\src\\main\\java")  //生成路径
 	        .setFileOverride(true)//是否文件覆盖，如果多次
 	        .setIdType(IdType.AUTO) //主键策略
@@ -31,7 +31,7 @@ public class Test {
 	    StrategyConfig stConfig = new StrategyConfig();
 	    stConfig.setCapitalMode(true) // 全局大写命名
 	        .setNaming(NamingStrategy.underline_to_camel) //下划线转驼峰
-	        .setInclude("limo_product","limo_order").setEntityLombokModel(true);//生成的表,参数为数组
+	        .setInclude("limo_activity").setEntityLombokModel(true);//生成的表,参数为数组
 	    //4.包名策略
 	    PackageConfig pkConfig = new PackageConfig();
 	    pkConfig.setParent("com.woniuxy")//父包名

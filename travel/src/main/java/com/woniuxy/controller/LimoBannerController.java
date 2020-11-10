@@ -5,12 +5,9 @@ import com.woniuxy.param.BanParam;
 import com.woniuxy.service.LimoBannerService;
 import com.woniuxy.util.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -39,17 +36,17 @@ public class LimoBannerController {
 
         return new JSONResult("200","success",null,limoBannerService.getById(id));
     }
-    //根据ID主键查询广告
+    //根据类别查询
     @GetMapping("/selectByType")
     public JSONResult queryBannerByType(Integer type)throws Exception{
 
         return new JSONResult("200","success",limoBannerService.queryBannerByType(type),null);
     }
-    //更新广告
-    @PostMapping("/update")
-    public JSONResult updateBannerById(BanParam param)throws Exception{
-        limoBannerService.updateBannerById(param);
-        return new JSONResult("200","success",null,null);
-    }
+//更新广告
+@PostMapping("/update")
+public JSONResult updateBannerById(@RequestBody BanParam param)throws Exception{
+    limoBannerService.updateBannerById(param);
+    return new JSONResult("200","success",null,null);
+}
 }
 
