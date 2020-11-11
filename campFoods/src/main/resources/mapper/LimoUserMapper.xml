@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.mapper.LimoUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.domain.LimoUser">
+        <id column="u_id" property="uId" />
+        <result column="u_name" property="uName" />
+        <result column="u_password" property="uPassword" />
+        <result column="u_email" property="uEmail" />
+        <result column="u_phone" property="uPhone" />
+        <result column="u_age" property="uAge" />
+        <result column="u_sex" property="uSex" />
+        <result column="u_status" property="uStatus" />
+        <result column="u_register_time" property="uRegisterTime" />
+        <result column="u_one" property="uOne" />
+        <result column="u_two" property="uTwo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        u_id, u_name, u_password, u_email, u_phone, u_age, u_sex, u_status, u_register_time, u_one, u_two
+    </sql>
+
+</mapper>
