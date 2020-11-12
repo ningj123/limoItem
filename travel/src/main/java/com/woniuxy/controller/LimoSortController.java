@@ -33,7 +33,7 @@ public class LimoSortController {
      * @Param []
      * @return com.woniuxy.util.JSONResult
      **/
-    @GetMapping
+    @GetMapping("/queryAll")
     public JSONResult queryAll(){
 
         return new JSONResult("200","success",limoSortService.list(),null);
@@ -45,7 +45,7 @@ public class LimoSortController {
      * @Param [id]
      * @return com.woniuxy.util.JSONResult
      **/
-    @GetMapping
+    @GetMapping("/queryById")
     public JSONResult queryById(Integer id)throws Exception{
         if (id < 1) {
             throw new TravelExecption("参数异常");
