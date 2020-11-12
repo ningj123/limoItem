@@ -1,12 +1,15 @@
 package com.woniuxy.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.woniuxy.doman.LimoSecSpot;
 import com.woniuxy.dto.LimoSecSpotDto;
+import com.woniuxy.exception.TravelExecption;
 import com.woniuxy.mapper.LimoSecSpotMapper;
 import com.woniuxy.param.PointParam;
 import com.woniuxy.param.SortParam;
@@ -89,9 +92,9 @@ public class LimoSecSpotServiceImpl extends ServiceImpl<LimoSecSpotMapper, LimoS
     }
     /***
      * 以给定的城市为中心， 返回键包含的位置元素当中， 与中心的距离不超过给定最大距离的所有位置元素，并给出所有位置元素与中心的平均距离。
-     * @param precision 经度 必须是存在redis中的名字
-     * @param dimension 纬度 必须是存在redis中的名字
-     * @param ditance 距离 必须是存在redis中的名字
+     * @param //precision 经度 必须是存在redis中的名字
+     * @param //dimension 纬度 必须是存在redis中的名字
+     * @param //ditance 距离 必须是存在redis中的名字
      * @return
      */
     @Override
@@ -135,12 +138,31 @@ public class LimoSecSpotServiceImpl extends ServiceImpl<LimoSecSpotMapper, LimoS
      **/
     @Override
     public LimoSecSpotDto queryById(Integer id) {
-        LimoSecSpot limoSecSpot = limoSecSpotMapper.selectById(id);
+        //先去redis缓存中查询
+        Object secNew = redisTemplates.opsForHash().get("secNew", "sec:" + id);
+
+
+        String secNewjson = JSON.toJSONString(secNew);//将对象转json
+        LimoSecSpot spot = JSON.parseObject(secNewjson, LimoSecSpot.class);
+
+        //判断缓存中是否存在
+        if(spot==null || spot.equals("")){
+            //不存在，就去数据库中查询
+            LimoSecSpot limoSecSpot = limoSecSpotMapper.selectById(id);
+            //并把查询的数据存到redis中
+            if(limoSecSpot==null||limoSecSpot.equals("")){
+                 return null;
+            }
+            redisTemplates.opsForHash().put("secNew","sec:"+limoSecSpot.getSecId(),null);
+            //并把值赋给之前转换的对象
+            spot=limoSecSpot;
+        }
+
         //通过key获取地方的point坐标
-        List<Point> sec = redisTemplates.opsForGeo().position("sec", limoSecSpot.getSecSportName());
+        List<Point> sec = redisTemplates.opsForGeo().position("sec", spot.getSecSportName());
         //转换对象
         LimoSecSpotDto spotDto = new LimoSecSpotDto();
-        BeanUtils.copyProperties(limoSecSpot,spotDto);
+        BeanUtils.copyProperties(spot,spotDto);
         //封装坐标
         spotDto.setPrecision((float) sec.get(0).getX());
         spotDto.setDimension((float) sec.get(0).getY());
@@ -149,18 +171,22 @@ public class LimoSecSpotServiceImpl extends ServiceImpl<LimoSecSpotMapper, LimoS
 
     /***
      * 将指定的地理空间位置（纬度、经度、名称）添加到指定的key中。
+     * 把所有的景区存到redis中
+     * 初始化数据
      */
     @Override
     public Long redisGeoAdd() {
-        //redisTemplates.opsForGeo().add("sec", new Point(107.738144, 29.487602), "重庆武隆仙女山国家森林公园");
-        //redisTemplates.opsForGeo().add("sec", new Point(104.23567, 33.26142), "九寨沟县");
-        //redisTemplates.opsForGeo().add("sec", new Point(106.516357, 29.667259), "重庆欢乐谷");
-        // redisTemplates.opsForGeo().add("sec", new Point(113.12931, 29.37197), "岳阳楼");
-        // redisTemplates.opsForGeo().add("sec", new Point(110.55042, 29.34589), "张家界");
-        //redisTemplates.opsForGeo().add("sec", new Point(100.066132, 29.309271), "稻城·亚丁");
-        List<Point> position = redisTemplates.opsForGeo().position("sec", "九寨沟县");
-        double x = position.get(0).getX();
-        System.out.println(redisTemplates.opsForGeo().position("sec","九寨沟县").toString());
-        return 1000l;
+        redisTemplates.opsForGeo().add("sec", new Point(107.738144, 29.487602), "重庆武隆仙女山国家森林公园");
+        redisTemplates.opsForGeo().add("sec", new Point(104.23567, 33.26142), "九寨沟县");
+        redisTemplates.opsForGeo().add("sec", new Point(106.516357, 29.667259), "重庆欢乐谷");
+        redisTemplates.opsForGeo().add("sec", new Point(113.12931, 29.37197), "岳阳楼");
+        redisTemplates.opsForGeo().add("sec", new Point(110.55042, 29.34589), "张家界");
+        redisTemplates.opsForGeo().add("sec", new Point(100.066132, 29.309271), "稻城·亚丁");
+        List<LimoSecSpot> secSpots = limoSecSpotMapper.selectList(null);
+        for(LimoSecSpot i:secSpots){
+            redisTemplates.opsForHash().put("secNew","sec:"+i.getSecId(),i);
+        }
+
+        return 200l;
     }
 }

@@ -70,7 +70,7 @@ public class LimoSecSpotController {
         return  new JSONResult("200","success",null,limoSecSpotDto);
     }
     @GetMapping("/queryBySec")
-    @ApiOperation(value = "经纬度")
+    @ApiOperation(value = "初始化所有的经纬度")
     public JSONResult queryBySec() throws Exception{
 
 
