@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.woniuxy.doman.LimoBanner;
 import com.woniuxy.doman.LimoCity;
+import com.woniuxy.dto.LimoBannerDto;
 import com.woniuxy.mapper.LimoBannerMapper;
 import com.woniuxy.param.BanParam;
 import com.woniuxy.service.LimoBannerService;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,18 +43,24 @@ public class LimoBannerServiceImpl extends ServiceImpl<LimoBannerMapper, LimoBan
      * @Param 广告集合
      * @return Page
      **/
+    @Transactional(readOnly = true)
     @Override
     public Object queryBannerList(Integer pageSize, Integer pageNum,Integer type) throws Exception{
         Page<LimoBanner> Page = new Page<LimoBanner>(pageNum,pageSize);
         if (type ==null ){
-           // limoBannerMapper.selectList(null);
+
             limoBannerMapper.selectPage(Page,null);
         }else {
             QueryWrapper<LimoBanner> wrapper = new QueryWrapper<>();
             wrapper.eq("type",type);
             limoBannerMapper.selectPage(Page,wrapper);
         }
-         return Page;
+        Page<LimoBannerDto> page = new Page<LimoBannerDto>();
+
+        System.out.println(1);
+        BeanUtils.copyProperties(Page,page);
+        Page=null;
+        return page;
     }
     /**
      * @Author zhuyuli
@@ -61,11 +69,16 @@ public class LimoBannerServiceImpl extends ServiceImpl<LimoBannerMapper, LimoBan
      * @Param 广告集合
      * @return Page
      **/
+    @Transactional(readOnly = true)
     @Override
     public List<LimoBanner> queryBannerByType(Integer type) throws Exception{
         QueryWrapper<LimoBanner> wrapper = new QueryWrapper<>();
         wrapper.eq("type",type);
         List<LimoBanner> list = limoBannerMapper.selectList(wrapper);
+        //封装Dto
+        ArrayList<LimoBannerDto> list1=new ArrayList<>();
+        BeanUtils.copyProperties(list,list1);
+        list=null;
         return list;
     }
 

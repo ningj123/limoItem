@@ -45,7 +45,7 @@ public class LimoSortController {
      * @Param [id]
      * @return com.woniuxy.util.JSONResult
      **/
-    @GetMapping("/queryById")
+    @GetMapping("/queryById2")
     public JSONResult queryById(Integer id)throws Exception{
         if (id < 1) {
             throw new TravelExecption("参数异常");
