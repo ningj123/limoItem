@@ -28,22 +28,20 @@ public class CampServiceImpl implements CampService {
     private LimoCampMapper limoCampMapper;
     @Override
     public PageInfo<CampDto> selectCampsByCity(String city,String context, PageVO pageVO) throws Exception {
+        PageHelper.startPage(pageVO.getPageNum(),pageVO.getPageSize());
         LimoCampExample example = new LimoCampExample();
-        example.createCriteria().andCCityLike(city);
-        if(context!=null||!context.isEmpty()){
+        if(city!=null){
+            example.createCriteria().andCCityLike(city);
+        }
+        if(context!=null){
             example.createCriteria().andCNameLike(context);
         }
-        PageHelper.startPage(pageVO.getPageNum(),pageVO.getPageSize());
+        example.createCriteria().andCStatusEqualTo(0);
         List<LimoCamp> list = limoCampMapper.selectByExample(example);
-        List<CampDto> campDtos = new ArrayList<>();
-        CampDto campDto=null;
-        for (LimoCamp limoCamp:list) {
-            campDto=new CampDto();
-            BeanUtils.copyProperties(limoCamp,campDto);
-            campDtos.add(campDto);
-        }
-        PageInfo<CampDto> pageInfo = new PageInfo<CampDto>(campDtos);
-        return pageInfo;
+        PageInfo<LimoCamp> pageInfo = new PageInfo<LimoCamp>(list);
+        PageInfo<CampDto> pageInfo2 = new PageInfo<CampDto>();
+        BeanUtils.copyProperties(pageInfo,pageInfo2);
+        return pageInfo2;
     }
 
     @Override

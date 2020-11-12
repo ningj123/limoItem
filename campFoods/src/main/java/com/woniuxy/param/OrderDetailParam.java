@@ -43,7 +43,6 @@ public class OrderDetailParam implements Serializable {
 
     private LocalDateTime orEndTime;
 
-    private ProductParam product;
 
 
 }

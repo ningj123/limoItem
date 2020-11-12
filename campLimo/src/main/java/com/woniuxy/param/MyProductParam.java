@@ -10,19 +10,15 @@ import java.io.Serializable;
  * @Date 2020/11/9 15:52
  * @Description TODO
  **/
-public class ProductParam {
+public class MyProductParam extends PageVO implements Serializable {
     private Integer cId;
     private Integer pType;
-    private Integer pageNum;
-    private Integer pageSize;
-    public ProductParam() {
+    public MyProductParam() {
     }
 
-    public ProductParam(Integer cId, Integer pType, Integer pageNum, Integer pageSize) {
+    public MyProductParam(Integer cId, Integer pType) {
         this.cId = cId;
         this.pType = pType;
-        this.pageNum = pageNum;
-        this.pageSize = pageSize;
     }
 
     public Integer getcId() {
@@ -41,29 +37,11 @@ public class ProductParam {
         this.pType = pType;
     }
 
-    public Integer getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
-
     @Override
     public String toString() {
         return "ProductParam{" +
                 "cId=" + cId +
                 ", pType=" + pType +
-                ", pageNum=" + pageNum +
-                ", pageSize=" + pageSize +
                 '}';
     }
 }

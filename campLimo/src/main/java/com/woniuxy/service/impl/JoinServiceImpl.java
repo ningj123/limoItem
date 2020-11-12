@@ -29,7 +29,8 @@ public class JoinServiceImpl implements JoinService {
         if(joinParam!=null){
             limoJoin = new LimoJoin();
             BeanUtils.copyProperties(joinParam,limoJoin);
-            limoJoinMapper.insertSelective(limoJoin);
+            limoJoin.setJStatus(0);
+            limoJoinMapper.insert(limoJoin);
         }else{
             throw new ErrorException("数据不完整");
         }

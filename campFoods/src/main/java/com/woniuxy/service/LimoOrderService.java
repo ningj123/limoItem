@@ -2,8 +2,11 @@ package com.woniuxy.service;
 
 import com.woniuxy.domain.LimoOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.woniuxy.dto.OrderDto;
+import com.woniuxy.param.OrderParam;
 import com.woniuxy.param.OrdersParam;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,5 +24,6 @@ public interface LimoOrderService extends IService<LimoOrder> {
      * @throws Exception
      */
     public void insertOrder(OrdersParam orders)throws Exception;
+    public List<OrderDto> selectOrders(OrderParam orderParam)throws Exception;
 
 }

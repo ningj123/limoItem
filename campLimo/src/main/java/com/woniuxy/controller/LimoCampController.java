@@ -1,11 +1,8 @@
 package com.woniuxy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.github.pagehelper.PageInfo;
-import com.woniuxy.dto.OrderDto;
 import com.woniuxy.feign.ProductFeign;
-import com.woniuxy.param.OrderParam;
-import com.woniuxy.param.ProductParam;
+import com.woniuxy.param.MyProductParam;
 import com.woniuxy.service.CampService;
 import com.woniuxy.util.JSONResult;
 import com.woniuxy.vo.PageVO;
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>
@@ -81,11 +77,20 @@ public class LimoCampController {
      * @throws Exception
      */
     @GetMapping("selectProductByCid")
-    public JSONResult selectProductByCid(ProductParam product)throws Exception{
-        System.out.println(product);
-        System.out.println(productFeign.selectProductByCid(product));
-        PageInfo pageInfo = JSON.parseObject(productFeign.selectProductByCid(product), PageInfo.class);
-        return new JSONResult("200","success",null,pageInfo);
+    public JSONResult selectProductByCid(MyProductParam product)throws Exception{
+        JSONResult result = productFeign.selectProductByCid(product);
+        return result;
+    }
+
+    /**
+     * 房车或特色住宿或可以购买房车的信息
+     * @param pId
+     * @return
+     */
+    @GetMapping("selectLimos")
+    public JSONResult selectLimos(Integer pId) throws Exception{
+        JSONResult result = productFeign.selectProductById(pId);
+        return result;
     }
 
     /**
@@ -93,13 +98,13 @@ public class LimoCampController {
      * @param pId
      * @return
      * @throws Exception
-     */
+     *//*
     @GetMapping("selectOrderTime")
     public JSONResult selectOrderTime(Integer pId)throws Exception{
         String s = productFeign.selectOrderByPid(pId);
         List<OrderDto> list = JSON.parseArray(s, OrderDto.class);
         return new JSONResult("200","success",list,null);
-    }
+    }*/
 
 }
 

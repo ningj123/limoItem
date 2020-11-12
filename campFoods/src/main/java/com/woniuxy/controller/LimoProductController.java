@@ -4,6 +4,7 @@ package com.woniuxy.controller;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.woniuxy.client.BannerFeignClient;
 import com.woniuxy.domain.LimoCamp;
 import com.woniuxy.domain.LimoProduct;
 import com.woniuxy.param.CampParam;
@@ -13,10 +14,7 @@ import com.woniuxy.service.LimoProductService;
 import com.woniuxy.util.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -33,8 +31,8 @@ public class LimoProductController {
     private LimoProductService limoProductService;
     @Autowired
     private LimoCampService limoCampService;
-//    @Autowired
-//    private BannerFeignClient bannerFeignClient;
+    @Autowired
+    private BannerFeignClient bannerFeignClient;
     /**
      * 分页条件查询商品
      * @param product
@@ -45,7 +43,7 @@ public class LimoProductController {
     public JSONResult selectProduct(ProductParam product)throws Exception{
         Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());
         QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("p_type",product.getPType());
+        queryWrapper.eq("p_type",product.getPType()).eq("p_status",0);
         if(!StringUtils.isEmpty(product.getCCity())){
             queryWrapper.eq("c_city",product.getCCity());
         }
@@ -61,34 +59,6 @@ public class LimoProductController {
         limoProductService.page(page,queryWrapper);
         return new JSONResult("200","success",null,page);
     }
-    /**
-     * 分页条件查询商品
-     * @param product
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("/selectProductByCid")
-    public String selectProductByCid(@RequestBody ProductParam product)throws Exception{
-        System.out.println(product);
-        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());
-        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("p_type",product.getPType());
-        if(!StringUtils.isEmpty(product.getCCity())){
-            queryWrapper.eq("c_city",product.getCCity());
-        }
-        if(product.getCId()!=null){
-            queryWrapper.eq("c_id",product.getCId());
-        }
-        if(!StringUtils.isEmpty(product.getPName())){
-            queryWrapper.like("p_name",product.getPName());
-        }
-        if(product.getUrId()!=null){
-            queryWrapper.eq("ur_id",product.getUrId());
-        }
-        limoProductService.page(page,queryWrapper);
-        return JSON.toJSONString(page);
-    }
-
 
     /**
      * 查询单个商品信息
@@ -115,10 +85,14 @@ public class LimoProductController {
        limoCampService.page(page,queryWrapper);
        return new JSONResult("200","success",null,page);
    }
-//   @RequestMapping("/selectBanner")
-//    public JSONResult selectBanner(Integer type)throws Exception{
-//        return bannerFeignClient.queryBannerByType(type);
-//   }
+   @RequestMapping("/selectBanner")
+    public JSONResult selectFoodBanner(Integer type)throws Exception{
+        return bannerFeignClient.queryBannerByType(type);
+   }
+    @RequestMapping("/recommend")
+    public JSONResult recommendProduct(String city,Integer pType)throws Exception{
+        return new JSONResult("200","success",limoProductService.recommendProduct(city,pType),null);
+    }
 
 }
 

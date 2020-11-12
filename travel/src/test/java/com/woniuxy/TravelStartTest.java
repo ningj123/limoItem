@@ -14,16 +14,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Unit test for simple App.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = TravelStartTest.class)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = TravelStartTest.class)
 public class TravelStartTest {
     @Autowired
     private LimoBannerService limoBannerService;
     @Test
     public void shouldAnswerWithTrue() {
 
-        Object obj=limoBannerService.queryBannerList(2, 2, 0);
 
-        System.out.println(obj.toString());
+
+
     }
 }

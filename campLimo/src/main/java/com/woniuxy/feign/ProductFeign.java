@@ -1,11 +1,9 @@
 package com.woniuxy.feign;
 
-import com.woniuxy.param.ProductParam;
+import com.woniuxy.param.MyProductParam;
 import com.woniuxy.util.JSONResult;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date 2020/11/9 15:36
  * @Description TODO
  **/
-@FeignClient("food")
-@Component
+@FeignClient("campFoods")
 public interface ProductFeign {
     /**
      * 查询所有商品
@@ -24,15 +21,22 @@ public interface ProductFeign {
      * @return
      * @throws Exception
      */
-    @RequestMapping("product/selectProductByCid")
-    public String selectProductByCid(@RequestBody ProductParam product)throws Exception;
+    @RequestMapping("product/selectProduct")
+    public JSONResult selectProductByCid(@SpringQueryMap MyProductParam product)throws Exception;
 
+    /**
+     * 房车或特色住宿或可以购买房车的信息
+     * @param pId
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("product/selectProductById")
+    public JSONResult selectProductById(@RequestParam("pId") Integer pId)throws Exception;
     /**
      * 查询订单中该房车未使用的时间
      * @param pId
      * @return
      * @throws Exception
-     */
     @GetMapping("order/selectOrderByPid")
-    public String selectOrderByPid(Integer pId) throws Exception;
+    public String selectOrderByPid(Integer pId) throws Exception;*/
 }

@@ -8,14 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @ClassName Configurat
+ * @ClassName MyConfig
  * @Author shadow
  * @Date 2020/11/9 19:22
  * @Description TODO
  **/
 @Configuration
-@RibbonClients(defaultConfiguration = Config.class)
-public class Configurat {
+//@RibbonClients(defaultConfiguration = Config.class)
+public class MyConfig {
     @LoadBalanced
     @Bean
     public RestTemplate userTest() {
