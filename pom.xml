@@ -15,6 +15,7 @@
         <module>travel</module>
         <module>campFoods</module>
         <module>campActivities</module>
+        <module>backStageManage</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="campFoods" />
         <module name="gateWay" />
+        <module name="backStageManage" />
         <module name="utils" />
         <module name="campActivities" />
         <module name="travel" />
@@ -23,6 +24,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="backStageManage" options="-parameters" />
       <module name="campActivities" options="-parameters" />
       <module name="campFood" options="-parameters" />
       <module name="campFoods" options="-parameters" />
