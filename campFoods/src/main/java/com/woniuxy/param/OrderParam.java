@@ -41,6 +41,7 @@ public class OrderParam extends Page implements Serializable {
     private Integer cId;
 
     private Integer urId;
+    private List<OrderDetailParam> orderDetails;
 
 
 }

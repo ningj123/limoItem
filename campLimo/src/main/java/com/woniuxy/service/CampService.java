@@ -19,7 +19,7 @@ public interface CampService {
      * @return
      * @throws Exception
      */
-    PageInfo<CampDto> selectCampsByCity(String city, PageVO pageVO)throws Exception;
+    PageInfo<CampDto> selectCampsByCity(String city,String context, PageVO pageVO)throws Exception;
 
     /**
      * 根据营地id查询营地具体信息
