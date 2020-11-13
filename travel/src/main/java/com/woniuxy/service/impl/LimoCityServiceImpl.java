@@ -4,11 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.woniuxy.doman.LimoCity;
 import com.woniuxy.doman.LimoSortDetail;
+import com.woniuxy.dto.LimoCityDto;
 import com.woniuxy.mapper.LimoCityMapper;
 import com.woniuxy.mapper.LimoSortDetailMapper;
 import com.woniuxy.param.PageParam;
 import com.woniuxy.service.LimoCityService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -37,7 +40,7 @@ public class LimoCityServiceImpl extends ServiceImpl<LimoCityMapper, LimoCity> i
      * @return java.lang.Object
      **/
     @Override
-    public Page<LimoCity> selectCItyListByPage(PageParam param) {
+    public Page selectCItyListByPage(PageParam param) {
         Page<LimoCity> page = new Page<LimoCity>(param.getPageNum(),param.getPageSize());
         limoCityMapper.selectPage(page,null);
         //根据城市查询有多少文章
@@ -47,7 +50,11 @@ public class LimoCityServiceImpl extends ServiceImpl<LimoCityMapper, LimoCity> i
             Integer count = limoSortDetailMapper.selectCount(queryWrapper);
             page.getRecords().get(i).setTatol(count);
         }
-        return page;
+        //封装Dto
+        Page<LimoCityDto> page2 = new Page<LimoCityDto>();
+        BeanUtils.copyProperties(page,page2);
+        page=null;
+        return page2;
     }
     /**
      * @Author zhuyuli
@@ -62,7 +69,11 @@ public class LimoCityServiceImpl extends ServiceImpl<LimoCityMapper, LimoCity> i
         QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("so_d_city",city);
         limoSortDetailMapper.selectPage(page, queryWrapper);
-        return page;
+        //封装Dto
+        Page<LimoCityDto> page2 = new Page<LimoCityDto>();
+        BeanUtils.copyProperties(page,page2);
+        page=null;
+        return page2;
     }
     /**
      * @Author zhuyuli
@@ -80,6 +91,10 @@ public class LimoCityServiceImpl extends ServiceImpl<LimoCityMapper, LimoCity> i
         Integer count = limoSortDetailMapper.selectCount(wrapper);
         LimoCity limoCity = limoCityMapper.selectOne(queryWrapper);
         limoCity.setTatol(count);
-        return limoCity;
+        //封装dto
+        LimoCityDto cityDto=new LimoCityDto();
+        BeanUtils.copyProperties(limoCity,cityDto);
+        limoCity=null;
+        return cityDto;
     }
 }
