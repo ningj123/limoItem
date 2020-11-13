@@ -1,10 +1,13 @@
 package com.woniuxy.controller;
 
 
+import com.woniuxy.domain.LimoUser;
 import com.woniuxy.param.CartParam;
 import com.woniuxy.service.LimoCartService;
 import com.woniuxy.util.JSONResult;
+import com.woniuxy.util.LoginUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -31,7 +34,9 @@ public class LimoCartController {
      * @throws Exception
      */
     @RequestMapping("/insertCart")
-    public JSONResult insertCard(CartParam cartParam)throws Exception{
+    public JSONResult insertCard(@RequestHeader("x-token")String token, CartParam cartParam)throws Exception{
+        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
+        cartParam.setUId(limoUser.getUId());
         limoCartService.insertCart(cartParam);
         return new JSONResult("200","success",null,null);
     }

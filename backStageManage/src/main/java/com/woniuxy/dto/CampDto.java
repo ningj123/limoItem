@@ -1,23 +1,15 @@
 package com.woniuxy.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-
 import java.io.Serializable;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author shadow
- * @since 2020-11-12
- */
+ * @ClassName CampDto
+ * @Author shadow
+ * @Date 2020/11/12 16:15
+ * @Description TODO
+ **/
 public class CampDto implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
-    @TableId(value = "c_id", type = IdType.AUTO)
     private Integer cId;
 
     private String cName;
@@ -41,12 +33,21 @@ public class CampDto implements Serializable {
      */
     private Integer cStatus;
 
-    private Integer jId;
+    public CampDto() {
+    }
 
-    private String cOne;
-
-    private Integer mId;
-
+    public CampDto(Integer cId, String cName, String cAddress, String cPhone, String cOpenTime, String cSpecial, String cCity, String cDes, String cImages, Integer cStatus) {
+        this.cId = cId;
+        this.cName = cName;
+        this.cAddress = cAddress;
+        this.cPhone = cPhone;
+        this.cOpenTime = cOpenTime;
+        this.cSpecial = cSpecial;
+        this.cCity = cCity;
+        this.cDes = cDes;
+        this.cImages = cImages;
+        this.cStatus = cStatus;
+    }
 
     public Integer getcId() {
         return cId;
@@ -128,46 +129,19 @@ public class CampDto implements Serializable {
         this.cStatus = cStatus;
     }
 
-    public Integer getjId() {
-        return jId;
-    }
-
-    public void setjId(Integer jId) {
-        this.jId = jId;
-    }
-
-    public String getcOne() {
-        return cOne;
-    }
-
-    public void setcOne(String cOne) {
-        this.cOne = cOne;
-    }
-
-    public Integer getmId() {
-        return mId;
-    }
-
-    public void setmId(Integer mId) {
-        this.mId = mId;
-    }
-
     @Override
     public String toString() {
-        return "LimoCamp{" +
-        "cId=" + cId +
-        ", cName=" + cName +
-        ", cAddress=" + cAddress +
-        ", cPhone=" + cPhone +
-        ", cOpenTime=" + cOpenTime +
-        ", cSpecial=" + cSpecial +
-        ", cCity=" + cCity +
-        ", cDes=" + cDes +
-        ", cImages=" + cImages +
-        ", cStatus=" + cStatus +
-        ", jId=" + jId +
-        ", cOne=" + cOne +
-        ", mId=" + mId +
-        "}";
+        return "CampDto{" +
+                "cId=" + cId +
+                ", cName='" + cName + '\'' +
+                ", cAddress='" + cAddress + '\'' +
+                ", cPhone='" + cPhone + '\'' +
+                ", cOpenTime='" + cOpenTime + '\'' +
+                ", cSpecial='" + cSpecial + '\'' +
+                ", cCity='" + cCity + '\'' +
+                ", cDes='" + cDes + '\'' +
+                ", cImages='" + cImages + '\'' +
+                ", cStatus=" + cStatus +
+                '}';
     }
 }

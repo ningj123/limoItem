@@ -10,9 +10,11 @@ import com.woniuxy.param.EvaluateParam;
 import com.woniuxy.service.LimoEvaluateService;
 import com.woniuxy.service.LimoUserService;
 import com.woniuxy.util.JSONResult;
+import com.woniuxy.util.LoginUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,9 @@ public class LimoEvaluateController {
      * @throws Exception
      */
     @PostMapping("/insertEvaluate")
-    public JSONResult insertEvaluate(EvaluateParam evaluateParam)throws Exception{
+    public JSONResult insertEvaluate(@RequestHeader("x-token")String token, EvaluateParam evaluateParam)throws Exception{
+        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
+        evaluateParam.setUId(limoUser.getUId());
         return new JSONResult("200","success",null,limoEvaluateService.selectEvaluate(evaluateParam));
     }
 

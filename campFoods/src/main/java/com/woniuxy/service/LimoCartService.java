@@ -13,6 +13,11 @@ import com.woniuxy.param.CartParam;
  * @since 2020-11-10
  */
 public interface LimoCartService extends IService<LimoCart> {
+    /**
+     * 新增购物车
+     * @param cartParam
+     * @throws Exception
+     */
     public void insertCart(CartParam cartParam)throws Exception;
 
 }

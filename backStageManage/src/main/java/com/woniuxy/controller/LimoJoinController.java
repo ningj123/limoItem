@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author shadow
- * @since 2020-11-12
+ * @since 2020-11-13
  */
 @RestController
 @RequestMapping("/join")

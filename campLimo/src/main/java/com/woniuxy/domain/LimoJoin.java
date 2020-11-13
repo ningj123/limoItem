@@ -47,9 +47,14 @@ public class LimoJoin implements Serializable {
     private String jCampName;
 
     /**
-     * 0 加盟申请状态  1同意申请   2拒绝申请
+     * 0 正在审核 1 同意 2 拒绝
      */
     private Integer jStatus;
+
+    /**
+     * 城市
+     */
+    private String city;
 
     private static final long serialVersionUID = 1L;
 }

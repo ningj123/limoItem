@@ -29,8 +29,8 @@ public class LimoCartServiceImpl extends ServiceImpl<LimoCartMapper, LimoCart> i
     private LimoCartMapper limoCartMapper;
     @Resource
     private LimoProductMapper limoProductMapper;
-//    @Autowired
-//    private RedisTemplate rt;
+    @Autowired
+    private RedisTemplate rt;
     /**
      *  添加商品到购物车
      * @param cartParam
@@ -46,11 +46,11 @@ public class LimoCartServiceImpl extends ServiceImpl<LimoCartMapper, LimoCart> i
         LimoCart limoCart = new LimoCart();
         BeanUtils.copyProperties(cartParam,limoCart);
         limoCartMapper.insert(limoCart);
-//        if(limoCart.getPId()!=null && limoCart.getPId()>0){
-//            rt.opsForHash().put("cart","product"+limoCart.getPId(),limoCart);
-//        }
-//        if(limoCart.getAId()!=null && limoCart.getAId()>0){
-//            rt.opsForHash().put("cart","activity"+limoCart.getPId(),limoCart);
-//        }
+        if(limoCart.getPId()!=null && limoCart.getPId()>0){
+            rt.opsForHash().put("cart","product"+limoCart.getPId(),limoCart);
+        }
+        if(limoCart.getAId()!=null && limoCart.getAId()>0){
+            rt.opsForHash().put("cart","activity"+limoCart.getPId(),limoCart);
+        }
     }
 }
