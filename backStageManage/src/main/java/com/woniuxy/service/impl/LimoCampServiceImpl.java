@@ -1,9 +1,9 @@
 package com.woniuxy.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniuxy.domain.LimoCamp;
@@ -11,14 +11,12 @@ import com.woniuxy.dto.CampDto;
 import com.woniuxy.mapper.LimoCampMapper;
 import com.woniuxy.param.CampParam;
 import com.woniuxy.service.LimoCampService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.woniuxy.vo.PageVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 /**
@@ -26,7 +24,7 @@ import java.util.List;
  *  服务实现类
  * </p>
  *
- * @author shadow
+ * @author wuyanzu
  * @since 2020-11-12
  */
 @Service

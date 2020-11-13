@@ -14,7 +14,7 @@
     <result column="c_status" jdbcType="INTEGER" property="cStatus" />
     <result column="j_id" jdbcType="INTEGER" property="jId" />
     <result column="c_one" jdbcType="VARCHAR" property="cOne" />
-    <result column="c_two" jdbcType="INTEGER" property="cTwo" />
+    <result column="m_id" jdbcType="INTEGER" property="mId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     c_id, c_name, c_address, c_phone, c_open_time, c_special, c_city, c_des, c_images, 
-    c_status, j_id, c_one, c_two
+    c_status, j_id, c_one, m_id
   </sql>
   <select id="selectByExample" parameterType="com.woniuxy.domain.LimoCampExample" resultMap="BaseResultMap">
     select
@@ -112,11 +112,11 @@
     insert into limo_camp (c_name, c_address, c_phone, 
       c_open_time, c_special, c_city, 
       c_des, c_images, c_status, 
-      j_id, c_one, c_two)
+      j_id, c_one, m_id)
     values (#{cName,jdbcType=VARCHAR}, #{cAddress,jdbcType=VARCHAR}, #{cPhone,jdbcType=VARCHAR}, 
       #{cOpenTime,jdbcType=VARCHAR}, #{cSpecial,jdbcType=VARCHAR}, #{cCity,jdbcType=VARCHAR}, 
       #{cDes,jdbcType=VARCHAR}, #{cImages,jdbcType=VARCHAR}, #{cStatus,jdbcType=INTEGER}, 
-      #{jId,jdbcType=INTEGER}, #{cOne,jdbcType=VARCHAR}, #{cTwo,jdbcType=INTEGER})
+      #{jId,jdbcType=INTEGER}, #{cOne,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="c_id" keyProperty="cId" parameterType="com.woniuxy.domain.LimoCamp" useGeneratedKeys="true">
     insert into limo_camp
@@ -154,8 +154,8 @@
       <if test="cOne != null">
         c_one,
       </if>
-      <if test="cTwo != null">
-        c_two,
+      <if test="mId != null">
+        m_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -192,8 +192,8 @@
       <if test="cOne != null">
         #{cOne,jdbcType=VARCHAR},
       </if>
-      <if test="cTwo != null">
-        #{cTwo,jdbcType=INTEGER},
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -242,8 +242,8 @@
       <if test="record.cOne != null">
         c_one = #{record.cOne,jdbcType=VARCHAR},
       </if>
-      <if test="record.cTwo != null">
-        c_two = #{record.cTwo,jdbcType=INTEGER},
+      <if test="record.mId != null">
+        m_id = #{record.mId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -264,7 +264,7 @@
       c_status = #{record.cStatus,jdbcType=INTEGER},
       j_id = #{record.jId,jdbcType=INTEGER},
       c_one = #{record.cOne,jdbcType=VARCHAR},
-      c_two = #{record.cTwo,jdbcType=INTEGER}
+      m_id = #{record.mId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -305,8 +305,8 @@
       <if test="cOne != null">
         c_one = #{cOne,jdbcType=VARCHAR},
       </if>
-      <if test="cTwo != null">
-        c_two = #{cTwo,jdbcType=INTEGER},
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
       </if>
     </set>
     where c_id = #{cId,jdbcType=INTEGER}
@@ -324,7 +324,7 @@
       c_status = #{cStatus,jdbcType=INTEGER},
       j_id = #{jId,jdbcType=INTEGER},
       c_one = #{cOne,jdbcType=VARCHAR},
-      c_two = #{cTwo,jdbcType=INTEGER}
+      m_id = #{mId,jdbcType=INTEGER}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
 </mapper>
