@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,11 +16,11 @@ public class LimoUserParam {
     private Integer uId;
 
     private String uName;
-
+    @NotNull(message = "不能为空")
     private String uPassword;
 
     private String uEmail;
-
+    @NotNull(message = "不能为空")
     private String uPhone;
 
     private Integer uAge;

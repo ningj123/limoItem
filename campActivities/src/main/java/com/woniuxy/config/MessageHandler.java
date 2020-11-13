@@ -1,4 +1,4 @@
-package com.woniuxy.controller;
+package com.woniuxy.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
