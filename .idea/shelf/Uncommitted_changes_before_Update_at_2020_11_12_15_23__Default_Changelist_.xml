@@ -1,0 +1,94 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]" date="1605165806763" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020/11/12 15:23 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoProductController.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoProductController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoProductController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/param/OrdersParam.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/param/OrdersParam.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/OrdersParam.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/controller/LimoSortController.class" />
+    <option name="AFTER_PATH" value="travel/target/classes/com/woniuxy/controller/LimoSortController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoSortController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/service/LimoOrderService.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/service/LimoOrderService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoOrderService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoOrderController.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoOrderController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoOrderController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/utils/Test.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/utils/Test.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/Test.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoOrderServiceImpl.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoOrderServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoOrderServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/service/LimoProductService.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/service/LimoProductService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoProductService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/domain/LimoCart.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/domain/LimoCart.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoCart.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/config/MPConfiguration.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/config/MPConfiguration.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/MPConfiguration.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoCartController.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoCartController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoCartController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/param/LSDParam.class" />
+    <option name="AFTER_PATH" value="travel/target/classes/com/woniuxy/param/LSDParam.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LSDParam.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoEvaluateServiceImpl.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoEvaluateServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoEvaluateServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/client/BannerFeignClient.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/domain/LimoOrderDetail.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/domain/LimoOrderDetail.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoOrderDetail.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoProductServiceImpl.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoProductServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoProductServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoEvaluateController.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoEvaluateController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoEvaluateController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/service/LimoEvaluateService.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/service/LimoEvaluateService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_12_15_23_[Default_Changelist]/LimoEvaluateService.class" />
+  </binary>
+</changelist>
