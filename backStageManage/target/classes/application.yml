@@ -1,16 +1,16 @@
 server:
   port: 8083
-#spring:
-#  application:
-#    name: back
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr: localhost:8848
-  #    sentinel:
-  #      transport:
-  #        dashboard: localhost:8080
-  #      web-context-unify: false
+spring:
+  application:
+    name: back
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+#      web-context-unify: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useUnicode=true&characterEncoding=UTF-8&useSSL=false
@@ -34,11 +34,11 @@ server:
 #        - 192.168.223.128:6382
 #        - 192.168.223.128:6383
 #        - 192.168.223.128:6384
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.woniuxy.domain

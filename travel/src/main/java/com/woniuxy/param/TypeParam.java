@@ -17,6 +17,6 @@ import java.security.PrivateKey;
 @NoArgsConstructor
 @Builder
 public class TypeParam extends PageParam{
-    private Integer type;
+    private Integer type=-1;
     private String keyWord;
 }

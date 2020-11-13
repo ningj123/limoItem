@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.mapper.LimoSecSpotMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.domain.LimoSecSpot">
+        <id column="sec_id" property="secId" />
+        <result column="sec_sport_name" property="secSportName" />
+        <result column="sec_sport_address" property="secSportAddress" />
+        <result column="sec_sport_city" property="secSportCity" />
+        <result column="c_id" property="cId" />
+        <result column="c_name" property="cName" />
+        <result column="sec_sport_opentime" property="secSportOpentime" />
+        <result column="sec_sport_server" property="secSportServer" />
+        <result column="sec_sport_imgurl" property="secSportImgurl" />
+        <result column="sec_sport_price" property="secSportPrice" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        sec_id, sec_sport_name, sec_sport_address, sec_sport_city, c_id, c_name, sec_sport_opentime, sec_sport_server, sec_sport_imgurl, sec_sport_price
+    </sql>
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.mapper.LimoCampMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.domain.LimoCamp">
+        <id column="c_id" property="cId" />
+        <result column="c_name" property="cName" />
+        <result column="c_address" property="cAddress" />
+        <result column="c_phone" property="cPhone" />
+        <result column="c_open_time" property="cOpenTime" />
+        <result column="c_special" property="cSpecial" />
+        <result column="c_city" property="cCity" />
+        <result column="c_des" property="cDes" />
+        <result column="c_images" property="cImages" />
+        <result column="c_status" property="cStatus" />
+        <result column="j_id" property="jId" />
+        <result column="c_one" property="cOne" />
+        <result column="m_id" property="mId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        c_id, c_name, c_address, c_phone, c_open_time, c_special, c_city, c_des, c_images, c_status, j_id, c_one, m_id
+    </sql>
+
+</mapper>

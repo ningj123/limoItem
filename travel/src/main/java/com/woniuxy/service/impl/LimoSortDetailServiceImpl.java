@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.ibatis.jdbc.SQL;
 import org.apache.velocity.runtime.directive.Foreach;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.jta.WebSphereUowTransactionManager;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -74,26 +75,17 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
     @Override
     public Object selectByType(TypeParam param) throws Exception{
         Page<LimoSortDetail> Page = new Page<LimoSortDetail>(param.getPageNum(),param.getPageSize());
+        QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
         //如果type=-1,为空，参数为空
-        if(param.getType()==-1 && param.getKeyWord().isEmpty()){
-            limoSortDetailMapper.selectPage(Page,null);
+        if(param.getType()!=-1 && param.getType()!=null ){
 
-        }else if(param.getType()!=-1 && param.getKeyWord().isEmpty()){
-            QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("so_d_type",param.getType());
-            limoSortDetailMapper.selectPage(Page,queryWrapper);
-
-        }else if(param.getType()== -1 && !param.getKeyWord().isEmpty()){
-            QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
-            queryWrapper.like("so_d_keyword",param.getKeyWord());
-            limoSortDetailMapper.selectPage(Page,queryWrapper);
-        }else {
-            QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("so_d_type",param.getType());
-            queryWrapper.like("so_d_keyword",param.getKeyWord());
-            limoSortDetailMapper.selectPage(Page,queryWrapper);
         }
+        if(param.getKeyWord()!=null && !param.getKeyWord().equals("")){
 
+            queryWrapper.like("so_d_keyword",param.getKeyWord());
+        }
+        limoSortDetailMapper.selectPage(Page,queryWrapper);
         return Page;
     }
 }

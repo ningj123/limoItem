@@ -13,11 +13,12 @@ import java.util.Map;
 /**
  * @ClassName ExceptionController
  * @Author shadow
- * @Date 2020/11/12 10:19
+ * @Date 2020/11/12 15:56
  * @Description TODO
  **/
 @Controller
 public class ExceptionController implements ErrorController {
+
     @Override
     public String getErrorPath() {
         return "/error";

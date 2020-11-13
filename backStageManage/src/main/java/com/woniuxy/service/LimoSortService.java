@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *  服务类
  * </p>
  *
- * @author wuyanzu
+ * @author shadow
  * @since 2020-11-12
  */
 public interface LimoSortService extends IService<LimoSort> {

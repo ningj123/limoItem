@@ -10,11 +10,12 @@
         <result column="p_num" property="pNum" />
         <result column="ca_type" property="caType" />
         <result column="u_id" property="uId" />
+        <result column="ca_status" property="caStatus" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ca_id, p_id, a_id, p_num, ca_type, u_id
+        ca_id, p_id, a_id, p_num, ca_type, u_id, ca_status
     </sql>
 
 </mapper>
