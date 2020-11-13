@@ -1,0 +1,44 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020_11_10_16_56_[Default_Changelist]" date="1604998601544" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_10_16_56_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020/11/10 16:56 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/util/Test.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/service/impl/LimoSortServiceImpl.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/TravelStart.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/service/LimoBannerService.class" />
+    <option name="AFTER_PATH" value="travel/target/classes/com/woniuxy/service/LimoBannerService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_10_16_56_[Default_Changelist]/LimoBannerService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/service/impl/LimoBannerServiceImpl.class" />
+    <option name="AFTER_PATH" value="travel/target/classes/com/woniuxy/service/impl/LimoBannerServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_10_16_56_[Default_Changelist]/LimoBannerServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/service/LimoSortService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/controller/LimoBannerController.class" />
+    <option name="AFTER_PATH" value="travel/target/classes/com/woniuxy/controller/LimoBannerController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_10_16_56_[Default_Changelist]/LimoBannerController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="travel/target/classes/com/woniuxy/service/impl/LimoSortDetailServiceImpl.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

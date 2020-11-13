@@ -9,6 +9,7 @@ import com.woniuxy.service.LimoCartService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +29,8 @@ public class LimoCartServiceImpl extends ServiceImpl<LimoCartMapper, LimoCart> i
     private LimoCartMapper limoCartMapper;
     @Resource
     private LimoProductMapper limoProductMapper;
+//    @Autowired
+//    private RedisTemplate rt;
     /**
      *  添加商品到购物车
      * @param cartParam
@@ -43,5 +46,11 @@ public class LimoCartServiceImpl extends ServiceImpl<LimoCartMapper, LimoCart> i
         LimoCart limoCart = new LimoCart();
         BeanUtils.copyProperties(cartParam,limoCart);
         limoCartMapper.insert(limoCart);
+//        if(limoCart.getPId()!=null && limoCart.getPId()>0){
+//            rt.opsForHash().put("cart","product"+limoCart.getPId(),limoCart);
+//        }
+//        if(limoCart.getAId()!=null && limoCart.getAId()>0){
+//            rt.opsForHash().put("cart","activity"+limoCart.getPId(),limoCart);
+//        }
     }
 }

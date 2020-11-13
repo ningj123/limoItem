@@ -33,5 +33,7 @@ public class LimoCart implements Serializable {
 
     private Integer uId;
 
+    private Integer caStatus;
+
 
 }

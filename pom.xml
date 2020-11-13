@@ -12,9 +12,10 @@
         <module>campLimo</module>
         <module>gateWay</module>
         <module>utils</module>
-        <module>campFoods</module>
         <module>travel</module>
+        <module>campFoods</module>
         <module>campActivities</module>
+        <module>backStageManage</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
