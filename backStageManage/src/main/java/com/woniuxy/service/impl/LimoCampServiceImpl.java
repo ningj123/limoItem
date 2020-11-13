@@ -65,9 +65,9 @@ public class LimoCampServiceImpl extends ServiceImpl<LimoCampMapper, LimoCamp> i
         LimoCamp limoCamp = new LimoCamp();
         limoCamp.setcId(cId);
         limoCamp.setcStatus(cStatus);
+        //修改营地状态
         limoCampMapper.updateById(limoCamp);
     }
-
     /**
      * 新增营地信息
      * @param campParam

@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020_11_13_11_49_[Default_Changelist]" date="1605239393711" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_13_11_49_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020/11/13 11:49 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoProductController.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoProductController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_13_11_49_[Default_Changelist]/LimoProductController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/config/UtilsConfig.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoJoinServiceImpl.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/service/impl/LimoJoinServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_13_11_49_[Default_Changelist]/LimoJoinServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoOrderController.class" />
+    <option name="AFTER_PATH" value="campFoods/target/classes/com/woniuxy/controller/LimoOrderController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_13_11_49_[Default_Changelist]/LimoOrderController.class" />
+  </binary>
+</changelist>

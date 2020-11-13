@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020_11_13_9_32_[Default_Changelist]" date="1605231149770" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_13_9_32_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020/11/13 9:32 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="utils/target/utils-1.0-SNAPSHOT.jar" />
+    <option name="AFTER_PATH" value="utils/target/utils-1.0-SNAPSHOT.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_13_9_32_[Default_Changelist]/utils-1.0-SNAPSHOT.jar" />
+  </binary>
+</changelist>
