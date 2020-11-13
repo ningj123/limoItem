@@ -1,11 +1,14 @@
 package com.woniuxy.service.impl;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.alibaba.druid.sql.ast.statement.SQLIfStatement;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.woniuxy.doman.LimoBanner;
 import com.woniuxy.doman.LimoCity;
 import com.woniuxy.doman.LimoSortDetail;
+import com.woniuxy.dto.LimoSortDetailDto;
 import com.woniuxy.mapper.LimoCityMapper;
 import com.woniuxy.mapper.LimoSortDetailMapper;
 import com.woniuxy.param.TypeParam;
@@ -13,10 +16,16 @@ import com.woniuxy.service.LimoSortDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.ibatis.jdbc.SQL;
 import org.apache.velocity.runtime.directive.Foreach;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.jta.WebSphereUowTransactionManager;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -32,6 +41,8 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
     private LimoSortDetailMapper  limoSortDetailMapper;
     @Resource
     private LimoCityMapper limoCityMapper;
+    @Autowired
+    private RedisTemplate<String,String> redisTemplate;
     /**
      * @Author zhuyuli
      * @Description //查询旅游攻略（4个指南）
@@ -74,26 +85,52 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
     @Override
     public Object selectByType(TypeParam param) throws Exception{
         Page<LimoSortDetail> Page = new Page<LimoSortDetail>(param.getPageNum(),param.getPageSize());
+        QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
         //如果type=-1,为空，参数为空
-        if(param.getType()==-1 && param.getKeyWord().isEmpty()){
-            limoSortDetailMapper.selectPage(Page,null);
+        if(param.getType()!=-1 && param.getType()!=null ){
 
-        }else if(param.getType()!=-1 && param.getKeyWord().isEmpty()){
-            QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("so_d_type",param.getType());
-            limoSortDetailMapper.selectPage(Page,queryWrapper);
-
-        }else if(param.getType()== -1 && !param.getKeyWord().isEmpty()){
-            QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
-            queryWrapper.like("so_d_keyword",param.getKeyWord());
-            limoSortDetailMapper.selectPage(Page,queryWrapper);
-        }else {
-            QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("so_d_type",param.getType());
-            queryWrapper.like("so_d_keyword",param.getKeyWord());
-            limoSortDetailMapper.selectPage(Page,queryWrapper);
         }
+        //判断关键字不为空
+        if(param.getKeyWord()!=null && !param.getKeyWord().equals("")){
 
-        return Page;
+            queryWrapper.like("so_d_keyword",param.getKeyWord());
+        }
+        limoSortDetailMapper.selectPage(Page,queryWrapper);
+        Page<LimoSortDetailDto> page2 = new Page<LimoSortDetailDto>();
+        BeanUtils.copyProperties(Page,page2);
+        Page=null;
+        return page2;
+    }
+
+    @Override
+    public List queryAll() {
+        List<LimoSortDetail> limoSortDetails = limoSortDetailMapper.selectList(null);
+        //封装dto
+        List<LimoSortDetailDto> limoSortDetailDtos = new ArrayList<LimoSortDetailDto>();
+        for(LimoSortDetail i:limoSortDetails){
+            LimoSortDetailDto dto=new LimoSortDetailDto();
+            BeanUtils.copyProperties(i,dto);
+            limoSortDetailDtos.add(dto);
+        }
+        limoSortDetails=null;
+        return limoSortDetailDtos;
+    }
+
+    @Override
+    public LimoSortDetail selectById(Integer id) {
+
+        LimoSortDetail detail = limoSortDetailMapper.selectById(id);
+        redisTemplate.opsForValue().increment("sort:"+detail.getSoDId(), 1);
+        String s = redisTemplate.opsForValue().get("sort:" + detail.getSoDId());
+        Integer i=Integer.parseInt(s);
+        detail.setSoDTwo(i);
+        if(i%10==0){
+            UpdateWrapper<LimoSortDetail> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("so_d_id",detail.getSoDId());
+            updateWrapper.set("so_d_two",i);
+            limoSortDetailMapper.update(null,updateWrapper);
+        }
+        return detail;
     }
 }

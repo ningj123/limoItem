@@ -4,6 +4,8 @@ import com.woniuxy.doman.LimoSortDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.woniuxy.param.TypeParam;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -29,4 +31,20 @@ public interface LimoSortDetailService extends IService<LimoSortDetail> {
    * @return java.lang.Object
    **/
     Object selectByType(TypeParam param)throws Exception;
+    /**
+     * @Author zhuyuli
+     * @Description 查询全部文章
+     * @Date 2020/11/11 15:08
+     * @Param []
+     * @return java.util.List<com.woniuxy.doman.LimoSortDetail>
+     **/
+    List queryAll();
+    /**
+     * @Author zhuyuli
+     * @Description 根据ID查询
+     * @Date 2020/11/12 9:44
+     * @Param [id]
+     * @return com.woniuxy.doman.LimoSortDetail
+     **/
+    LimoSortDetail selectById(Integer id);
 }
