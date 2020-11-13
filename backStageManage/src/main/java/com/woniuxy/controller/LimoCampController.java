@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  *  前端控制器
  * </p>
  *
- * @author shadow
+ * @author wuyanzu
  * @since 2020-11-12
  */
 @RestController
@@ -65,7 +65,6 @@ public class LimoCampController {
         limoCampService.insertCamp(campParam);
         return new JSONResult("200","success",null,null);
     }
-
     /**
      * 查询该营地管理员的所有营地
      * @param pageVO

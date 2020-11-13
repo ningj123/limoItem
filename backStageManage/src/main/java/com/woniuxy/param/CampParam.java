@@ -1,23 +1,17 @@
 package com.woniuxy.param;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.woniuxy.vo.PageVO;
 
 import java.io.Serializable;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author shadow
- * @since 2020-11-12
- */
+ * @ClassName CampParam
+ * @Author shadow
+ * @Date 2020/11/12 16:13
+ * @Description TODO
+ **/
 public class CampParam extends PageVO implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
-    @TableId(value = "c_id", type = IdType.AUTO)
     private Integer cId;
 
     private String cName;
@@ -41,12 +35,24 @@ public class CampParam extends PageVO implements Serializable {
      */
     private Integer cStatus;
 
-    private Integer jId;
-
-    private String cOne;
-
     private Integer mId;
 
+    public CampParam(Integer cId, String cName, String cAddress, String cPhone, String cOpenTime, String cSpecial, String cCity, String cDes, String cImages, Integer cStatus, Integer mId) {
+        this.cId = cId;
+        this.cName = cName;
+        this.cAddress = cAddress;
+        this.cPhone = cPhone;
+        this.cOpenTime = cOpenTime;
+        this.cSpecial = cSpecial;
+        this.cCity = cCity;
+        this.cDes = cDes;
+        this.cImages = cImages;
+        this.cStatus = cStatus;
+        this.mId = mId;
+    }
+
+    public CampParam() {
+    }
 
     public Integer getcId() {
         return cId;
@@ -128,22 +134,6 @@ public class CampParam extends PageVO implements Serializable {
         this.cStatus = cStatus;
     }
 
-    public Integer getjId() {
-        return jId;
-    }
-
-    public void setjId(Integer jId) {
-        this.jId = jId;
-    }
-
-    public String getcOne() {
-        return cOne;
-    }
-
-    public void setcOne(String cOne) {
-        this.cOne = cOne;
-    }
-
     public Integer getmId() {
         return mId;
     }
@@ -154,20 +144,18 @@ public class CampParam extends PageVO implements Serializable {
 
     @Override
     public String toString() {
-        return "LimoCamp{" +
-        "cId=" + cId +
-        ", cName=" + cName +
-        ", cAddress=" + cAddress +
-        ", cPhone=" + cPhone +
-        ", cOpenTime=" + cOpenTime +
-        ", cSpecial=" + cSpecial +
-        ", cCity=" + cCity +
-        ", cDes=" + cDes +
-        ", cImages=" + cImages +
-        ", cStatus=" + cStatus +
-        ", jId=" + jId +
-        ", cOne=" + cOne +
-        ", mId=" + mId +
-        "}";
+        return "CampParam{" +
+                "cId=" + cId +
+                ", cName='" + cName + '\'' +
+                ", cAddress='" + cAddress + '\'' +
+                ", cPhone='" + cPhone + '\'' +
+                ", cOpenTime='" + cOpenTime + '\'' +
+                ", cSpecial='" + cSpecial + '\'' +
+                ", cCity='" + cCity + '\'' +
+                ", cDes='" + cDes + '\'' +
+                ", cImages='" + cImages + '\'' +
+                ", cStatus=" + cStatus +
+                ", mId=" + mId +
+                '}';
     }
 }

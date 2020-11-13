@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @ClassName ManageRealm
  * @Author shadow
- * @Date 2020/11/13 16:09
+ * @Date 2020/11/12 15:59
  * @Description TODO
  **/
 public class ManageRealm extends AuthorizingRealm {
@@ -29,29 +29,32 @@ public class ManageRealm extends AuthorizingRealm {
     private LimoMenuService limoMenuService;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        /*LimoManage limoManage=(LimoManage)principals.getPrimaryPrincipal();
-        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        try {
-            List<LimoMenu> permissions = limoMenuService.selectPermission(employee);
-            for (LimoMenu menu : permissions) {
-                simpleAuthorizationInfo.addStringPermission(menu.getmName());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
+
+//        LimoManage limoManage=(LimoManage)principals.getPrimaryPrincipal();
+//        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+//        try {
+//            List<LimoMenu> permissions = limoMenuService.selectPermission(limoManage);
+//            for (LimoMenu limoMenu : permissions) {
+//                simpleAuthorizationInfo.addStringPermission(limoMenu.getmName());
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
         return null;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        /*String phone=(String)token.getPrincipal();
-        SimpleAuthenticationInfo authenticationInfo=null;
-        try {
-            LimoManage limoManage=(LimoManage) limoManageService.selectByPhone(phone);
-            authenticationInfo = new SimpleAuthenticationInfo(limoManage,limoManage.getmPassword(),getName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
+//        String phone=(String)token.getPrincipal();
+//        SimpleAuthenticationInfo authenticationInfo=null;
+//        try {
+//            LimoManage limoManage=(LimoManage) limoManageService.selectByPhone(phone);
+//            authenticationInfo = new SimpleAuthenticationInfo(limoManage,limoManage.getmPassword(),getName());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
         return null;
     }
 }

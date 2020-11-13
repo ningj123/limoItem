@@ -18,7 +18,7 @@ import java.util.List;
  *  服务类
  * </p>
  *
- * @author shadow
+ * @author wuyanzu
  * @since 2020-11-12
  */
 public interface LimoCampService extends IService<LimoCamp> {
@@ -44,7 +44,8 @@ public interface LimoCampService extends IService<LimoCamp> {
      * @throws Exception
      */
     public void insertCamp(CampParam campParam)throws Exception;
-     /** 查询该营地管理员的所有营地
+    /**
+     * 查询该营地管理员的所有营地
      * @param mId
      * @param pageVO
      * @return
