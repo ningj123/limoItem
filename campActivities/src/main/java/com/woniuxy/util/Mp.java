@@ -32,7 +32,7 @@ public class Mp {
         StrategyConfig stConfig = new StrategyConfig();
         stConfig.setCapitalMode(true) // 全局大写命名
                 .setNaming(NamingStrategy.underline_to_camel) //下划线转驼峰
-                .setInclude("limo_order_detail");//生成的表,参数为数组
+                .setInclude("limo_manage");//生成的表,参数为数组
         //4.包名策略
         PackageConfig pkConfig = new PackageConfig();
         pkConfig.setParent("com.woniuxy")//父包名

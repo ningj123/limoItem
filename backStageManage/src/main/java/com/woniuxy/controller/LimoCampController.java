@@ -1,7 +1,6 @@
 package com.woniuxy.controller;
 
 
-import com.woniuxy.domain.LimoManage;
 import com.woniuxy.param.CampParam;
 import com.woniuxy.param.LimoActivityParam;
 import com.woniuxy.param.LimoJoinParam;
@@ -10,8 +9,6 @@ import com.woniuxy.service.LimoCampService;
 import com.woniuxy.util.JSONResult;
 import com.woniuxy.vo.PageVO;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,10 +22,49 @@ import javax.annotation.Resource;
  * @since 2020-11-12
  */
 @RestController
-@RequestMapping("back/limoCamp")
+@RequestMapping("/limoCamp")
 public class LimoCampController {
     @Resource
     private LimoCampService limoCampService;
+
+    /**
+     * 分页条件查询所有营地
+     * @param campParam
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "分页查询营地")
+    @GetMapping("/selectcamp")
+    public JSONResult selectCamp(CampParam campParam)throws Exception{
+        return new JSONResult("200","success",null,limoCampService.selectCamp(campParam));
+    }
+
+    /**
+     * 下架营地
+     * @param cId
+     * @param cStatus
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "下架营地")
+    @PutMapping("/stopCamp")
+    public JSONResult stopCamp(Integer cId,Integer cStatus)throws Exception{
+        limoCampService.stopCamp(cId,cStatus);
+        return new JSONResult("200","success",null,null);
+    }
+
+    /**
+     * 新增营地
+     * @param campParam
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "新增营地")
+    @PostMapping("/insertCamp")
+    public JSONResult insertCamp(CampParam campParam)throws Exception{
+        limoCampService.insertCamp(campParam);
+        return new JSONResult("200","success",null,null);
+    }
 
     /**
      * 查询该营地管理员的所有营地

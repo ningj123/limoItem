@@ -34,5 +34,7 @@ public class CartParam implements Serializable {
 
     private Integer uId;
 
+    private Integer caStatus;
+
 
 }

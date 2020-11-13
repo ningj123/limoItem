@@ -2,6 +2,8 @@ package com.woniuxy.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniuxy.domain.LimoActivity;
@@ -18,10 +20,10 @@ import com.woniuxy.param.LimoActivityParam;
 import com.woniuxy.param.LimoJoinParam;
 import com.woniuxy.param.LimoParam;
 import com.woniuxy.service.LimoCampService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.woniuxy.vo.PageVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +43,54 @@ import java.util.List;
 public class LimoCampServiceImpl extends ServiceImpl<LimoCampMapper, LimoCamp> implements LimoCampService {
     @Resource
     private LimoCampMapper limoCampMapper;
+
+    /**
+     * 分页条件查询营地
+     * @param campParam
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Page<CampDto> selectCamp(CampParam campParam) throws Exception {
+        Page<LimoCamp> page = new Page<>(campParam.getPageNum(), campParam.getPageSize());
+        QueryWrapper<LimoCamp> queryWrapper = new QueryWrapper<>();
+        if (campParam.getcStatus()!=null){
+            queryWrapper.eq("c_status",campParam.getcStatus());
+        }
+        if (!StringUtils.isEmpty(campParam.getcName())){
+            queryWrapper.eq("c_name",campParam.getcName());
+        }
+        limoCampMapper.selectPage(page,queryWrapper);
+        Page<CampDto> dtoPage = new Page<>();
+        BeanUtils.copyProperties(page,dtoPage);
+        return dtoPage;
+    }
+
+    /**
+     * 下架营地
+     * @param cId
+     * @param cStatus
+     * @throws Exception
+     */
+    @Override
+    public void stopCamp(Integer cId, Integer cStatus) throws Exception {
+        LimoCamp limoCamp = new LimoCamp();
+        limoCamp.setcId(cId);
+        limoCamp.setcStatus(cStatus);
+        limoCampMapper.updateById(limoCamp);
+    }
+
+    /**
+     * 新增营地信息
+     * @param campParam
+     * @throws Exception
+     */
+    @Override
+    public void insertCamp(CampParam campParam) throws Exception {
+        LimoCamp limoCamp = new LimoCamp();
+        BeanUtils.copyProperties(campParam, limoCamp);
+        limoCampMapper.insert(limoCamp);
+    }
     @Resource
     private LimoProductMapper limoProductMapper;
     @Resource

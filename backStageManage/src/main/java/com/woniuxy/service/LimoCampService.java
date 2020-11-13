@@ -23,7 +23,28 @@ import java.util.List;
  */
 public interface LimoCampService extends IService<LimoCamp> {
     /**
-     * 查询该营地管理员的所有营地
+     * 分页条件查询所有营地
+     * @param campParam
+     * @return
+     * @throws Exception
+     */
+    Page<CampDto> selectCamp(CampParam campParam)throws Exception;
+
+    /**
+     * 下架营地
+     * @param cId
+     * @param cStatus
+     * @throws Exception
+     */
+    public void stopCamp(Integer cId, Integer cStatus)throws Exception;
+
+    /**
+     * 新增营地
+     * @param campParam
+     * @throws Exception
+     */
+    public void insertCamp(CampParam campParam)throws Exception;
+     /** 查询该营地管理员的所有营地
      * @param mId
      * @param pageVO
      * @return

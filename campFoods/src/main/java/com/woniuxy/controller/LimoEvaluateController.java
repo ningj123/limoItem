@@ -12,6 +12,7 @@ import com.woniuxy.service.LimoUserService;
 import com.woniuxy.util.JSONResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -43,21 +44,18 @@ public class LimoEvaluateController {
      */
     @RequestMapping("/selectEvaluate")
     public JSONResult selectEvaluate(EvaluateParam evaluateParam)throws Exception{
-        //获取评价信息
-        Page<LimoEvaluate> page = limoEvaluateService.selectEvaluate(evaluateParam);
-        //查询评价的用户信息
-        List<LimoEvaluate> records = page.getRecords();
-        ArrayList<EvaluateDto> list = new ArrayList<>();
-        for (LimoEvaluate evaluate:records){
-            LimoUser user = limoUserService.getById(evaluate.getUId());
-            EvaluateDto evaluateDto = new EvaluateDto();
-            UserDto userDto = new UserDto();
-            BeanUtils.copyProperties(evaluate,evaluateDto);
-            BeanUtils.copyProperties(user,userDto);
-            evaluateDto.setUserDto(userDto);
-            list.add(evaluateDto);
-        }
-        return new JSONResult("200","success",list,page);
+        return new JSONResult("200","success",null,limoEvaluateService.selectEvaluate(evaluateParam));
+    }
+
+    /**
+     * 新增评价
+     * @param evaluateParam
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("/insertEvaluate")
+    public JSONResult insertEvaluate(EvaluateParam evaluateParam)throws Exception{
+        return new JSONResult("200","success",null,limoEvaluateService.selectEvaluate(evaluateParam));
     }
 
 }
