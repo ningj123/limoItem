@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author shadow
- * @since 2020-11-12
+ * @since 2020-11-13
  */
 public interface LimoJoinMapper extends BaseMapper<LimoJoin> {
 

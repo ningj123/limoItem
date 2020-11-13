@@ -1,23 +1,16 @@
-package com.woniuxy.domain;
+package com.woniuxy.param;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author shadow
- * @since 2020-11-13
- */
-public class LimoJoin implements Serializable {
-
+ * @ClassName LimoJoinParam
+ * @Author shadow
+ * @Date 2020/11/13 14:03
+ * @Description TODO
+ **/
+public class LimoJoinParam implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    @TableId(value = "j_id", type = IdType.AUTO)
     private Integer jId;
 
     /**
@@ -50,11 +43,6 @@ public class LimoJoin implements Serializable {
     private String jRemark;
 
     /**
-     * 营地名称
-     */
-    private String jCampName;
-
-    /**
      * 0 正在审核 1 同意 2 拒绝
      */
     private Integer jStatus;
@@ -64,6 +52,27 @@ public class LimoJoin implements Serializable {
      */
     private String city;
 
+    public LimoJoinParam() {
+    }
+
+    public LimoJoinParam(Integer jId, String jName, String jPhone, String jSerail, String jLimoAddress, String jLimoType, Integer cId, String jCardImages, String jLimoImages, LocalDateTime jStartTime, LocalDateTime jEndTime, Integer jType, String jEmail, String jRemark, Integer jStatus, String city) {
+        this.jId = jId;
+        this.jName = jName;
+        this.jPhone = jPhone;
+        this.jSerail = jSerail;
+        this.jLimoAddress = jLimoAddress;
+        this.jLimoType = jLimoType;
+        this.cId = cId;
+        this.jCardImages = jCardImages;
+        this.jLimoImages = jLimoImages;
+        this.jStartTime = jStartTime;
+        this.jEndTime = jEndTime;
+        this.jType = jType;
+        this.jEmail = jEmail;
+        this.jRemark = jRemark;
+        this.jStatus = jStatus;
+        this.city = city;
+    }
 
     public Integer getjId() {
         return jId;
@@ -177,14 +186,6 @@ public class LimoJoin implements Serializable {
         this.jRemark = jRemark;
     }
 
-    public String getjCampName() {
-        return jCampName;
-    }
-
-    public void setjCampName(String jCampName) {
-        this.jCampName = jCampName;
-    }
-
     public Integer getjStatus() {
         return jStatus;
     }
@@ -203,24 +204,23 @@ public class LimoJoin implements Serializable {
 
     @Override
     public String toString() {
-        return "LimoJoin{" +
-        "jId=" + jId +
-        ", jName=" + jName +
-        ", jPhone=" + jPhone +
-        ", jSerail=" + jSerail +
-        ", jLimoAddress=" + jLimoAddress +
-        ", jLimoType=" + jLimoType +
-        ", cId=" + cId +
-        ", jCardImages=" + jCardImages +
-        ", jLimoImages=" + jLimoImages +
-        ", jStartTime=" + jStartTime +
-        ", jEndTime=" + jEndTime +
-        ", jType=" + jType +
-        ", jEmail=" + jEmail +
-        ", jRemark=" + jRemark +
-        ", jCampName=" + jCampName +
-        ", jStatus=" + jStatus +
-        ", city=" + city +
-        "}";
+        return "LimoJoinDto{" +
+                "jId=" + jId +
+                ", jName='" + jName + '\'' +
+                ", jPhone='" + jPhone + '\'' +
+                ", jSerail='" + jSerail + '\'' +
+                ", jLimoAddress='" + jLimoAddress + '\'' +
+                ", jLimoType='" + jLimoType + '\'' +
+                ", cId=" + cId +
+                ", jCardImages='" + jCardImages + '\'' +
+                ", jLimoImages='" + jLimoImages + '\'' +
+                ", jStartTime=" + jStartTime +
+                ", jEndTime=" + jEndTime +
+                ", jType=" + jType +
+                ", jEmail='" + jEmail + '\'' +
+                ", jRemark='" + jRemark + '\'' +
+                ", jStatus=" + jStatus +
+                ", city='" + city + '\'' +
+                '}';
     }
 }

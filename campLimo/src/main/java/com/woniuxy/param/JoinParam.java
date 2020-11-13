@@ -51,12 +51,17 @@ public class JoinParam implements Serializable {
      */
     private Integer jStatus;
 
+    /**
+     * 城市
+     */
+    private String city;
+
     private static final long serialVersionUID = 1L;
 
     public JoinParam() {
     }
 
-    public JoinParam(Integer jId, String jName, String jPhone, String jSerail, String jLimoAddress, String jLimoType, Integer cId, String jCardImages, String jLimoImages, Date jStartTime, Date jEndTime, Integer jType, String jEmail, String jRemark, String jCampName, Integer jStatus) {
+    public JoinParam(Integer jId, String jName, String jPhone, String jSerail, String jLimoAddress, String jLimoType, Integer cId, String jCardImages, String jLimoImages, Date jStartTime, Date jEndTime, Integer jType, String jEmail, String jRemark, String jCampName, Integer jStatus, String city) {
         this.jId = jId;
         this.jName = jName;
         this.jPhone = jPhone;
@@ -73,6 +78,7 @@ public class JoinParam implements Serializable {
         this.jRemark = jRemark;
         this.jCampName = jCampName;
         this.jStatus = jStatus;
+        this.city = city;
     }
 
     public Integer getjId() {
@@ -207,9 +213,17 @@ public class JoinParam implements Serializable {
         return serialVersionUID;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
-        return "LimoJoin{" +
+        return "JoinParam{" +
                 "jId=" + jId +
                 ", jName='" + jName + '\'' +
                 ", jPhone='" + jPhone + '\'' +
@@ -226,6 +240,7 @@ public class JoinParam implements Serializable {
                 ", jRemark='" + jRemark + '\'' +
                 ", jCampName='" + jCampName + '\'' +
                 ", jStatus=" + jStatus +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

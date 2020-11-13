@@ -1,14 +1,14 @@
-package com.woniuxy.dto;
+package com.woniuxy.param;
 
 import java.io.Serializable;
 
 /**
- * @ClassName LimoDto
+ * @ClassName LimoParam
  * @Author shadow
- * @Date 2020/11/13 9:29
+ * @Date 2020/11/13 11:19
  * @Description TODO
  **/
-public class LimoDto implements Serializable {
+public class LimoParam implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer pId;
 
@@ -42,10 +42,10 @@ public class LimoDto implements Serializable {
      */
     private String cCity;
 
-    public LimoDto() {
+    public LimoParam() {
     }
 
-    public LimoDto(Integer pId, String pName, Integer pInven, Double pOldPrice, Double pNewPrice, Double pSellPrice, String pImages, String pDes, Integer pType, Integer urId, Integer cId, Integer pStatus, String cCity) {
+    public LimoParam(Integer pId, String pName, Integer pInven, Double pOldPrice, Double pNewPrice, Double pSellPrice, String pImages, String pDes, Integer pType, Integer urId, Integer cId, Integer pStatus, String cCity) {
         this.pId = pId;
         this.pName = pName;
         this.pInven = pInven;
@@ -167,7 +167,7 @@ public class LimoDto implements Serializable {
 
     @Override
     public String toString() {
-        return "LimoDto{" +
+        return "LimoParam{" +
                 "pId=" + pId +
                 ", pName='" + pName + '\'' +
                 ", pInven=" + pInven +
