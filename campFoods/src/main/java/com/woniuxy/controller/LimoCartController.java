@@ -32,7 +32,7 @@ public class LimoCartController {
      */
     @RequestMapping("/insertCart")
     public JSONResult insertCard(CartParam cartParam)throws Exception{
-
+        limoCartService.insertCart(cartParam);
         return new JSONResult("200","success",null,null);
     }
 }

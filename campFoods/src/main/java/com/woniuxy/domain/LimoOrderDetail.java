@@ -26,6 +26,8 @@ public class LimoOrderDetail implements Serializable {
 
     private Integer pId;
 
+    private Integer aId;
+
     private Integer pNum;
 
     private Double pPrice;

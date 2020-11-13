@@ -43,23 +43,7 @@ public class LimoProductController {
      */
     @RequestMapping("/selectProduct")
     public JSONResult selectProduct(ProductParam product)throws Exception{
-        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());
-        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("p_type",product.getPType()).eq("p_status",0);
-        if(!StringUtils.isEmpty(product.getCCity())){
-            queryWrapper.eq("c_city",product.getCCity());
-        }
-        if(product.getCId()!=null){
-            queryWrapper.eq("c_id",product.getCId());
-        }
-        if(!StringUtils.isEmpty(product.getPName())){
-            queryWrapper.like("p_name",product.getPName());
-        }
-        if(product.getUrId()!=null){
-            queryWrapper.eq("ur_id",product.getUrId());
-        }
-        limoProductService.page(page,queryWrapper);
-        return new JSONResult("200","success",null,page);
+        return new JSONResult("200","success",null,limoProductService.selectProduct(product));
     }
     /**
      * 分页条件查询商品

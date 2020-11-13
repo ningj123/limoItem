@@ -9,6 +9,7 @@ import com.woniuxy.param.OrdersParam;
 import com.woniuxy.service.LimoOrderService;
 import com.woniuxy.util.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -50,11 +51,13 @@ public class LimoOrderController {
      */
     @RequestMapping("/selectOrders")
     public JSONResult selectOrders(OrderParam orderParam)throws Exception{
-        Page<LimoOrder> page = new Page<>(orderParam.getPageNum(),orderParam.getPageSize());
-        QueryWrapper<LimoOrder> queryWrapper = new QueryWrapper<>();
-        limoOrderService.page(page,queryWrapper);
-        return new JSONResult("200","success",limoOrderService.selectOrders(orderParam),page);
+        return new JSONResult("200","success",null,limoOrderService.selectOrders(orderParam));
     }
+    @GetMapping("/test")
+    public void test(){
+        limoOrderService.test();
+    }
+
 
 }
 

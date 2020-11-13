@@ -27,6 +27,8 @@ public class OrderDetailDto implements Serializable {
 
     private Integer pId;
 
+    private Integer aId;
+
     private Integer pNum;
 
     private Double pPrice;
