@@ -1,8 +1,9 @@
-package com.woniuxy.config;
+package com.woniuxy.controller;
 
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.factory.Factory.Payment;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
+import com.woniuxy.config.ZhiFuBaoConfig;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

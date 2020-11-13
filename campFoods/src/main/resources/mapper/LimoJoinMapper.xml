@@ -20,11 +20,12 @@
         <result column="j_remark" property="jRemark" />
         <result column="j_camp_name" property="jCampName" />
         <result column="j_status" property="jStatus" />
+        <result column="city" property="city" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        j_id, j_name, j_phone, j_serail, j_limo_address, j_limo_type, c_id, j_card_images, j_limo_images, j_start_time, j_end_time, j_type, j_email, j_remark, j_camp_name, j_status
+        j_id, j_name, j_phone, j_serail, j_limo_address, j_limo_type, c_id, j_card_images, j_limo_images, j_start_time, j_end_time, j_type, j_email, j_remark, j_camp_name, j_status, city
     </sql>
 
 </mapper>
