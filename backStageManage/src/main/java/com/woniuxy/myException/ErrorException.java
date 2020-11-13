@@ -1,7 +1,9 @@
 package com.woniuxy.myException;
-import javax.validation.ValidationException;
 
 import com.woniuxy.util.JSONResult;
+
+import javax.validation.ValidationException;
+
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationException;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 /**
  * @ClassName ErrorException
  * @Author shadow
- * @Date 2020/11/12 10:11
+ * @Date 2020/11/12 15:48
  * @Description TODO
  **/
 @RestControllerAdvice

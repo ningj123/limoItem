@@ -16,12 +16,12 @@
         <result column="c_status" property="cStatus" />
         <result column="j_id" property="jId" />
         <result column="c_one" property="cOne" />
-        <result column="c_two" property="cTwo" />
+        <result column="m_id" property="mId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        c_id, c_name, c_address, c_phone, c_open_time, c_special, c_city, c_des, c_images, c_status, j_id, c_one, c_two
+        c_id, c_name, c_address, c_phone, c_open_time, c_special, c_city, c_des, c_images, c_status, j_id, c_one, m_id
     </sql>
 
 </mapper>

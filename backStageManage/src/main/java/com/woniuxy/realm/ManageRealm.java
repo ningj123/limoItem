@@ -17,25 +17,24 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @ClassName ManagerRealm
+ * @ClassName ManageRealm
  * @Author shadow
- * @Date 2020/11/12 9:54
+ * @Date 2020/11/12 15:59
  * @Description TODO
  **/
-public class ManagerRealm extends AuthorizingRealm {
+public class ManageRealm extends AuthorizingRealm {
     @Resource
     private LimoManageService limoManageService;
     @Resource
     private LimoMenuService limoMenuService;
-
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-//        LimoManage employee=(LimoManage)principals.getPrimaryPrincipal();
+//        LimoManage limoManage=(LimoManage)principals.getPrimaryPrincipal();
 //        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 //        try {
-//            List<LimoMenu> permissions = LimoMenuService.selectPermission(employee);
-//            for (LimoMenu LimoMenu : permissions) {
-//                simpleAuthorizationInfo.addStringPermission(LimoMenu.getName());
+//            List<LimoMenu> permissions = limoMenuService.selectPermission(limoManage);
+//            for (LimoMenu limoMenu : permissions) {
+//                simpleAuthorizationInfo.addStringPermission(limoMenu.getmName());
 //            }
 //        } catch (Exception e) {
 //            e.printStackTrace();
@@ -48,8 +47,8 @@ public class ManagerRealm extends AuthorizingRealm {
 //        String phone=(String)token.getPrincipal();
 //        SimpleAuthenticationInfo authenticationInfo=null;
 //        try {
-//            LimoManage LimoManage=(LimoManage) LimoManageService.selectByPhone(phone);
-//            authenticationInfo = new SimpleAuthenticationInfo(LimoManage,LimoManage.getPassword(),getName());
+//            LimoManage limoManage=(LimoManage) limoManageService.selectByPhone(phone);
+//            authenticationInfo = new SimpleAuthenticationInfo(limoManage,limoManage.getmPassword(),getName());
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }

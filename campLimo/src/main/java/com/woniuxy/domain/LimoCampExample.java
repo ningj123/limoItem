@@ -914,63 +914,63 @@ public class LimoCampExample {
             return (Criteria) this;
         }
 
-        public Criteria andCTwoIsNull() {
-            addCriterion("c_two is null");
+        public Criteria andMIdIsNull() {
+            addCriterion("m_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoIsNotNull() {
-            addCriterion("c_two is not null");
+        public Criteria andMIdIsNotNull() {
+            addCriterion("m_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoEqualTo(Integer value) {
-            addCriterion("c_two =", value, "cTwo");
+        public Criteria andMIdEqualTo(Integer value) {
+            addCriterion("m_id =", value, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoNotEqualTo(Integer value) {
-            addCriterion("c_two <>", value, "cTwo");
+        public Criteria andMIdNotEqualTo(Integer value) {
+            addCriterion("m_id <>", value, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoGreaterThan(Integer value) {
-            addCriterion("c_two >", value, "cTwo");
+        public Criteria andMIdGreaterThan(Integer value) {
+            addCriterion("m_id >", value, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoGreaterThanOrEqualTo(Integer value) {
-            addCriterion("c_two >=", value, "cTwo");
+        public Criteria andMIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("m_id >=", value, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoLessThan(Integer value) {
-            addCriterion("c_two <", value, "cTwo");
+        public Criteria andMIdLessThan(Integer value) {
+            addCriterion("m_id <", value, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoLessThanOrEqualTo(Integer value) {
-            addCriterion("c_two <=", value, "cTwo");
+        public Criteria andMIdLessThanOrEqualTo(Integer value) {
+            addCriterion("m_id <=", value, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoIn(List<Integer> values) {
-            addCriterion("c_two in", values, "cTwo");
+        public Criteria andMIdIn(List<Integer> values) {
+            addCriterion("m_id in", values, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoNotIn(List<Integer> values) {
-            addCriterion("c_two not in", values, "cTwo");
+        public Criteria andMIdNotIn(List<Integer> values) {
+            addCriterion("m_id not in", values, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoBetween(Integer value1, Integer value2) {
-            addCriterion("c_two between", value1, value2, "cTwo");
+        public Criteria andMIdBetween(Integer value1, Integer value2) {
+            addCriterion("m_id between", value1, value2, "mId");
             return (Criteria) this;
         }
 
-        public Criteria andCTwoNotBetween(Integer value1, Integer value2) {
-            addCriterion("c_two not between", value1, value2, "cTwo");
+        public Criteria andMIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("m_id not between", value1, value2, "mId");
             return (Criteria) this;
         }
     }

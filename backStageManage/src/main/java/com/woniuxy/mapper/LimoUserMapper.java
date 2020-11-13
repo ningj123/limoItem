@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  *  Mapper 接口
  * </p>
  *
- * @author wuyanzu
+ * @author shadow
  * @since 2020-11-12
  */
 public interface LimoUserMapper extends BaseMapper<LimoUser> {

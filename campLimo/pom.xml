@@ -31,9 +31,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!--springboot整合redis-->
         <!-- <dependency>
              <groupId>org.springframework.boot</groupId>
