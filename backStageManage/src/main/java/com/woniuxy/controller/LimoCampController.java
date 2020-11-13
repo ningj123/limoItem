@@ -7,7 +7,7 @@ import com.woniuxy.param.LimoJoinParam;
 import com.woniuxy.param.LimoParam;
 import com.woniuxy.service.LimoCampService;
 import com.woniuxy.util.JSONResult;
-import com.woniuxy.vo.PageVO;
+import com.woniuxy.param.PageVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 

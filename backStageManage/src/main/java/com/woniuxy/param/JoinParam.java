@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * @author wuyanzu
  * @since 2020-11-12
  */
-public class JoinParam extends Page implements Serializable {
+public class JoinParam extends PageVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

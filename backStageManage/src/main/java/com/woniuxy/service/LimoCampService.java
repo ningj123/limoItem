@@ -9,7 +9,7 @@ import com.woniuxy.param.CampParam;
 import com.woniuxy.param.LimoActivityParam;
 import com.woniuxy.param.LimoJoinParam;
 import com.woniuxy.param.LimoParam;
-import com.woniuxy.vo.PageVO;
+import com.woniuxy.param.PageVO;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author shadow
  * @since 2020-11-12
  */
-public class CampParam extends Page implements Serializable {
+public class CampParam extends PageVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

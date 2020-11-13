@@ -20,7 +20,7 @@ import com.woniuxy.param.LimoActivityParam;
 import com.woniuxy.param.LimoJoinParam;
 import com.woniuxy.param.LimoParam;
 import com.woniuxy.service.LimoCampService;
-import com.woniuxy.vo.PageVO;
+import com.woniuxy.param.PageVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
