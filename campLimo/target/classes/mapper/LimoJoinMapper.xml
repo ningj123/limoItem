@@ -18,6 +18,7 @@
     <result column="j_remark" jdbcType="VARCHAR" property="jRemark" />
     <result column="j_camp_name" jdbcType="VARCHAR" property="jCampName" />
     <result column="j_status" jdbcType="INTEGER" property="jStatus" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -80,7 +81,7 @@
   <sql id="Base_Column_List">
     j_id, j_name, j_phone, j_serail, j_limo_address, j_limo_type, c_id, j_card_images, 
     j_limo_images, j_start_time, j_end_time, j_type, j_email, j_remark, j_camp_name, 
-    j_status
+    j_status, city
   </sql>
   <select id="selectByExample" parameterType="com.woniuxy.domain.LimoJoinExample" resultMap="BaseResultMap">
     select
@@ -117,14 +118,14 @@
       j_limo_address, j_limo_type, c_id, 
       j_card_images, j_limo_images, j_start_time, 
       j_end_time, j_type, j_email, 
-      j_remark, j_camp_name, j_status
-      )
+      j_remark, j_camp_name, j_status, 
+      city)
     values (#{jName,jdbcType=VARCHAR}, #{jPhone,jdbcType=VARCHAR}, #{jSerail,jdbcType=VARCHAR}, 
       #{jLimoAddress,jdbcType=VARCHAR}, #{jLimoType,jdbcType=VARCHAR}, #{cId,jdbcType=INTEGER}, 
       #{jCardImages,jdbcType=VARCHAR}, #{jLimoImages,jdbcType=VARCHAR}, #{jStartTime,jdbcType=TIMESTAMP}, 
       #{jEndTime,jdbcType=TIMESTAMP}, #{jType,jdbcType=INTEGER}, #{jEmail,jdbcType=VARCHAR}, 
-      #{jRemark,jdbcType=VARCHAR}, #{jCampName,jdbcType=VARCHAR}, #{jStatus,jdbcType=INTEGER}
-      )
+      #{jRemark,jdbcType=VARCHAR}, #{jCampName,jdbcType=VARCHAR}, #{jStatus,jdbcType=INTEGER}, 
+      #{city,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="j_id" keyProperty="jId" parameterType="com.woniuxy.domain.LimoJoin" useGeneratedKeys="true">
     insert into limo_join
@@ -174,6 +175,9 @@
       <if test="jStatus != null">
         j_status,
       </if>
+      <if test="city != null">
+        city,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="jName != null">
@@ -220,6 +224,9 @@
       </if>
       <if test="jStatus != null">
         #{jStatus,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -280,6 +287,9 @@
       <if test="record.jStatus != null">
         j_status = #{record.jStatus,jdbcType=INTEGER},
       </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -302,7 +312,8 @@
       j_email = #{record.jEmail,jdbcType=VARCHAR},
       j_remark = #{record.jRemark,jdbcType=VARCHAR},
       j_camp_name = #{record.jCampName,jdbcType=VARCHAR},
-      j_status = #{record.jStatus,jdbcType=INTEGER}
+      j_status = #{record.jStatus,jdbcType=INTEGER},
+      city = #{record.city,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -355,6 +366,9 @@
       <if test="jStatus != null">
         j_status = #{jStatus,jdbcType=INTEGER},
       </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
     </set>
     where j_id = #{jId,jdbcType=INTEGER}
   </update>
@@ -374,7 +388,8 @@
       j_email = #{jEmail,jdbcType=VARCHAR},
       j_remark = #{jRemark,jdbcType=VARCHAR},
       j_camp_name = #{jCampName,jdbcType=VARCHAR},
-      j_status = #{jStatus,jdbcType=INTEGER}
+      j_status = #{jStatus,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR}
     where j_id = #{jId,jdbcType=INTEGER}
   </update>
 </mapper>
