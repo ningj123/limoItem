@@ -1,9 +1,10 @@
-package com.woniuxy.domain;
+package com.woniuxy.param;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -13,7 +14,7 @@ import java.io.Serializable;
  * @author wuyanzu
  * @since 2020-11-12
  */
-public class LimoJoin implements Serializable {
+public class JoinParam extends Page implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,15 +60,6 @@ public class LimoJoin implements Serializable {
      */
     private Integer jStatus;
 
-    private String city;
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     public Integer getjId() {
         return jId;
