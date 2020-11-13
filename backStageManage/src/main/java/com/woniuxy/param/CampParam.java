@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 
  * </p>
  *
- * @author wuyanzu
+ * @author shadow
  * @since 2020-11-12
  */
 public class CampParam extends Page implements Serializable {
@@ -45,7 +45,7 @@ public class CampParam extends Page implements Serializable {
 
     private String cOne;
 
-    private Integer cTwo;
+    private Integer mId;
 
 
     public Integer getcId() {
@@ -144,12 +144,12 @@ public class CampParam extends Page implements Serializable {
         this.cOne = cOne;
     }
 
-    public Integer getcTwo() {
-        return cTwo;
+    public Integer getmId() {
+        return mId;
     }
 
-    public void setcTwo(Integer cTwo) {
-        this.cTwo = cTwo;
+    public void setmId(Integer mId) {
+        this.mId = mId;
     }
 
     @Override
@@ -167,7 +167,7 @@ public class CampParam extends Page implements Serializable {
         ", cStatus=" + cStatus +
         ", jId=" + jId +
         ", cOne=" + cOne +
-        ", cTwo=" + cTwo +
+        ", mId=" + mId +
         "}";
     }
 }

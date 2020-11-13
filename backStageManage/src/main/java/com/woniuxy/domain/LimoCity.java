@@ -9,7 +9,7 @@ import java.io.Serializable;
  * 
  * </p>
  *
- * @author wuyanzu
+ * @author shadow
  * @since 2020-11-12
  */
 public class LimoCity implements Serializable {

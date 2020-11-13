@@ -12,14 +12,14 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 /**
  * @ClassName DomainCreate
  * @Author shadow
- * @Date 2020/11/12 9:35
+ * @Date 2020/11/12 15:20
  * @Description TODO
  **/
 public class DomainCreate {
     public static void main(String[] args) {
         //1. 全局配置
         GlobalConfig config = new GlobalConfig();
-        config.setAuthor("wuyanzu") //作者
+        config.setAuthor("shadow") //作者
                 .setOutputDir("D:\\idea\\class\\limoItem\\backStageManage\\src\\main\\java")  //生成路径
                 .setFileOverride(true)//是否文件覆盖，如果多次
                 .setIdType(IdType.AUTO) //主键策略
@@ -52,4 +52,5 @@ public class DomainCreate {
                 .setPackageInfo(pkConfig);
         ag.execute();
     }
+
 }
