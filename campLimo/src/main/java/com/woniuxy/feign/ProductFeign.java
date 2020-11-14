@@ -4,6 +4,7 @@ import com.woniuxy.param.MyProductParam;
 import com.woniuxy.util.JSONResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +38,7 @@ public interface ProductFeign {
      * @param pId
      * @return
      * @throws Exception
-    @GetMapping("order/selectOrderByPid")
-    public String selectOrderByPid(Integer pId) throws Exception;*/
+     */
+     @GetMapping("limoOrderDetail/selectOrderDetailByPid")
+     public JSONResult selectOrderDetailByPid(@RequestParam("pId") Integer pId) throws Exception;
 }

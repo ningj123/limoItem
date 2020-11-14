@@ -74,7 +74,6 @@ public class AlipayController {
                 System.out.println("支付宝交易号="+trade_no);
                 System.out.println("付款金额="+total_amount);
                 if (trade_status.equals("TRADE_SUCCESS")){
-
                     System.out.println("success");
                 }
             }

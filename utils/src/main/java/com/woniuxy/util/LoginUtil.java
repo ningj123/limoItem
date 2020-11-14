@@ -16,7 +16,7 @@ import java.util.Map;
  * @Description TODO
  **/
 public class LoginUtil {
-    private static String key="laisdjfoiwqjflksaasfdasdfadsfwfrasdfsadffcasijfasadfasfdlkfjlasjflksajfd";
+    private static String key="laisdjfoiwqjflksaasfdasdfadsfwfras";
 
     public static String createToken(Map<String, Object> value, Integer sec) {
         return Jwts.builder().setClaims(value).setExpiration(new Date(System.currentTimeMillis() + sec * 1000))
