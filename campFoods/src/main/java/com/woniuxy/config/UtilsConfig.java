@@ -8,11 +8,11 @@
 //
 //@Configuration
 //public class UtilsConfig {
-//    @Bean
-//    public RedissonClient createRedission(){
-//        Config config = new Config();
-//        config.useSingleServer()
-//                .setAddress("redis://192.168.25.128:6379");
-//        return Redisson.create(config);
-//    }
+////    @Bean
+////    public RedissonClient createRedission(){
+////        Config config = new Config();
+////        config.useSingleServer()
+////                .setAddress("redis://127.0.0.1:6379");
+////        return Redisson.create(config);
+////    }
 //}
