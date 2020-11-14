@@ -3,7 +3,7 @@ package com.woniuxy.controller;
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.factory.Factory.Payment;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
-import com.woniuxy.config.ZhiFuBaoConfig;
+import com.woniuxy.configuration.ZhiFuBaoConfig;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,6 +74,7 @@ public class AlipayController {
                 System.out.println("支付宝交易号="+trade_no);
                 System.out.println("付款金额="+total_amount);
                 if (trade_status.equals("TRADE_SUCCESS")){
+
                     System.out.println("success");
                 }
             }
