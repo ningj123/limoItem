@@ -11,6 +11,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -56,6 +58,7 @@ public class LimoJoinServiceImpl extends ServiceImpl<LimoJoinMapper, LimoJoin> i
      * @throws Exception
      */
     @Override
+    @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
     public void updateStatus(JoinParam joinParam) throws Exception {
         LimoJoin limoJoin = new LimoJoin();
         BeanUtils.copyProperties(joinParam,limoJoin);

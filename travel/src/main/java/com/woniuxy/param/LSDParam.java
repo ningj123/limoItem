@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class LSDParam implements Serializable {
-
+    private Integer soDId;
     private String soDName;
 
     private String soDDes;
@@ -37,7 +37,7 @@ public class LSDParam implements Serializable {
     /**
      * 0 开放 1 不开放
      */
-    //private Integer soDStatus;
+    private Integer soDStatus=0;
 
     private String soDKeyword;
 }

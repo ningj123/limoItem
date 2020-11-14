@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -34,6 +35,13 @@ public class LimoEvaluateServiceImpl extends ServiceImpl<LimoEvaluateMapper, Lim
     private LimoEvaluateMapper limoEvaluateMapper;
     @Resource
     private LimoUserMapper limoUserMapper;
+
+    /**
+     * 查询评价信息
+     * @param evaluateParam
+     * @return
+     * @throws Exception
+     */
     @Override
     public Page<EvaluateDto> selectEvaluate(EvaluateParam evaluateParam) throws Exception {
         Page<LimoEvaluate> page = new Page<>(evaluateParam.getPageNum(), evaluateParam.getPageSize());
@@ -72,6 +80,7 @@ public class LimoEvaluateServiceImpl extends ServiceImpl<LimoEvaluateMapper, Lim
      * @throws Exception
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void insertEvaluate(EvaluateParam evaluateParam) throws Exception {
         LimoEvaluate evaluate = new LimoEvaluate();
         BeanUtils.copyProperties(evaluateParam,evaluate);
