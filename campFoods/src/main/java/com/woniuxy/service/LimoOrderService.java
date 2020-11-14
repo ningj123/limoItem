@@ -33,6 +33,5 @@ public interface LimoOrderService extends IService<LimoOrder> {
      * @throws Exception
      */
     public Page<OrderDto> selectOrders(OrderParam orderParam)throws Exception;
-    void test();
 
 }

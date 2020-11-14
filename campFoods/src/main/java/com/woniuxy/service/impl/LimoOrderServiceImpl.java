@@ -13,7 +13,6 @@ import com.woniuxy.mapper.*;
 import com.woniuxy.param.OrderDetailsParam;
 import com.woniuxy.param.OrderParam;
 import com.woniuxy.param.OrdersParam;
-import com.woniuxy.param.ProductParam;
 import com.woniuxy.service.LimoOrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -52,6 +51,7 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @RedisLock(key = "order")
     public void insertOrder(OrdersParam orders) throws Exception {
         //生成订单表数据
         LimoOrder limoOrder = new LimoOrder();
@@ -114,6 +114,7 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
      * @throws Exception
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Page<OrderDto> selectOrders(OrderParam orderParam) throws Exception {
         Page<LimoOrder> page = new Page<>(orderParam.getPageNum(),orderParam.getPageSize());
         //查询用户的订单信息
@@ -164,11 +165,5 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
         BeanUtils.copyProperties(page,dtoPage);
         dtoPage.setRecords(orderDtos);
         return dtoPage;
-    }
-
-    @Override
-    @RedisLock
-    public void test() {
-        System.out.println(1111);
     }
 }

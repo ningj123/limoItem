@@ -10,10 +10,10 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   application:
     name: campFoods
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
   redis:
     host: 192.168.25.128
     port: 6379
