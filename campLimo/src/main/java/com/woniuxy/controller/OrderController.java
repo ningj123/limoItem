@@ -5,14 +5,11 @@ import com.woniuxy.param.OrderParam;
 import com.woniuxy.service.OrderService;
 import com.woniuxy.util.JSONResult;
 import com.woniuxy.util.LoginUtil;
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
 
 /**
  * @ClassName OrderController
@@ -35,8 +32,7 @@ public class OrderController {
     public JSONResult insertOrder(@RequestBody OrderParam orderParam) throws Exception{
         /*ServletRequestAttributes ra=(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         String token = ra.getRequest().getHeader("x-token");
-        LimoUser limoUser = LoginUtil.parseToken(token,LimoUser.class);
-        System.out.println(limoUser);*/
+        LimoUser limoUser = LoginUtil.parseToken(token,LimoUser.class);*/
         Integer uId=1;
         orderService.insertOrder(orderParam,uId);
         return new JSONResult("200","success",null,null);
