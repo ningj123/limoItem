@@ -98,13 +98,12 @@ public class LimoCampController {
      * @param pId
      * @return
      * @throws Exception
-     *//*
+     */
     @GetMapping("selectOrderTime")
     public JSONResult selectOrderTime(Integer pId)throws Exception{
-        String s = productFeign.selectOrderByPid(pId);
-        List<OrderDto> list = JSON.parseArray(s, OrderDto.class);
-        return new JSONResult("200","success",list,null);
-    }*/
+        JSONResult result= productFeign.selectOrderDetailByPid(pId);
+        return result;
+    }
 
 }
 
