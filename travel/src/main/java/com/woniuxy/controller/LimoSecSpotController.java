@@ -92,5 +92,17 @@ public class LimoSecSpotController {
 
         return  new JSONResult("200","success",limoSecSpotService.geoNearByPlace(param),null);
     }
+
+    //新增周边景点
+    @PostMapping("/updateSport")
+    @ApiOperation(value = "修改周边景点")
+    public JSONResult updateSport(SortParam param) throws Exception{
+
+
+        limoSecSpotService.updateSport(param);
+
+
+        return  new JSONResult("200","success",null,null);
+    }
 }
 

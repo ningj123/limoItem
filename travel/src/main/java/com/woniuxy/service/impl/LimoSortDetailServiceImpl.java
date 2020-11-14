@@ -11,6 +11,7 @@ import com.woniuxy.doman.LimoSortDetail;
 import com.woniuxy.dto.LimoSortDetailDto;
 import com.woniuxy.mapper.LimoCityMapper;
 import com.woniuxy.mapper.LimoSortDetailMapper;
+import com.woniuxy.param.LSDParam;
 import com.woniuxy.param.TypeParam;
 import com.woniuxy.service.LimoSortDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -20,6 +21,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.jta.WebSphereUowTransactionManager;
 
 import javax.annotation.Resource;
@@ -133,4 +136,20 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
         }
         return detail;
     }
+
+    /**
+     * @Author zhuyuli
+     * @Description 根据ID更新旅游文章
+     * @Date 2020/11/13 15:03
+     * @Param [param]
+     * @return void
+     **/
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+    public void updateTravelSort(LSDParam param) throws Exception {
+        LimoSortDetail limo = new LimoSortDetail();
+        BeanUtils.copyProperties(param, limo);
+        limoSortDetailMapper.updateById(limo);
+    }
+
 }

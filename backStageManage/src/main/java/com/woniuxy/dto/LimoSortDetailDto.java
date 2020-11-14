@@ -1,29 +1,42 @@
-package com.woniuxy.param;
+package com.woniuxy.dto;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * <p>
+ * 
+ * </p>
+ *
  * @author zhuyuli
- * @description: Administrator
- * @date: 2020/11/7 15:45
+ * @since 2020-11-07
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
 @Builder
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LSDParam implements Serializable {
+public class LimoSortDetailDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "so_d_id", type = IdType.AUTO)
     private Integer soDId;
+
     private String soDName;
 
     private String soDDes;
 
     private String soDImages;
 
+    private LocalDateTime soDIssueTime;
 
     /**
      * 0 热门 1 营地 2 美食 3 景区
@@ -37,7 +50,11 @@ public class LSDParam implements Serializable {
     /**
      * 0 开放 1 不开放
      */
-    private Integer soDStatus=0;
+    private Integer soDStatus;
 
     private String soDKeyword;
+
+    private Integer soDTwo;
+
+
 }

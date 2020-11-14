@@ -1,20 +1,32 @@
-package com.woniuxy.param;
+package com.woniuxy.dto;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.*;
 
+import java.io.Serializable;
+
 /**
+ * <p>
+ * 
+ * </p>
+ *
  * @author zhuyuli
- * @description: 周边景点参数
- * @date: 2020/11/10 15:51
+ * @since 2020-11-10
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class SortParam extends PageParam{
-    private Integer soDId;
+public class LimoSecSpotDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+
+    private Integer secId;
 
     private String secSportName;
 
@@ -33,8 +45,6 @@ public class SortParam extends PageParam{
     private String secSportImgurl;
 
     private Double secSportPrice;
-    //经度
-    private  Float precision;
-    //纬度
-    private  Float dimension;
+
+
 }

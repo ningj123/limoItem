@@ -98,5 +98,15 @@ public class LimoSortDetailController {
 
         return  new JSONResult("200","success",lits,null);
     }
+    //修改旅游文章(json格式)
+    @ApiOperation(value = "修改旅游文章(json格式)")
+    @PostMapping("/update")
+    public JSONResult updateTravelSort(@RequestBody LSDParam param) throws Exception{
+
+
+
+        limoSortDetailService.updateTravelSort(param);
+        return new JSONResult("200","success",null,null);
+    }
 }
 
