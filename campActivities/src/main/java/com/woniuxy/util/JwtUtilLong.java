@@ -1,22 +1,22 @@
 package com.woniuxy.util;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
-import java.lang.reflect.Field;
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @ClassName LoginUtil
- * @Author shadow
- * @Date 2020/11/9 16:46
- * @Description TODO
- **/
-public class LoginUtil {
+ * @version: V1.0
+ * @author: Xbao
+ * @className: JwtUtil
+ * @packageName: com.woniu.project.common.core.util
+ * @description: Jwt登录认证
+ * @data: 2020-09-27 21:07
+ */
+public class JwtUtilLong {
+
     public static String sert = "mysecretkeywqerpiouqetpysbsdnvcsadhfakdsmsdjkslfhlajdkhasfdjkasdf";
 
     //生成token
@@ -33,4 +33,6 @@ public class LoginUtil {
     public static Map<String, Object> parseToken(String jwt){
         return Jwts.parserBuilder().setSigningKey(Keys.hmacShaKeyFor(sert.getBytes())).build().parseClaimsJws(jwt).getBody();
     }
+
+
 }
