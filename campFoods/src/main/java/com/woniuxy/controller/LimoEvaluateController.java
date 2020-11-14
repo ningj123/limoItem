@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -57,8 +58,8 @@ public class LimoEvaluateController {
      */
     @PostMapping("/insertEvaluate")
     public JSONResult insertEvaluate(@RequestHeader("x-token")String token, EvaluateParam evaluateParam)throws Exception{
-        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
-        evaluateParam.setUId(limoUser.getUId());
+        Map<String, Object> map = LoginUtil.parseToken(token);
+        evaluateParam.setUId((Integer) map.get("id"));
         return new JSONResult("200","success",null,limoEvaluateService.selectEvaluate(evaluateParam));
     }
 

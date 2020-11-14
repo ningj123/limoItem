@@ -16,6 +16,8 @@ import com.woniuxy.param.OrdersParam;
 import com.woniuxy.service.LimoOrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +46,8 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
    private LimoActivityMapper limoActivityMapper;
    @Resource
    private LimoCartMapper limoCartMapper;
+   @Autowired
+   private RedisTemplate rt;
     /**
      * 新增订单
      * @param orders
@@ -103,6 +107,7 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
             limoCart.setCaId(orders.getCaId());
             limoCart.setCaStatus(1);
             limoCartMapper.updateById(limoCart);
+            rt.opsForHash().delete("cart","product"+orders.getCaId());
         }
 
     }
