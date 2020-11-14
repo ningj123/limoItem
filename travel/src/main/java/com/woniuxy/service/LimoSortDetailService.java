@@ -2,6 +2,7 @@ package com.woniuxy.service;
 
 import com.woniuxy.doman.LimoSortDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.woniuxy.param.LSDParam;
 import com.woniuxy.param.TypeParam;
 
 import java.util.List;
@@ -46,5 +47,13 @@ public interface LimoSortDetailService extends IService<LimoSortDetail> {
      * @Param [id]
      * @return com.woniuxy.doman.LimoSortDetail
      **/
-    LimoSortDetail selectById(Integer id);
+    LimoSortDetail selectById(Integer id)throws Exception;
+    /**
+     * @Author zhuyuli
+     * @Description //修改旅游指南
+     * @Date 2020/11/13 15:06
+     * @Param [param]
+     * @return void
+     **/
+    void updateTravelSort(LSDParam param)throws Exception;
 }

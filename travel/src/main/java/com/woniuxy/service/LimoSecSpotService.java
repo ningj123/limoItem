@@ -31,9 +31,11 @@ public interface LimoSecSpotService extends IService<LimoSecSpot> {
 
     void insertSport(SortParam param) throws  Exception;
 
-    Long redisGeoAdd();
+    Long redisGeoAdd()throws Exception;
 
-    List geoNearByPlace(PointParam param);
+    List geoNearByPlace(PointParam param)throws Exception;
 
-    LimoSecSpotDto queryById(Integer id);
+    LimoSecSpotDto queryById(Integer id)throws Exception;
+
+    void updateSport(SortParam param) throws Exception;
 }

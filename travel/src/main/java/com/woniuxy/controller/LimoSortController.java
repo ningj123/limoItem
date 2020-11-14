@@ -15,15 +15,16 @@ import javax.annotation.Resource;
 /**
  * <p>
  *  前端控制器
+ *  不需要，重复
  * </p>
  *
  * @author zhuyuli
  * @since 2020-11-07
  */
-@RestController
-@RequestMapping("/limoSort")
+//@RestController
+//@RequestMapping("/limoSort")
 public class LimoSortController {
-    @Resource
+   //@Resource
     private LimoSortService  limoSortService;
 
     /**
@@ -33,7 +34,7 @@ public class LimoSortController {
      * @Param []
      * @return com.woniuxy.util.JSONResult
      **/
-    @GetMapping("/queryAll")
+    //@GetMapping("/queryAll")
     public JSONResult queryAll(){
 
         return new JSONResult("200","success",limoSortService.list(),null);
@@ -45,7 +46,7 @@ public class LimoSortController {
      * @Param [id]
      * @return com.woniuxy.util.JSONResult
      **/
-    @GetMapping("/queryById2")
+    //@GetMapping("/queryById2")
     public JSONResult queryById(Integer id)throws Exception{
         if (id < 1) {
             throw new TravelExecption("参数异常");

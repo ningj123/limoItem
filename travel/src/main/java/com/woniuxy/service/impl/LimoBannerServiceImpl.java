@@ -71,7 +71,7 @@ public class LimoBannerServiceImpl extends ServiceImpl<LimoBannerMapper, LimoBan
      **/
     @Transactional(readOnly = true)
     @Override
-    public List<LimoBanner> queryBannerByType(Integer type) throws Exception{
+    public List queryBannerByType(Integer type) throws Exception{
         QueryWrapper<LimoBanner> wrapper = new QueryWrapper<>();
         wrapper.eq("type",type);
         List<LimoBanner> list = limoBannerMapper.selectList(wrapper);
@@ -79,7 +79,7 @@ public class LimoBannerServiceImpl extends ServiceImpl<LimoBannerMapper, LimoBan
         ArrayList<LimoBannerDto> list1=new ArrayList<>();
         BeanUtils.copyProperties(list,list1);
         list=null;
-        return list;
+        return list1;
     }
 
     /**

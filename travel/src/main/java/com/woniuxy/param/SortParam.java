@@ -14,6 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class SortParam extends PageParam{
+    private Integer soDId;
 
     private String secSportName;
 

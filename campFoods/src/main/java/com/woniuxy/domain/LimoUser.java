@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class LimoUser implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
 
     @TableId(value = "u_id", type = IdType.AUTO)
     private Integer uId;

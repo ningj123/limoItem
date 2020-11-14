@@ -86,7 +86,6 @@ public class LimoSecSpotServiceImpl extends ServiceImpl<LimoSecSpotMapper, LimoS
         LimoSecSpot sort = new LimoSecSpot();
         BeanUtils.copyProperties(param,sort);
         limoSecSpotMapper.insert(sort);
-        //Long addedNum = redisTemplate.opsForGeo().add("city", new Point(113.27, 23.13), "广州");
         redisTemplates.opsForGeo().add("sec", new Point(param.getPrecision(), param.getDimension()), param.getSecSportName());
 
     }
@@ -188,5 +187,11 @@ public class LimoSecSpotServiceImpl extends ServiceImpl<LimoSecSpotMapper, LimoS
         }
 
         return 200l;
+    }
+    @Override
+    public void updateSport(SortParam param) throws Exception {
+        LimoSecSpot spot = new LimoSecSpot();
+        BeanUtils.copyProperties(param,spot);
+        limoSecSpotMapper.updateById(spot);
     }
 }
