@@ -10,10 +10,10 @@ import com.woniuxy.doman.*;
 import com.woniuxy.dto.*;
 import com.woniuxy.param.*;
 import com.woniuxy.service.*;
-import com.woniuxy.util.JSONResult;
-import com.woniuxy.util.JwtUtil;
+import com.woniuxy.util.JwtUtilLong;
 import com.woniuxy.util.LoginUtil;
 import com.woniuxy.util.Result;
+import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -241,11 +242,14 @@ public class LimoActivityController {
         if (password == null || !password.equals(user.getuPassword())) {
             return Result.fail("密码错误");
         }
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("phone", phone);
-//        map.put("password", user.getuPassword());
-//        String token = JwtUtil.createToken(map, 7 * 24 * 60 * 60);
-        String token = LoginUtil.createToken(user, 7 * 24 * 60 * 60);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", user.getuId());
+        map.put("name", user.getuName());
+        map.put("email",user.getuEmail());
+
+        String token = LoginUtil.createToken(map, 7 * 24 * 60 * 60);
+        Map<String, Object> stringObjectMap = LoginUtil.parseToken(token);
+        System.out.println(stringObjectMap+"111111111111111111");
         return Result.success(200, "success", token);
     }
 
