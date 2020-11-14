@@ -6,6 +6,7 @@ import com.woniuxy.util.JSONResult;
 import com.woniuxy.util.LoginUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -30,7 +31,7 @@ public class LimoCollectController {
      * @throws Exception
      */
     @PostMapping("insertCollect")
-    public JSONResult insertCollect(Integer cId) throws Exception{
+    public JSONResult insertCollect(@RequestHeader("x-token") String token, Integer cId) throws Exception{
         /*ServletRequestAttributes ra=(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         String token = ra.getRequest().getHeader("shadow-token");
         LimoUser user = LoginUtil.parseToken(token, LimoUser.class);*/

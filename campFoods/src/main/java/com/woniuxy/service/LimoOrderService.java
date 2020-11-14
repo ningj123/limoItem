@@ -1,5 +1,6 @@
 package com.woniuxy.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.woniuxy.domain.LimoOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.woniuxy.dto.OrderDto;
@@ -24,6 +25,13 @@ public interface LimoOrderService extends IService<LimoOrder> {
      * @throws Exception
      */
     public void insertOrder(OrdersParam orders)throws Exception;
-    public List<OrderDto> selectOrders(OrderParam orderParam)throws Exception;
+
+    /**
+     * 查询订单信息
+     * @param orderParam
+     * @return
+     * @throws Exception
+     */
+    public Page<OrderDto> selectOrders(OrderParam orderParam)throws Exception;
 
 }

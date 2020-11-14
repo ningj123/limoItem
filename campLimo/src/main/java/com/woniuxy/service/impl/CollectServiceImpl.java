@@ -29,7 +29,7 @@ public class CollectServiceImpl implements CollectService {
     public void insertCollect(Integer cId,Integer uId) throws Exception {
         LimoCamp limoCamp = limoCampMapper.selectByPrimaryKey(cId);
         LimoCollect limoCollect = new LimoCollect();
-        limoCollect.setCId(limoCamp.getcId());
+        limoCollect.setCId(limoCamp.getCId());
         limoCollect.setCoType(1);
         limoCollect.setUId(uId);
         if(limoCamp!=null){

@@ -2,6 +2,9 @@ package com.woniuxy.service;
 
 import com.woniuxy.domain.LimoOrderDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.woniuxy.dto.OrderDetailDto;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-11-09
  */
 public interface LimoOrderDetailService extends IService<LimoOrderDetail> {
-
+    List<OrderDetailDto> selectOrderDetailByPid(Integer pId) throws Exception;
 }

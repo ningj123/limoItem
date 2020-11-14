@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author shadow
- * @since 2020-11-12
+ * @since 2020-11-13
  */
 public class LimoJoin implements Serializable {
 
@@ -58,6 +58,11 @@ public class LimoJoin implements Serializable {
      * 0 正在审核 1 同意 2 拒绝
      */
     private Integer jStatus;
+
+    /**
+     * 城市
+     */
+    private String city;
 
 
     public Integer getjId() {
@@ -188,6 +193,14 @@ public class LimoJoin implements Serializable {
         this.jStatus = jStatus;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return "LimoJoin{" +
@@ -207,6 +220,7 @@ public class LimoJoin implements Serializable {
         ", jRemark=" + jRemark +
         ", jCampName=" + jCampName +
         ", jStatus=" + jStatus +
+        ", city=" + city +
         "}";
     }
 }

@@ -1,18 +1,16 @@
 package com.woniuxy.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.woniuxy.domain.LimoOrder;
+import com.woniuxy.domain.LimoUser;
 import com.woniuxy.param.OrderParam;
 import com.woniuxy.param.OrdersParam;
 import com.woniuxy.service.LimoOrderService;
 import com.woniuxy.util.JSONResult;
+import com.woniuxy.util.LoginUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -22,7 +20,7 @@ import org.springframework.stereotype.Controller;
  * @author lx
  * @since 2020-11-09
  */
-@Controller
+@RestController
 @RequestMapping("/order")
 public class LimoOrderController {
     @Autowired
@@ -35,7 +33,9 @@ public class LimoOrderController {
      * @throws Exception
      */
     @RequestMapping("/insertOrder")
-    public JSONResult insertOrder(@RequestBody OrdersParam orders)throws Exception{
+    public JSONResult insertOrder(@RequestBody @RequestHeader("x-token")String token, OrdersParam orders)throws Exception{
+        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
+        orders.setUId(limoUser.getUId());
         limoOrderService.insertOrder(orders);
         return new JSONResult("200","success",null,null);
     }
@@ -46,13 +46,14 @@ public class LimoOrderController {
      * @return
      * @throws Exception
      */
+    @ApiOperation(value = "查询用户订单")
     @RequestMapping("/selectOrders")
-    public JSONResult selectOrders(OrderParam orderParam)throws Exception{
-        Page<LimoOrder> page = new Page<>(orderParam.getPageNum(),orderParam.getPageSize());
-        QueryWrapper<LimoOrder> queryWrapper = new QueryWrapper<>();
-        limoOrderService.page(page,queryWrapper);
-        return new JSONResult("200","success",limoOrderService.selectOrders(orderParam),page);
+    public JSONResult selectOrders(@RequestHeader("x-token")String token,OrderParam orderParam)throws Exception{
+        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
+        orderParam.setUId(limoUser.getUId());
+        return new JSONResult("200","success",null,limoOrderService.selectOrders(orderParam));
     }
+
 
 }
 

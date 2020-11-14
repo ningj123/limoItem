@@ -8,9 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="campFoods" />
+        <module name="campActivities" />
         <module name="backStageManage" />
         <module name="utils" />
-        <module name="campActivities" />
         <module name="travel" />
         <module name="campLimo" />
         <module name="gateWay" />

@@ -1,0 +1,1317 @@
+Index: campFoods/src/main/java/com/woniuxy/controller/LimoCartController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.controller;\r\n\r\n\r\nimport com.woniuxy.param.CartParam;\r\nimport com.woniuxy.service.LimoCartService;\r\nimport com.woniuxy.util.JSONResult;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\n/**\r\n * <p>\r\n *  前端控制器\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-10\r\n */\r\n@RestController\r\n@RequestMapping(\"/cart\")\r\npublic class LimoCartController {\r\n    @Autowired\r\n    private LimoCartService limoCartService;\r\n\r\n    /**\r\n     * 添加到购物车\r\n     * @param cartParam\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @RequestMapping(\"/insertCart\")\r\n    public JSONResult insertCard(CartParam cartParam)throws Exception{\r\n\r\n        return new JSONResult(\"200\",\"success\",null,null);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/controller/LimoCartController.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/controller/LimoCartController.java	(date 1605076471363)
+@@ -32,7 +32,7 @@
+      */
+     @RequestMapping("/insertCart")
+     public JSONResult insertCard(CartParam cartParam)throws Exception{
+-
++        limoCartService.insertCart(cartParam);
+         return new JSONResult("200","success",null,null);
+     }
+ }
+Index: campFoods/src/main/java/com/woniuxy/config/RedissionConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/config/RedissionConfig.java	(date 1605151593633)
++++ campFoods/src/main/java/com/woniuxy/config/RedissionConfig.java	(date 1605151593633)
+@@ -0,0 +1,18 @@
++package com.woniuxy.config;
++
++import org.redisson.Redisson;
++import org.redisson.api.RedissonClient;
++import org.redisson.config.Config;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++
++@Configuration
++public class RedissionConfig {
++    @Bean
++    public RedissonClient createRedissionClient(){
++        Config config = new Config();
++        config.useSingleServer()
++                .setAddress("redis://127.0.0.1:6379");
++        return Redisson.create(config);
++    }
++}
+Index: campFoods/src/main/java/com/woniuxy/controller/LimoEvaluateController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.controller;\r\n\r\n\r\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\r\nimport com.woniuxy.domain.LimoEvaluate;\r\nimport com.woniuxy.domain.LimoUser;\r\nimport com.woniuxy.dto.EvaluateDto;\r\nimport com.woniuxy.dto.UserDto;\r\nimport com.woniuxy.param.EvaluateParam;\r\nimport com.woniuxy.service.LimoEvaluateService;\r\nimport com.woniuxy.service.LimoUserService;\r\nimport com.woniuxy.util.JSONResult;\r\nimport org.springframework.beans.BeanUtils;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * <p>\r\n *  前端控制器\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-10\r\n */\r\n@RestController\r\n@RequestMapping(\"/evaluate\")\r\npublic class LimoEvaluateController {\r\n    @Autowired\r\n    private LimoEvaluateService limoEvaluateService;\r\n    //用户业务层对象\r\n    @Autowired\r\n    private LimoUserService limoUserService;\r\n    /**\r\n     * 查询评价信息\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @RequestMapping(\"/selectEvaluate\")\r\n    public JSONResult selectEvaluate(EvaluateParam evaluateParam)throws Exception{\r\n        //获取评价信息\r\n        Page<LimoEvaluate> page = limoEvaluateService.selectEvaluate(evaluateParam);\r\n        //查询评价的用户信息\r\n        List<LimoEvaluate> records = page.getRecords();\r\n        ArrayList<EvaluateDto> list = new ArrayList<>();\r\n        for (LimoEvaluate evaluate:records){\r\n            LimoUser user = limoUserService.getById(evaluate.getUId());\r\n            EvaluateDto evaluateDto = new EvaluateDto();\r\n            UserDto userDto = new UserDto();\r\n            BeanUtils.copyProperties(evaluate,evaluateDto);\r\n            BeanUtils.copyProperties(user,userDto);\r\n            evaluateDto.setUserDto(userDto);\r\n            list.add(evaluateDto);\r\n        }\r\n        return new JSONResult(\"200\",\"success\",list,page);\r\n    }\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/controller/LimoEvaluateController.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/controller/LimoEvaluateController.java	(date 1605146686841)
+@@ -12,6 +12,7 @@
+ import com.woniuxy.util.JSONResult;
+ import org.springframework.beans.BeanUtils;
+ import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.web.bind.annotation.PostMapping;
+ import org.springframework.web.bind.annotation.RequestMapping;
+ 
+ import org.springframework.stereotype.Controller;
+@@ -43,21 +44,17 @@
+      */
+     @RequestMapping("/selectEvaluate")
+     public JSONResult selectEvaluate(EvaluateParam evaluateParam)throws Exception{
+-        //获取评价信息
+-        Page<LimoEvaluate> page = limoEvaluateService.selectEvaluate(evaluateParam);
+-        //查询评价的用户信息
+-        List<LimoEvaluate> records = page.getRecords();
+-        ArrayList<EvaluateDto> list = new ArrayList<>();
+-        for (LimoEvaluate evaluate:records){
+-            LimoUser user = limoUserService.getById(evaluate.getUId());
+-            EvaluateDto evaluateDto = new EvaluateDto();
+-            UserDto userDto = new UserDto();
+-            BeanUtils.copyProperties(evaluate,evaluateDto);
+-            BeanUtils.copyProperties(user,userDto);
+-            evaluateDto.setUserDto(userDto);
+-            list.add(evaluateDto);
+-        }
+-        return new JSONResult("200","success",list,page);
++        return new JSONResult("200","success",null,limoEvaluateService.selectEvaluate(evaluateParam));
++    }
++
++    /**
++     * 新增评价
++     * @return
++     * @throws Exception
++     */
++    @PostMapping("/insertEvaluate")
++    public JSONResult insertEvaluate()throws Exception{
++        return new JSONResult("200","success",null,null);
+     }
+ 
+ }
+Index: campFoods/src/main/java/com/woniuxy/annotation/RedisLock.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/annotation/RedisLock.java	(date 1605150337003)
++++ campFoods/src/main/java/com/woniuxy/annotation/RedisLock.java	(date 1605150337003)
+@@ -0,0 +1,18 @@
++package com.woniuxy.annotation;
++
++import java.lang.annotation.*;
++
++@Target(ElementType.METHOD)
++@Retention(RetentionPolicy.RUNTIME)
++@Documented
++public @interface RedisLock {
++    String key() default "";
++    //锁的超时时间
++    int outTime() default 10;
++    //锁的失效时间
++    int expire() default 20;
++    //加锁对象的类型
++    String pre() default "";
++    //加锁对象的编号
++    int index() default 0;
++}
+Index: campFoods/src/main/java/com/woniuxy/utils/Test.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.utils;\r\n\r\nimport com.baomidou.mybatisplus.annotation.DbType;\r\nimport com.baomidou.mybatisplus.annotation.IdType;\r\nimport com.baomidou.mybatisplus.generator.AutoGenerator;\r\nimport com.baomidou.mybatisplus.generator.config.DataSourceConfig;\r\nimport com.baomidou.mybatisplus.generator.config.GlobalConfig;\r\nimport com.baomidou.mybatisplus.generator.config.PackageConfig;\r\nimport com.baomidou.mybatisplus.generator.config.StrategyConfig;\r\nimport com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;\r\n\r\npublic class Test {\r\n\tpublic static void main(String[] args) {\r\n\t\t//1. 全局配置\r\n\t    GlobalConfig config = new GlobalConfig();\r\n\t    config.setAuthor(\"lx\") //作者\r\n\t        .setOutputDir(\"D:\\\\limoItem-git\\\\campFoods\\\\src\\\\main\\\\java\")  //生成路径\r\n\t        .setFileOverride(true)//是否文件覆盖，如果多次\r\n\t        .setIdType(IdType.AUTO) //主键策略\r\n\t        .setServiceName(\"%sService\") //设置生成的service接口名首字母不用I开头\r\n\t        .setBaseResultMap(true)//映射文件中生成默认的baseMap\r\n\t        .setBaseColumnList(true);//映射文件中生成默认的基础列名sql\r\n\t     //2. 数据源配置\r\n\t    DataSourceConfig dsConfig = new DataSourceConfig();\r\n\t    dsConfig.setDbType(DbType.MYSQL)\r\n\t        .setUrl(\"jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo\")\r\n\t        .setDriverName(\"com.mysql.jdbc.Driver\")\r\n\t        .setUsername(\"root\")\r\n\t        .setPassword(\"item1234\");\r\n\t    //3.策略配置\r\n\t    StrategyConfig stConfig = new StrategyConfig();\r\n\t    stConfig.setCapitalMode(true) // 全局大写命名\r\n\t        .setNaming(NamingStrategy.underline_to_camel) //下划线转驼峰\r\n\t        .setInclude(\"limo_activity\").setEntityLombokModel(true);//生成的表,参数为数组\r\n\t    //4.包名策略\r\n\t    PackageConfig pkConfig = new PackageConfig();\r\n\t    pkConfig.setParent(\"com.woniuxy\")//父包名\r\n\t        .setController(\"controller\")\r\n\t        .setEntity(\"domain\")\r\n\t        .setService(\"service\")\r\n\t        .setMapper(\"mapper\")\r\n\t        .setXml(\"mapper\");\r\n\t    //5.整合配置\r\n\t   AutoGenerator ag = new AutoGenerator().setGlobalConfig(config)\r\n\t        .setDataSource(dsConfig)\r\n\t        .setStrategy(stConfig)\r\n\t        .setPackageInfo(pkConfig);\r\n\t        ag.execute();\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/utils/Test.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/utils/Test.java	(date 1605001887648)
+@@ -31,7 +31,7 @@
+ 	    StrategyConfig stConfig = new StrategyConfig();
+ 	    stConfig.setCapitalMode(true) // 全局大写命名
+ 	        .setNaming(NamingStrategy.underline_to_camel) //下划线转驼峰
+-	        .setInclude("limo_activity").setEntityLombokModel(true);//生成的表,参数为数组
++	        .setInclude("limo_join").setEntityLombokModel(true);//生成的表,参数为数组
+ 	    //4.包名策略
+ 	    PackageConfig pkConfig = new PackageConfig();
+ 	    pkConfig.setParent("com.woniuxy")//父包名
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile default=\"true\" name=\"Default\" enabled=\"true\" />\r\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <module name=\"campFoods\" />\r\n        <module name=\"gateWay\" />\r\n        <module name=\"utils\" />\r\n        <module name=\"campActivities\" />\r\n        <module name=\"travel\" />\r\n        <module name=\"campLimo\" />\r\n        <module name=\"campFood\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n    <bytecodeTargetLevel>\r\n      <module name=\"campactivitie\" target=\"1.8\" />\r\n      <module name=\"campFood\" target=\"1.8\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"campActivities\" options=\"-parameters\" />\r\n      <module name=\"campFood\" options=\"-parameters\" />\r\n      <module name=\"campFoods\" options=\"-parameters\" />\r\n      <module name=\"campLimo\" options=\"-parameters\" />\r\n      <module name=\"gateWay\" options=\"-parameters\" />\r\n      <module name=\"travel\" options=\"-parameters\" />\r\n      <module name=\"utils\" options=\"-parameters\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ .idea/compiler.xml	(date 1605165563747)
+@@ -7,13 +7,13 @@
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+         <outputRelativeToContentRoot value="true" />
+-        <module name="campFoods" />
+-        <module name="gateWay" />
++        <module name="campFood" />
+         <module name="utils" />
+         <module name="campActivities" />
++        <module name="campFoods" />
+         <module name="travel" />
++        <module name="gateWay" />
+         <module name="campLimo" />
+-        <module name="campFood" />
+       </profile>
+     </annotationProcessing>
+     <bytecodeTargetLevel>
+Index: campFoods/src/main/java/com/woniuxy/service/LimoOrderService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.service;\r\n\r\nimport com.woniuxy.domain.LimoOrder;\r\nimport com.baomidou.mybatisplus.extension.service.IService;\r\nimport com.woniuxy.dto.OrderDto;\r\nimport com.woniuxy.param.OrderParam;\r\nimport com.woniuxy.param.OrdersParam;\r\n\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\n/**\r\n * <p>\r\n *  服务类\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-09\r\n */\r\npublic interface LimoOrderService extends IService<LimoOrder> {\r\n    /**\r\n     * 新增订单\r\n     * @param orders\r\n     * @throws Exception\r\n     */\r\n    public void insertOrder(OrdersParam orders)throws Exception;\r\n    public List<OrderDto> selectOrders(OrderParam orderParam)throws Exception;\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/service/LimoOrderService.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/service/LimoOrderService.java	(date 1605163022090)
+@@ -1,5 +1,6 @@
+ package com.woniuxy.service;
+ 
++import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+ import com.woniuxy.domain.LimoOrder;
+ import com.baomidou.mybatisplus.extension.service.IService;
+ import com.woniuxy.dto.OrderDto;
+@@ -24,6 +25,14 @@
+      * @throws Exception
+      */
+     public void insertOrder(OrdersParam orders)throws Exception;
+-    public List<OrderDto> selectOrders(OrderParam orderParam)throws Exception;
++
++    /**
++     * 根据用户编号查询用于订单
++     * @param orderParam
++     * @return
++     * @throws Exception
++     */
++    public Page<OrderDto> selectOrders(OrderParam orderParam)throws Exception;
++    public void test();
+ 
+ }
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"RemoteRepositoriesConfiguration\">\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Maven Central repository\" />\r\n      <option name=\"url\" value=\"https://repo1.maven.org/maven2\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Central Repository\" />\r\n      <option name=\"url\" value=\"http://maven.aliyun.com/nexus/content/groups/public/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"jboss.community\" />\r\n      <option name=\"name\" value=\"JBoss Community repository\" />\r\n      <option name=\"url\" value=\"https://repository.jboss.org/nexus/content/repositories/public/\" />\r\n    </remote-repository>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/jarRepositories.xml	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ .idea/jarRepositories.xml	(date 1604999221312)
+@@ -3,13 +3,13 @@
+   <component name="RemoteRepositoriesConfiguration">
+     <remote-repository>
+       <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
++      <option name="name" value="Central Repository" />
++      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
+     </remote-repository>
+     <remote-repository>
+       <option name="id" value="central" />
+-      <option name="name" value="Central Repository" />
+-      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
+     </remote-repository>
+     <remote-repository>
+       <option name="id" value="jboss.community" />
+Index: campFoods/src/main/java/com/woniuxy/param/JoinParam.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/param/JoinParam.java	(date 1605076837106)
++++ campFoods/src/main/java/com/woniuxy/param/JoinParam.java	(date 1605076837106)
+@@ -0,0 +1,50 @@
++package com.woniuxy.param;
++
++import com.baomidou.mybatisplus.annotation.IdType;
++import com.baomidou.mybatisplus.annotation.TableId;
++import lombok.Data;
++import lombok.EqualsAndHashCode;
++
++import java.io.Serializable;
++import java.time.LocalDateTime;
++
++/**
++ * <p>
++ * 
++ * </p>
++ *
++ * @author lx
++ * @since 2020-11-10
++ */
++@Data
++@EqualsAndHashCode(callSuper = false)
++public class JoinParam extends Page implements Serializable {
++
++    private static final long serialVersionUID = 1L;
++
++    @TableId(value = "j_id", type = IdType.AUTO)
++    private Integer jId;
++
++    /**
++     * 所属人
++     */
++    private String jName;
++
++    private String jPhone;
++
++    private Integer cId;
++
++    private Integer jType;
++
++    /**
++     * 营地名称
++     */
++    private String jCampName;
++
++    /**
++     * 0 加盟申请状态  1同意申请   2拒绝申请
++     */
++    private Integer jStatus;
++
++
++}
+Index: campFoods/src/main/java/com/woniuxy/client/BannerFeignClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.client;\r\n\r\nimport com.woniuxy.util.JSONResult;\r\nimport org.springframework.cloud.openfeign.FeignClient;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\n\r\n@FeignClient(\"travel\")\r\npublic interface BannerFeignClient {\r\n    @GetMapping(\"/selectByType\")\r\n    public JSONResult queryBannerByType(@RequestParam(\"type\") Integer type)throws Exception ;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/client/BannerFeignClient.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/client/BannerFeignClient.java	(date 1605080355794)
+@@ -5,8 +5,8 @@
+ import org.springframework.web.bind.annotation.GetMapping;
+ import org.springframework.web.bind.annotation.RequestParam;
+ 
+-@FeignClient("travel")
+-public interface BannerFeignClient {
+-    @GetMapping("/selectByType")
+-    public JSONResult queryBannerByType(@RequestParam("type") Integer type)throws Exception ;
+-}
++//@FeignClient("travel/banner")
++//public interface BannerFeignClient {
++//    @GetMapping("/selectByType")
++//    public JSONResult queryBannerByType(@RequestParam("type") Integer type)throws Exception ;
++//}
+Index: campFoods/src/main/java/com/woniuxy/controller/LimoProductController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.controller;\r\n\r\n\r\nimport com.alibaba.fastjson.JSON;\r\nimport com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;\r\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\r\nimport com.woniuxy.client.BannerFeignClient;\r\nimport com.woniuxy.domain.LimoCamp;\r\nimport com.woniuxy.domain.LimoProduct;\r\nimport com.woniuxy.param.CampParam;\r\nimport com.woniuxy.param.ProductParam;\r\nimport com.woniuxy.service.LimoCampService;\r\nimport com.woniuxy.service.LimoProductService;\r\nimport com.woniuxy.util.JSONResult;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.util.StringUtils;\r\nimport org.springframework.web.bind.annotation.RequestBody;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\n/**\r\n * <p>\r\n *  前端控制器\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-09\r\n */\r\n@RestController\r\n@RequestMapping(\"/product\")\r\npublic class LimoProductController {\r\n    @Autowired\r\n    private LimoProductService limoProductService;\r\n    @Autowired\r\n    private LimoCampService limoCampService;\r\n    @Autowired\r\n    private BannerFeignClient bannerFeignClient;\r\n    /**\r\n     * 分页条件查询商品\r\n     * @param product\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @RequestMapping(\"/selectProduct\")\r\n    public JSONResult selectProduct(ProductParam product)throws Exception{\r\n        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());\r\n        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();\r\n        queryWrapper.eq(\"p_type\",product.getPType()).eq(\"p_status\",0);\r\n        if(!StringUtils.isEmpty(product.getCCity())){\r\n            queryWrapper.eq(\"c_city\",product.getCCity());\r\n        }\r\n        if(product.getCId()!=null){\r\n            queryWrapper.eq(\"c_id\",product.getCId());\r\n        }\r\n        if(!StringUtils.isEmpty(product.getPName())){\r\n            queryWrapper.like(\"p_name\",product.getPName());\r\n        }\r\n        if(product.getUrId()!=null){\r\n            queryWrapper.eq(\"ur_id\",product.getUrId());\r\n        }\r\n        limoProductService.page(page,queryWrapper);\r\n        return new JSONResult(\"200\",\"success\",null,page);\r\n    }\r\n    /**\r\n     * 分页条件查询商品\r\n     * @param product\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @RequestMapping(\"selectProductByCid\")\r\n    public String selectProductByCid(@RequestBody ProductParam product)throws Exception{\r\n        System.out.println(product);\r\n        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());\r\n        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();\r\n        queryWrapper.eq(\"p_type\",product.getPType());\r\n        if(!StringUtils.isEmpty(product.getCCity())){\r\n            queryWrapper.eq(\"c_city\",product.getCCity());\r\n        }\r\n        if(product.getCId()!=null){\r\n            queryWrapper.eq(\"c_id\",product.getCId());\r\n        }\r\n        if(!StringUtils.isEmpty(product.getPName())){\r\n            queryWrapper.like(\"p_name\",product.getPName());\r\n        }\r\n        if(product.getUrId()!=null){\r\n            queryWrapper.eq(\"ur_id\",product.getUrId());\r\n        }\r\n        limoProductService.page(page,queryWrapper);\r\n        return JSON.toJSONString(page);\r\n    }\r\n\r\n\r\n    /**\r\n     * 查询单个商品信息\r\n     * @param pId\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @RequestMapping(\"/selectProductById\")\r\n   public JSONResult selectProductById(Integer pId)throws Exception{\r\n        return new JSONResult(\"200\",\"success\",null,limoProductService.getById(pId));\r\n   }\r\n\r\n    /**\r\n     * 查询对应城市的所有营地\r\n     * @param camp\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n   @RequestMapping(\"/selectCampByCity\")\r\n    public JSONResult selectCampByCity(CampParam camp)throws Exception{\r\n       Page<LimoCamp> page = new Page<>(camp.getPageNum(),camp.getPageSize());\r\n       QueryWrapper<LimoCamp> queryWrapper = new QueryWrapper<>();\r\n       queryWrapper.eq(\"c_city\",camp.getCCity());\r\n       limoCampService.page(page,queryWrapper);\r\n       return new JSONResult(\"200\",\"success\",null,page);\r\n   }\r\n   @RequestMapping(\"/selectBanner\")\r\n    public JSONResult selectFoodBanner(Integer type)throws Exception{\r\n        return bannerFeignClient.queryBannerByType(type);\r\n   }\r\n    @RequestMapping(\"/recommend\")\r\n    public JSONResult recommendProduct(String city,Integer pType)throws Exception{\r\n        return new JSONResult(\"200\",\"success\",limoProductService.recommendProduct(city,pType),null);\r\n    }\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/controller/LimoProductController.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/controller/LimoProductController.java	(date 1605081006658)
+@@ -4,7 +4,6 @@
+ import com.alibaba.fastjson.JSON;
+ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+-import com.woniuxy.client.BannerFeignClient;
+ import com.woniuxy.domain.LimoCamp;
+ import com.woniuxy.domain.LimoProduct;
+ import com.woniuxy.param.CampParam;
+@@ -33,8 +32,8 @@
+     private LimoProductService limoProductService;
+     @Autowired
+     private LimoCampService limoCampService;
+-    @Autowired
+-    private BannerFeignClient bannerFeignClient;
++//    @Autowired
++//    private BannerFeignClient bannerFeignClient;
+     /**
+      * 分页条件查询商品
+      * @param product
+@@ -43,53 +42,18 @@
+      */
+     @RequestMapping("/selectProduct")
+     public JSONResult selectProduct(ProductParam product)throws Exception{
+-        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());
+-        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
+-        queryWrapper.eq("p_type",product.getPType()).eq("p_status",0);
+-        if(!StringUtils.isEmpty(product.getCCity())){
+-            queryWrapper.eq("c_city",product.getCCity());
+-        }
+-        if(product.getCId()!=null){
+-            queryWrapper.eq("c_id",product.getCId());
+-        }
+-        if(!StringUtils.isEmpty(product.getPName())){
+-            queryWrapper.like("p_name",product.getPName());
+-        }
+-        if(product.getUrId()!=null){
+-            queryWrapper.eq("ur_id",product.getUrId());
+-        }
+-        limoProductService.page(page,queryWrapper);
+-        return new JSONResult("200","success",null,page);
++        return new JSONResult("200","success",null,limoProductService.selectProduct(product));
+     }
+     /**
+-     * 分页条件查询商品
++     * 根据营地查询商品信息
+      * @param product
+      * @return
+      * @throws Exception
+      */
+-    @RequestMapping("selectProductByCid")
+-    public String selectProductByCid(@RequestBody ProductParam product)throws Exception{
+-        System.out.println(product);
+-        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());
+-        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
+-        queryWrapper.eq("p_type",product.getPType());
+-        if(!StringUtils.isEmpty(product.getCCity())){
+-            queryWrapper.eq("c_city",product.getCCity());
+-        }
+-        if(product.getCId()!=null){
+-            queryWrapper.eq("c_id",product.getCId());
+-        }
+-        if(!StringUtils.isEmpty(product.getPName())){
+-            queryWrapper.like("p_name",product.getPName());
+-        }
+-        if(product.getUrId()!=null){
+-            queryWrapper.eq("ur_id",product.getUrId());
+-        }
+-        limoProductService.page(page,queryWrapper);
+-        return JSON.toJSONString(page);
++    @RequestMapping("/selectProductByCid")
++    public String selectProductByCid(ProductParam product)throws Exception{
++        return limoProductService.selectProductByCid(product);
+     }
+-
+-
+     /**
+      * 查询单个商品信息
+      * @param pId
+@@ -115,10 +79,25 @@
+        limoCampService.page(page,queryWrapper);
+        return new JSONResult("200","success",null,page);
+    }
+-   @RequestMapping("/selectBanner")
+-    public JSONResult selectFoodBanner(Integer type)throws Exception{
+-        return bannerFeignClient.queryBannerByType(type);
+-   }
++
++    /**
++     * 查询相关页面的轮播图信息
++     * @param type
++     * @return
++     * @throws Exception
++     */
++//   @RequestMapping("/selectBanner")
++//    public JSONResult selectFoodBanner(Integer type)throws Exception{
++//        return bannerFeignClient.queryBannerByType(type);
++//   }
++
++    /**
++     * 查询推荐商品信息
++     * @param city
++     * @param pType
++     * @return
++     * @throws Exception
++     */
+     @RequestMapping("/recommend")
+     public JSONResult recommendProduct(String city,Integer pType)throws Exception{
+         return new JSONResult("200","success",limoProductService.recommendProduct(city,pType),null);
+Index: campFoods/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <parent>\r\n        <artifactId>limoItem</artifactId>\r\n        <groupId>com.woniuxy</groupId>\r\n        <version>1.0-SNAPSHOT</version>\r\n    </parent>\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <artifactId>campFoods</artifactId>\r\n\r\n    <name>campFoods</name>\r\n    <!-- FIXME change it to the project's website -->\r\n    <url>http://www.example.com</url>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <maven.compiler.source>1.7</maven.compiler.source>\r\n        <maven.compiler.target>1.7</maven.compiler.target>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>junit</groupId>\r\n            <artifactId>junit</artifactId>\r\n            <version>4.11</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-web</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.baomidou</groupId>\r\n            <artifactId>mybatis-plus-boot-starter</artifactId>\r\n            <version>3.4.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.apache.velocity</groupId>\r\n            <artifactId>velocity-engine-core</artifactId>\r\n            <version>2.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.baomidou</groupId>\r\n            <artifactId>mybatis-plus-generator</artifactId>\r\n            <version>3.4.0</version>\r\n        </dependency>\r\n        <!--springboot整合redis-->\r\n        <!-- <dependency>\r\n             <groupId>org.springframework.boot</groupId>\r\n             <artifactId>spring-boot-starter-data-redis</artifactId>\r\n         </dependency>-->\r\n        <dependency>\r\n            <groupId>com.alibaba.cloud</groupId>\r\n            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-actuator</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.cloud</groupId>\r\n            <artifactId>spring-cloud-starter-openfeign</artifactId>\r\n        </dependency>\r\n        <!--JWT三个包 -->\r\n        <dependency>\r\n            <groupId>io.jsonwebtoken</groupId>\r\n            <artifactId>jjwt-api</artifactId>\r\n            <version>0.11.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.jsonwebtoken</groupId>\r\n            <artifactId>jjwt-impl</artifactId>\r\n            <version>0.11.2</version>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.jsonwebtoken</groupId>\r\n            <artifactId>jjwt-jackson</artifactId>\r\n            <version>0.11.2</version>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>mysql</groupId>\r\n            <artifactId>mysql-connector-java</artifactId>\r\n            <version>5.1.47</version>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.alibaba</groupId>\r\n            <artifactId>fastjson</artifactId>\r\n            <version>1.2.62</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.alibaba</groupId>\r\n            <artifactId>druid</artifactId>\r\n            <version>1.1.23</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.github.pagehelper</groupId>\r\n            <artifactId>pagehelper-spring-boot-starter</artifactId>\r\n            <version>1.2.12</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.projectlombok</groupId>\r\n            <artifactId>lombok</artifactId>\r\n            <optional>true</optional>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.woniuxy</groupId>\r\n            <artifactId>utils</artifactId>\r\n            <version>1.0-SNAPSHOT</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.springfox</groupId>\r\n            <artifactId>springfox-swagger2</artifactId>\r\n            <version>2.9.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.springfox</groupId>\r\n            <artifactId>springfox-swagger-ui</artifactId>\r\n            <version>2.9.2</version>\r\n        </dependency>\r\n<!--        <dependency>-->\r\n<!--            <groupId>org.redisson</groupId>-->\r\n<!--            <artifactId>redisson</artifactId>-->\r\n<!--            <version>3.13.6</version>-->\r\n<!--        </dependency>-->\r\n    </dependencies>\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/pom.xml	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/pom.xml	(date 1605150904276)
+@@ -48,14 +48,14 @@
+             <version>3.4.0</version>
+         </dependency>
+         <!--springboot整合redis-->
+-        <!-- <dependency>
+-             <groupId>org.springframework.boot</groupId>
+-             <artifactId>spring-boot-starter-data-redis</artifactId>
+-         </dependency>-->
+-        <dependency>
+-            <groupId>com.alibaba.cloud</groupId>
+-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+-        </dependency>
++<!--        <dependency>-->
++<!--            <groupId>org.springframework.boot</groupId>-->
++<!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
++<!--        </dependency>-->
++<!--        <dependency>-->
++<!--            <groupId>com.alibaba.cloud</groupId>-->
++<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
++<!--        </dependency>-->
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-actuator</artifactId>
+@@ -124,10 +124,14 @@
+             <artifactId>springfox-swagger-ui</artifactId>
+             <version>2.9.2</version>
+         </dependency>
+-<!--        <dependency>-->
+-<!--            <groupId>org.redisson</groupId>-->
+-<!--            <artifactId>redisson</artifactId>-->
+-<!--            <version>3.13.6</version>-->
+-<!--        </dependency>-->
++        <dependency>
++            <groupId>org.redisson</groupId>
++            <artifactId>redisson</artifactId>
++            <version>3.13.6</version>
++        </dependency>
++        <dependency>
++            <groupId>org.springframework.boot</groupId>
++            <artifactId>spring-boot-starter-aop</artifactId>
++        </dependency>
+     </dependencies>
+ </project>
+Index: travel/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <parent>\r\n        <artifactId>limoItem</artifactId>\r\n        <groupId>com.woniuxy</groupId>\r\n        <version>1.0-SNAPSHOT</version>\r\n    </parent>\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <artifactId>travel</artifactId>\r\n\r\n    <name>travel</name>\r\n    <!-- FIXME change it to the project's website -->\r\n    <url>http://www.example.com</url>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <maven.compiler.source>1.7</maven.compiler.source>\r\n        <maven.compiler.target>1.7</maven.compiler.target>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>junit</groupId>\r\n            <artifactId>junit</artifactId>\r\n            <version>4.11</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-web</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <!--springboot整合redis-->\r\n        <!-- <dependency>\r\n             <groupId>org.springframework.boot</groupId>\r\n             <artifactId>spring-boot-starter-data-redis</artifactId>\r\n         </dependency>-->\r\n<!--        <dependency>-->\r\n<!--            <groupId>com.alibaba.cloud</groupId>-->\r\n<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->\r\n<!--        </dependency>-->\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-actuator</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.cloud</groupId>\r\n            <artifactId>spring-cloud-starter-openfeign</artifactId>\r\n        </dependency>\r\n        <!--JWT三个包 -->\r\n        <dependency>\r\n            <groupId>io.jsonwebtoken</groupId>\r\n            <artifactId>jjwt-api</artifactId>\r\n            <version>0.11.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.jsonwebtoken</groupId>\r\n            <artifactId>jjwt-impl</artifactId>\r\n            <version>0.11.2</version>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.jsonwebtoken</groupId>\r\n            <artifactId>jjwt-jackson</artifactId>\r\n            <version>0.11.2</version>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.baomidou</groupId>\r\n            <artifactId>mybatis-plus-boot-starter</artifactId>\r\n            <version>3.4.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.apache.velocity</groupId>\r\n            <artifactId>velocity-engine-core</artifactId>\r\n            <version>2.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.baomidou</groupId>\r\n            <artifactId>mybatis-plus-generator</artifactId>\r\n            <version>3.4.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>mysql</groupId>\r\n            <artifactId>mysql-connector-java</artifactId>\r\n            <version>5.1.47</version>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.alibaba</groupId>\r\n            <artifactId>fastjson</artifactId>\r\n            <version>1.2.62</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.alibaba</groupId>\r\n            <artifactId>druid</artifactId>\r\n            <version>1.1.23</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.projectlombok</groupId>\r\n            <artifactId>lombok</artifactId>\r\n            <optional>true</optional>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.springfox</groupId>\r\n            <artifactId>springfox-swagger2</artifactId>\r\n            <version>2.9.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.springfox</groupId>\r\n            <artifactId>springfox-swagger-ui</artifactId>\r\n            <version>2.9.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.woniuxy</groupId>\r\n            <artifactId>utils</artifactId>\r\n            <version>1.0-SNAPSHOT</version>\r\n        </dependency>\r\n    </dependencies>\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- travel/pom.xml	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ travel/pom.xml	(date 1605079942310)
+@@ -42,10 +42,10 @@
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-data-redis</artifactId>
+          </dependency>-->
+-<!--        <dependency>-->
+-<!--            <groupId>com.alibaba.cloud</groupId>-->
+-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
+-<!--        </dependency>-->
++        <dependency>
++            <groupId>com.alibaba.cloud</groupId>
++            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
++        </dependency>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-actuator</artifactId>
+Index: campFoods/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server:\r\n  port: 8081\r\nspring:\r\n#配置数据源\r\n  datasource:\r\n    url: jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8\r\n    password: item1234\r\n    username: root\r\n    type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter\r\n    driver-class-name: com.mysql.jdbc.Driver\r\n  application:\r\n    name: campFoods\r\nmybatis-plus:\r\n  configuration:\r\n    #打印日志\r\n    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl\r\n    #转驼峰\r\n    map-underscore-to-camel-case: true\r\n#  #扫描配置文件地址\r\n  mapper-locations: classpath:mapper/*Mapper.xml\r\n  #别名所在包\r\n  type-aliases-package: com.woniuxy.domain
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/resources/application.yml	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/resources/application.yml	(date 1605163485096)
+@@ -10,10 +10,17 @@
+     driver-class-name: com.mysql.jdbc.Driver
+   application:
+     name: campFoods
++  cloud:
++    nacos:
++      discovery:
++        server-addr: localhost:8848
++  redis:
++    host: 127.0.0.1
++    port: 6379
+ mybatis-plus:
+   configuration:
+     #打印日志
+-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
++#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+     #转驼峰
+     map-underscore-to-camel-case: true
+ #  #扫描配置文件地址
+Index: campFoods/src/main/java/com/woniuxy/controller/LimoOrderController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.controller;\r\n\r\n\r\nimport com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;\r\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\r\nimport com.woniuxy.domain.LimoOrder;\r\nimport com.woniuxy.param.OrderParam;\r\nimport com.woniuxy.param.OrdersParam;\r\nimport com.woniuxy.service.LimoOrderService;\r\nimport com.woniuxy.util.JSONResult;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.web.bind.annotation.RequestBody;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\nimport org.springframework.stereotype.Controller;\r\n\r\nimport java.util.Map;\r\n\r\n/**\r\n * <p>\r\n *  前端控制器\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-09\r\n */\r\n@Controller\r\n@RequestMapping(\"/order\")\r\npublic class LimoOrderController {\r\n    @Autowired\r\n    private LimoOrderService limoOrderService;\r\n\r\n    /**\r\n     * 生成订单\r\n     * @param orders\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @RequestMapping(\"/insertOrder\")\r\n    public JSONResult insertOrder(@RequestBody OrdersParam orders)throws Exception{\r\n        limoOrderService.insertOrder(orders);\r\n        return new JSONResult(\"200\",\"success\",null,null);\r\n    }\r\n\r\n    /**\r\n     * 查询用户订单信息\r\n     * @param orderParam\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @RequestMapping(\"/selectOrders\")\r\n    public JSONResult selectOrders(OrderParam orderParam)throws Exception{\r\n        Page<LimoOrder> page = new Page<>(orderParam.getPageNum(),orderParam.getPageSize());\r\n        QueryWrapper<LimoOrder> queryWrapper = new QueryWrapper<>();\r\n        limoOrderService.page(page,queryWrapper);\r\n        return new JSONResult(\"200\",\"success\",limoOrderService.selectOrders(orderParam),page);\r\n    }\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/controller/LimoOrderController.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/controller/LimoOrderController.java	(date 1605163079849)
+@@ -3,16 +3,18 @@
+ 
+ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
++import com.woniuxy.annotation.RedisLock;
+ import com.woniuxy.domain.LimoOrder;
+ import com.woniuxy.param.OrderParam;
+ import com.woniuxy.param.OrdersParam;
+ import com.woniuxy.service.LimoOrderService;
+ import com.woniuxy.util.JSONResult;
+ import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.web.bind.annotation.PostMapping;
+ import org.springframework.web.bind.annotation.RequestBody;
+ import org.springframework.web.bind.annotation.RequestMapping;
+ 
+-import org.springframework.stereotype.Controller;
++import org.springframework.web.bind.annotation.RestController;
+ 
+ import java.util.Map;
+ 
+@@ -24,7 +26,7 @@
+  * @author lx
+  * @since 2020-11-09
+  */
+-@Controller
++@RestController
+ @RequestMapping("/order")
+ public class LimoOrderController {
+     @Autowired
+@@ -36,7 +38,7 @@
+      * @return
+      * @throws Exception
+      */
+-    @RequestMapping("/insertOrder")
++    @PostMapping("/insertOrder")
+     public JSONResult insertOrder(@RequestBody OrdersParam orders)throws Exception{
+         limoOrderService.insertOrder(orders);
+         return new JSONResult("200","success",null,null);
+@@ -50,10 +52,11 @@
+      */
+     @RequestMapping("/selectOrders")
+     public JSONResult selectOrders(OrderParam orderParam)throws Exception{
+-        Page<LimoOrder> page = new Page<>(orderParam.getPageNum(),orderParam.getPageSize());
+-        QueryWrapper<LimoOrder> queryWrapper = new QueryWrapper<>();
+-        limoOrderService.page(page,queryWrapper);
+-        return new JSONResult("200","success",limoOrderService.selectOrders(orderParam),page);
++        return new JSONResult("200","success",null,limoOrderService.selectOrders(orderParam));
++    }
++    @RequestMapping("/test")
++    public void test(){
++        limoOrderService.test();
+     }
+ 
+ }
+Index: campFoods/src/main/java/com/woniuxy/config/MPConfiguration.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.config;\r\n\r\nimport com.baomidou.mybatisplus.annotation.DbType;\r\nimport com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;\r\nimport com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.context.annotation.Configuration;\r\n\r\n@Configuration\r\npublic class MPConfiguration {\r\n    @Bean\r\n    public MybatisPlusInterceptor mybatisPlusInterceptor() {\r\n        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();\r\n        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));\r\n        return interceptor;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/config/MPConfiguration.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/config/MPConfiguration.java	(date 1605079671754)
+@@ -6,6 +6,7 @@
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
+ 
++
+ @Configuration
+ public class MPConfiguration {
+     @Bean
+@@ -14,4 +15,16 @@
+         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+         return interceptor;
+     }
++//    @Bean("rt")
++//    public RedisTemplate<String,Object> getReTemplate(RedisConnectionFactory connectionFactory){
++//        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
++//        redisTemplate.setConnectionFactory(connectionFactory);
++//        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer(Charset.forName("utf-8"));
++//        redisTemplate.setKeySerializer(stringRedisSerializer);
++//        Jackson2JsonRedisSerializer<Object> jsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
++//        redisTemplate.setValueSerializer(jsonRedisSerializer);
++//        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
++//        redisTemplate.setHashKeySerializer(jsonRedisSerializer);
++//        return redisTemplate;
++//    }
+ }
+Index: travel/src/main/java/com/woniuxy/controller/LimoSortController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.controller;\r\n\r\n\r\nimport com.woniuxy.exception.TravelExecption;\r\nimport com.woniuxy.service.LimoSortService;\r\nimport com.woniuxy.util.JSONResult;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\nimport javax.annotation.Resource;\r\n\r\n/**\r\n * <p>\r\n *  前端控制器\r\n * </p>\r\n *\r\n * @author zhuyuli\r\n * @since 2020-11-07\r\n */\r\n@RestController\r\n@RequestMapping(\"/limoSort\")\r\npublic class LimoSortController {\r\n    @Resource\r\n    private LimoSortService  limoSortService;\r\n\r\n    /**\r\n     * @Author zhuyuli\r\n     * @Description 查询所有城市\r\n     * @Date 2020/11/10 14:08\r\n     * @Param []\r\n     * @return com.woniuxy.util.JSONResult\r\n     **/\r\n    @GetMapping\r\n    public JSONResult queryAll(){\r\n\r\n        return new JSONResult(\"200\",\"success\",limoSortService.list(),null);\r\n    }\r\n    /**\r\n     * @Author zhuyuli\r\n     * @Description 根据主键查询城市\r\n     * @Date 2020/11/10 14:11\r\n     * @Param [id]\r\n     * @return com.woniuxy.util.JSONResult\r\n     **/\r\n    @GetMapping\r\n    public JSONResult queryById(Integer id)throws Exception{\r\n        if (id < 1) {\r\n            throw new TravelExecption(\"参数异常\");\r\n        }\r\n        return new JSONResult(\"200\",\"success\",null,limoSortService.getById(id));\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- travel/src/main/java/com/woniuxy/controller/LimoSortController.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ travel/src/main/java/com/woniuxy/controller/LimoSortController.java	(date 1605010689670)
+@@ -33,7 +33,7 @@
+      * @Param []
+      * @return com.woniuxy.util.JSONResult
+      **/
+-    @GetMapping
++    @GetMapping("/111")
+     public JSONResult queryAll(){
+ 
+         return new JSONResult("200","success",limoSortService.list(),null);
+Index: campFoods/src/main/java/com/woniuxy/param/OrdersParam.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.param;\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDateTime;\r\nimport java.util.List;\r\n\r\n@Data\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class OrdersParam implements Serializable {\r\n    private Integer uId;\r\n    private Integer cId;\r\n    private Integer caId;\r\n    private Integer urId;\r\n    private double total;\r\n    private LocalDateTime startTime;\r\n    private LocalDateTime endTime;\r\n    private List<ProductParam> product;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/param/OrdersParam.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/param/OrdersParam.java	(date 1605089344762)
+@@ -1,11 +1,8 @@
+ package com.woniuxy.param;
+ 
+-import lombok.AllArgsConstructor;
+-import lombok.Data;
+-import lombok.NoArgsConstructor;
++import lombok.*;
+ 
+ import java.io.Serializable;
+-import java.time.LocalDateTime;
+ import java.util.List;
+ 
+ @Data
+@@ -17,7 +14,5 @@
+     private Integer caId;
+     private Integer urId;
+     private double total;
+-    private LocalDateTime startTime;
+-    private LocalDateTime endTime;
+-    private List<ProductParam> product;
++    private List<OrderDetailsParam> orderDetailsParams;
+ }
+Index: campFoods/src/main/java/com/woniuxy/service/impl/LimoEvaluateServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.service.impl;\r\n\r\nimport com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;\r\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\r\nimport com.woniuxy.domain.LimoEvaluate;\r\nimport com.woniuxy.dto.EvaluateDto;\r\nimport com.woniuxy.mapper.LimoEvaluateMapper;\r\nimport com.woniuxy.param.EvaluateParam;\r\nimport com.woniuxy.service.LimoEvaluateService;\r\nimport com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\n/**\r\n * <p>\r\n *  服务实现类\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-10\r\n */\r\n@Service\r\npublic class LimoEvaluateServiceImpl extends ServiceImpl<LimoEvaluateMapper, LimoEvaluate> implements LimoEvaluateService {\r\n    @Autowired\r\n    private LimoEvaluateMapper limoEvaluateMapper;\r\n    @Override\r\n    public Page<LimoEvaluate> selectEvaluate(EvaluateParam evaluateParam) throws Exception {\r\n        Page<LimoEvaluate> page = new Page<>(evaluateParam.getPageNum(), evaluateParam.getPageSize());\r\n        QueryWrapper<LimoEvaluate> queryWrapper = new QueryWrapper<>();\r\n        queryWrapper.eq(\"p_id\",evaluateParam.getPId()).eq(\"ev_type\",evaluateParam.getEvType());\r\n        if(evaluateParam.getUId()!=null){\r\n            queryWrapper.eq(\"u_id\",evaluateParam.getUId());\r\n        }\r\n        limoEvaluateMapper.selectPage(page,queryWrapper);\r\n        return page;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/service/impl/LimoEvaluateServiceImpl.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/service/impl/LimoEvaluateServiceImpl.java	(date 1605147565163)
+@@ -3,14 +3,19 @@
+ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+ import com.woniuxy.domain.LimoEvaluate;
++import com.woniuxy.domain.LimoUser;
+ import com.woniuxy.dto.EvaluateDto;
++import com.woniuxy.dto.UserDto;
+ import com.woniuxy.mapper.LimoEvaluateMapper;
++import com.woniuxy.mapper.LimoUserMapper;
+ import com.woniuxy.param.EvaluateParam;
+ import com.woniuxy.service.LimoEvaluateService;
+ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+-import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.beans.BeanUtils;
+ import org.springframework.stereotype.Service;
+ 
++import javax.annotation.Resource;
++import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+ 
+@@ -24,17 +29,61 @@
+  */
+ @Service
+ public class LimoEvaluateServiceImpl extends ServiceImpl<LimoEvaluateMapper, LimoEvaluate> implements LimoEvaluateService {
+-    @Autowired
++    @Resource
+     private LimoEvaluateMapper limoEvaluateMapper;
++    @Resource
++    private LimoUserMapper limoUserMapper;
++
++    /**
++     * 查询商品的评价信息
++     * @param evaluateParam
++     * @return
++     * @throws Exception
++     */
+     @Override
+-    public Page<LimoEvaluate> selectEvaluate(EvaluateParam evaluateParam) throws Exception {
++    public Page<EvaluateDto> selectEvaluate(EvaluateParam evaluateParam) throws Exception {
+         Page<LimoEvaluate> page = new Page<>(evaluateParam.getPageNum(), evaluateParam.getPageSize());
+         QueryWrapper<LimoEvaluate> queryWrapper = new QueryWrapper<>();
+-        queryWrapper.eq("p_id",evaluateParam.getPId()).eq("ev_type",evaluateParam.getEvType());
++        if(evaluateParam.getAId()!=null){
++            queryWrapper.eq("a_id",evaluateParam.getAId());
++        }
++        if(evaluateParam.getPId()!=null){
++            queryWrapper.eq("p_id",evaluateParam.getPId());
++        }
++        if(evaluateParam.getEvType()!=null){
++            queryWrapper.eq("ev_type",evaluateParam.getEvType());
++        }
+         if(evaluateParam.getUId()!=null){
+             queryWrapper.eq("u_id",evaluateParam.getUId());
+         }
+         limoEvaluateMapper.selectPage(page,queryWrapper);
+-        return page;
++        List<LimoEvaluate> records = page.getRecords();
++        ArrayList<EvaluateDto> list = new ArrayList<>();
++        for (LimoEvaluate evaluate:records){
++            EvaluateDto evaluateDto = new EvaluateDto();
++            BeanUtils.copyProperties(evaluate,evaluateDto);
++            //查询评价的用户信息
++            LimoUser user = limoUserMapper.selectById(evaluate.getUId());
++            UserDto userDto = new UserDto();
++            BeanUtils.copyProperties(user,userDto);
++            evaluateDto.setUserDto(userDto);
++            list.add(evaluateDto);
++        }
++        Page<EvaluateDto> dtoPage = new Page<>();
++        BeanUtils.copyProperties(page,dtoPage);
++        dtoPage.setRecords(list);
++        return dtoPage;
++    }
++
++    /**
++     * 新增评价
++     * @param evaluateParam
++     * @throws Exception
++     */
++    @Override
++    public void insertEvaluate(EvaluateParam evaluateParam) throws Exception {
++        LimoEvaluate evaluate = new LimoEvaluate();
++        BeanUtils.copyProperties(evaluateParam,evaluate);
++        limoEvaluateMapper.insert(evaluate);
+     }
+ }
+Index: campFoods/src/main/java/com/woniuxy/param/ProParam.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/param/ProParam.java	(date 1605083491546)
++++ campFoods/src/main/java/com/woniuxy/param/ProParam.java	(date 1605083491546)
+@@ -0,0 +1,6 @@
++package com.woniuxy.param;
++
++public class ProParam {
++    private Integer pId;
++
++}
+Index: campFoods/src/main/java/com/woniuxy/service/LimoEvaluateService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.service;\r\n\r\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\r\nimport com.woniuxy.domain.LimoEvaluate;\r\nimport com.baomidou.mybatisplus.extension.service.IService;\r\nimport com.woniuxy.dto.EvaluateDto;\r\nimport com.woniuxy.param.EvaluateParam;\r\nimport org.apache.velocity.runtime.directive.Evaluate;\r\n\r\n/**\r\n * <p>\r\n *  服务类\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-10\r\n */\r\npublic interface LimoEvaluateService extends IService<LimoEvaluate> {\r\n    public Page<LimoEvaluate> selectEvaluate(EvaluateParam evaluateParam)throws Exception;\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/service/LimoEvaluateService.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/service/LimoEvaluateService.java	(date 1605147225350)
+@@ -16,6 +16,19 @@
+  * @since 2020-11-10
+  */
+ public interface LimoEvaluateService extends IService<LimoEvaluate> {
+-    public Page<LimoEvaluate> selectEvaluate(EvaluateParam evaluateParam)throws Exception;
++    /**
++     * 查询商品评价信息
++     * @param evaluateParam
++     * @return
++     * @throws Exception
++     */
++    public Page<EvaluateDto> selectEvaluate(EvaluateParam evaluateParam)throws Exception;
++
++    /**
++     * 新增评论
++     * @param evaluateParam
++     * @throws Exception
++     */
++    public void insertEvaluate(EvaluateParam evaluateParam)throws Exception;
+ 
+ }
+Index: campFoods/src/main/java/com/woniuxy/param/OrderDetailsParam.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/param/OrderDetailsParam.java	(date 1605093043634)
++++ campFoods/src/main/java/com/woniuxy/param/OrderDetailsParam.java	(date 1605093043634)
+@@ -0,0 +1,19 @@
++package com.woniuxy.param;
++
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++import java.time.LocalDateTime;
++
++@Data
++@NoArgsConstructor
++@AllArgsConstructor
++public class OrderDetailsParam {
++    private Integer pId;
++    private Integer num;
++    private Integer aId;
++    private double price;
++    private LocalDateTime startTime;
++    private LocalDateTime endTime;
++}
+Index: travel/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server.port=8088\r\n#数据源配置\r\nspring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true\r\n\r\nspring.datasource.username=root\r\nspring.datasource.password=item1234\r\nspring.datasource.driver-class-name=com.mysql.jdbc.Driver\r\nspring.datasource.type=com.alibaba.druid.pool.DruidDataSource\r\n#mybatis_Plus\r\n#xml的配置位置\r\nmybatis-plus.mapper-locations=classpath*:mapper/**/*.xml\r\n#别名所在包\r\nmybatis-plus.type-aliases-package=com.woniuxy.doman\r\n#转驼峰\r\nmybatis-plus.configuration.map-underscore-to-camel-case=true\r\n#日志\r\nmybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl\r\nlogging.level.com.squirrel.gitdemo=debug\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- travel/src/main/resources/application.properties	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ travel/src/main/resources/application.properties	(date 1605079988930)
+@@ -1,7 +1,8 @@
+ server.port=8088
+ #数据源配置
+ spring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true
+-
++spring.application.name=travel
++spring.cloud.nacos.discovery.server-addr=application.yml
+ spring.datasource.username=root
+ spring.datasource.password=item1234
+ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+Index: campFoods/src/main/java/com/woniuxy/service/impl/LimoProductServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.service.impl;\r\n\r\nimport com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;\r\nimport com.woniuxy.domain.LimoProduct;\r\nimport com.woniuxy.dto.ProductDto;\r\nimport com.woniuxy.mapper.LimoProductMapper;\r\nimport com.woniuxy.service.LimoProductService;\r\nimport com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;\r\nimport org.springframework.beans.BeanUtils;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * <p>\r\n *  服务实现类\r\n * </p>\r\n *\r\n * @author zhuyuli\r\n * @since 2020-11-09\r\n */\r\n@Service\r\npublic class LimoProductServiceImpl extends ServiceImpl<LimoProductMapper, LimoProduct> implements LimoProductService {\r\n    @Autowired\r\n    private LimoProductMapper limoProductMapper;\r\n    @Override\r\n    public List<ProductDto> recommendProduct(String city, Integer pType) throws Exception {\r\n        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();\r\n        queryWrapper.eq(\"c_city\",city).eq(\"p_type\",pType);\r\n        List<LimoProduct> list = limoProductMapper.selectList(queryWrapper);\r\n        List<ProductDto> productDtos = new ArrayList<>();\r\n        for(LimoProduct pro:list){\r\n            ProductDto productDto = new ProductDto();\r\n            BeanUtils.copyProperties(pro,productDto);\r\n            productDtos.add(productDto);\r\n        }\r\n        return productDtos;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/service/impl/LimoProductServiceImpl.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/service/impl/LimoProductServiceImpl.java	(date 1605079330947)
+@@ -1,14 +1,18 @@
+ package com.woniuxy.service.impl;
+ 
++import com.alibaba.fastjson.JSON;
+ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
++import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+ import com.woniuxy.domain.LimoProduct;
+ import com.woniuxy.dto.ProductDto;
+ import com.woniuxy.mapper.LimoProductMapper;
++import com.woniuxy.param.ProductParam;
+ import com.woniuxy.service.LimoProductService;
+ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+ import org.springframework.beans.BeanUtils;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
++import org.springframework.util.StringUtils;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+@@ -25,6 +29,61 @@
+ public class LimoProductServiceImpl extends ServiceImpl<LimoProductMapper, LimoProduct> implements LimoProductService {
+     @Autowired
+     private LimoProductMapper limoProductMapper;
++
++    /**
++     * 条件分页查询商品信息
++     * @param product
++     * @return
++     * @throws Exception
++     */
++    @Override
++    public Page<LimoProduct> selectProduct(ProductParam product) throws Exception {
++        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());
++        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
++        queryWrapper.eq("p_type",product.getPType()).eq("p_status",0);
++        if(!StringUtils.isEmpty(product.getCCity())){
++            queryWrapper.eq("c_city",product.getCCity());
++        }
++        if(product.getCId()!=null){
++            queryWrapper.eq("c_id",product.getCId());
++        }
++        if(!StringUtils.isEmpty(product.getPName())){
++            queryWrapper.like("p_name",product.getPName());
++        }
++        if(product.getUrId()!=null){
++            queryWrapper.eq("ur_id",product.getUrId());
++        }
++        limoProductMapper.selectPage(page,queryWrapper);
++        return page;
++    }
++
++    /**
++     * 根据营地编号查询该营地相关商品
++     * @param product
++     * @return
++     * @throws Exception
++     */
++    @Override
++    public String selectProductByCid(ProductParam product) throws Exception {
++        Page<LimoProduct> page = new Page<>(product.getPageNum(), product.getPageSize());
++        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
++        queryWrapper.eq("p_type",product.getPType());
++        if(!StringUtils.isEmpty(product.getCCity())){
++            queryWrapper.eq("c_city",product.getCCity());
++        }
++        if(product.getCId()!=null){
++            queryWrapper.eq("c_id",product.getCId());
++        }
++        if(!StringUtils.isEmpty(product.getPName())){
++            queryWrapper.like("p_name",product.getPName());
++        }
++        if(product.getUrId()!=null){
++            queryWrapper.eq("ur_id",product.getUrId());
++        }
++        limoProductMapper.selectPage(page,queryWrapper);
++        return JSON.toJSONString(page);
++    }
++
+     @Override
+     public List<ProductDto> recommendProduct(String city, Integer pType) throws Exception {
+         QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
+Index: campFoods/src/main/java/com/woniuxy/service/LimoProductService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.service;\r\n\r\nimport com.woniuxy.domain.LimoProduct;\r\nimport com.baomidou.mybatisplus.extension.service.IService;\r\nimport com.woniuxy.dto.ProductDto;\r\nimport com.woniuxy.util.JSONResult;\r\n\r\nimport java.util.List;\r\n\r\n/**\r\n * <p>\r\n *  服务类\r\n * </p>\r\n *\r\n * @author zhuyuli\r\n * @since 2020-11-09\r\n */\r\npublic interface LimoProductService extends IService<LimoProduct> {\r\n    public List<ProductDto> recommendProduct(String city, Integer pType)throws Exception;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/service/LimoProductService.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/service/LimoProductService.java	(date 1605080574051)
+@@ -1,9 +1,12 @@
+ package com.woniuxy.service;
+ 
++import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+ import com.woniuxy.domain.LimoProduct;
+ import com.baomidou.mybatisplus.extension.service.IService;
+ import com.woniuxy.dto.ProductDto;
++import com.woniuxy.param.ProductParam;
+ import com.woniuxy.util.JSONResult;
++import org.springframework.web.bind.annotation.RequestBody;
+ 
+ import java.util.List;
+ 
+@@ -16,5 +19,28 @@
+  * @since 2020-11-09
+  */
+ public interface LimoProductService extends IService<LimoProduct> {
++    /**
++     * 分页条件查询商品
++     * @param product
++     * @return
++     * @throws Exception
++     */
++    public Page<LimoProduct> selectProduct(ProductParam product)throws Exception;
++
++    /**
++     * 根据营地编号查询商品信息
++     * @param product
++     * @return
++     * @throws Exception
++     */
++    public String selectProductByCid(@RequestBody ProductParam product)throws Exception;
++
++    /**
++     * 查询推荐商品
++     * @param city
++     * @param pType
++     * @return
++     * @throws Exception
++     */
+     public List<ProductDto> recommendProduct(String city, Integer pType)throws Exception;
+ }
+Index: campFoods/src/main/java/com/woniuxy/domain/LimoCart.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.domain;\r\n\r\nimport com.baomidou.mybatisplus.annotation.IdType;\r\nimport com.baomidou.mybatisplus.annotation.TableId;\r\nimport java.io.Serializable;\r\nimport lombok.Data;\r\nimport lombok.EqualsAndHashCode;\r\n\r\n/**\r\n * <p>\r\n * \r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-10\r\n */\r\n@Data\r\n@EqualsAndHashCode(callSuper = false)\r\npublic class LimoCart implements Serializable {\r\n\r\n    private static final long serialVersionUID = 1L;\r\n\r\n    @TableId(value = \"ca_id\", type = IdType.AUTO)\r\n    private Integer caId;\r\n\r\n    private Integer pId;\r\n\r\n    private Integer aId;\r\n\r\n    private Integer pNum;\r\n\r\n    private Integer caType;\r\n\r\n    private Integer uId;\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/domain/LimoCart.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/domain/LimoCart.java	(date 1605146003806)
+@@ -33,5 +33,6 @@
+ 
+     private Integer uId;
+ 
++    private Integer caStatus;
+ 
+ }
+Index: campFoods/src/main/java/com/woniuxy/utils/LockAspect.aj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/utils/LockAspect.aj	(date 1605165018220)
++++ campFoods/src/main/java/com/woniuxy/utils/LockAspect.aj	(date 1605165018220)
+@@ -0,0 +1,50 @@
++package com.woniuxy.utils;
++
++import com.woniuxy.annotation.RedisLock;
++import org.aspectj.lang.ProceedingJoinPoint;
++import org.aspectj.lang.annotation.Around;
++import org.aspectj.lang.annotation.Aspect;
++
++import org.aspectj.lang.reflect.MethodSignature;
++import org.redisson.api.RLock;
++import org.redisson.api.RedissonClient;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Component;
++import org.springframework.util.StringUtils;
++
++import java.lang.reflect.Method;
++import java.util.concurrent.TimeUnit;
++
++@Component
++@Aspect
++public class LockAspect {
++    @Autowired
++    private RedissonClient rc;
++    @Around("execution(* *..service..*.*(..)) && @annotation(com.woniuxy.annotation.RedisLock)")
++    public Object redisLockAspect(ProceedingJoinPoint pjp){
++        System.out.println(22222);
++        RLock rLock=null;
++        Object[] args = pjp.getArgs();
++        System.out.println(args.length);
++        try {
++           MethodSignature ms = (MethodSignature)pjp.getSignature();
++           Method method = ms.getMethod();
++           RedisLock redisLock = method.getAnnotation(RedisLock.class);
++           if(StringUtils.isEmpty(redisLock.key())){
++               rLock = rc.getLock(redisLock.pre()+redisLock.index());
++           }else {
++               rLock = rc.getLock(redisLock.key());
++           }
++           rLock.tryLock(redisLock.outTime(),redisLock.expire(), TimeUnit.SECONDS);
++           Thread.sleep(20000);
++           return pjp.proceed();
++       }catch (Throwable e){
++            e.printStackTrace();
++        }  finally {
++            if(rLock!=null){
++                rLock.unlock();
++            }
++        }
++        return null;
++    }
++}
+Index: campFoods/src/main/java/com/woniuxy/domain/LimoOrderDetail.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.domain;\r\n\r\nimport com.baomidou.mybatisplus.annotation.IdType;\r\nimport com.baomidou.mybatisplus.annotation.TableId;\r\nimport java.time.LocalDateTime;\r\nimport java.io.Serializable;\r\nimport lombok.Data;\r\nimport lombok.EqualsAndHashCode;\r\n\r\n/**\r\n * <p>\r\n * \r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-09\r\n */\r\n@Data\r\n@EqualsAndHashCode(callSuper = false)\r\npublic class LimoOrderDetail implements Serializable {\r\n\r\n    private static final long serialVersionUID = 1L;\r\n\r\n    @TableId(value = \"or_id\", type = IdType.AUTO)\r\n    private Integer orId;\r\n\r\n    private Integer pId;\r\n\r\n    private Integer pNum;\r\n\r\n    private Double pPrice;\r\n\r\n    private Double pTotal;\r\n\r\n    private Integer orType;\r\n\r\n    private Integer orStatus;\r\n\r\n    private Integer oId;\r\n\r\n    private LocalDateTime orStartTime;\r\n\r\n    private LocalDateTime orEndTime;\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/domain/LimoOrderDetail.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/domain/LimoOrderDetail.java	(date 1605083110832)
+@@ -24,6 +24,8 @@
+     @TableId(value = "or_id", type = IdType.AUTO)
+     private Integer orId;
+ 
++    private Integer aId;
++
+     private Integer pId;
+ 
+     private Integer pNum;
+Index: campFoods/target/classes/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server:\r\n  port: 8081\r\nspring:\r\n#配置数据源\r\n  datasource:\r\n    url: jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8\r\n    password: item1234\r\n    username: root\r\n    type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter\r\n    driver-class-name: com.mysql.jdbc.Driver\r\n  application:\r\n    name: campFoods\r\nmybatis-plus:\r\n  configuration:\r\n    #打印日志\r\n    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl\r\n    #转驼峰\r\n    map-underscore-to-camel-case: true\r\n#  #扫描配置文件地址\r\n  mapper-locations: classpath:mapper/*Mapper.xml\r\n  #别名所在包\r\n  type-aliases-package: com.woniuxy.domain
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/target/classes/application.yml	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/target/classes/application.yml	(date 1605163718598)
+@@ -10,10 +10,17 @@
+     driver-class-name: com.mysql.jdbc.Driver
+   application:
+     name: campFoods
++  cloud:
++    nacos:
++      discovery:
++        server-addr: localhost:8848
++  redis:
++    host: 127.0.0.1
++    port: 6379
+ mybatis-plus:
+   configuration:
+     #打印日志
+-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
++#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+     #转驼峰
+     map-underscore-to-camel-case: true
+ #  #扫描配置文件地址
+Index: travel/target/classes/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server.port=8088\r\n#数据源配置\r\nspring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true\r\n\r\nspring.datasource.username=root\r\nspring.datasource.password=item1234\r\nspring.datasource.driver-class-name=com.mysql.jdbc.Driver\r\nspring.datasource.type=com.alibaba.druid.pool.DruidDataSource\r\n#mybatis_Plus\r\n#xml的配置位置\r\nmybatis-plus.mapper-locations=classpath*:mapper/**/*.xml\r\n#别名所在包\r\nmybatis-plus.type-aliases-package=com.woniuxy.doman\r\n#转驼峰\r\nmybatis-plus.configuration.map-underscore-to-camel-case=true\r\n#日志\r\nmybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl\r\nlogging.level.com.squirrel.gitdemo=debug\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- travel/target/classes/application.properties	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ travel/target/classes/application.properties	(date 1605080247276)
+@@ -1,7 +1,8 @@
+ server.port=8088
+ #数据源配置
+ spring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true
+-
++spring.application.name=travel
++spring.cloud.nacos.discovery.server-addr=application.yml
+ spring.datasource.username=root
+ spring.datasource.password=item1234
+ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+Index: campFoods/src/main/java/com/woniuxy/service/impl/LimoOrderServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.woniuxy.service.impl;\r\n\r\nimport com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;\r\nimport com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;\r\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\r\nimport com.woniuxy.domain.LimoActivity;\r\nimport com.woniuxy.domain.LimoOrder;\r\nimport com.woniuxy.domain.LimoOrderDetail;\r\nimport com.woniuxy.domain.LimoProduct;\r\nimport com.woniuxy.dto.ActivityDto;\r\nimport com.woniuxy.dto.OrderDetailDto;\r\nimport com.woniuxy.dto.OrderDto;\r\nimport com.woniuxy.dto.ProductDto;\r\nimport com.woniuxy.mapper.LimoActivityMapper;\r\nimport com.woniuxy.mapper.LimoOrderDetailMapper;\r\nimport com.woniuxy.mapper.LimoOrderMapper;\r\nimport com.woniuxy.mapper.LimoProductMapper;\r\nimport com.woniuxy.param.OrderParam;\r\nimport com.woniuxy.param.OrdersParam;\r\nimport com.woniuxy.param.ProductParam;\r\nimport com.woniuxy.service.LimoOrderService;\r\nimport com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;\r\nimport org.springframework.beans.BeanUtils;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.transaction.annotation.Transactional;\r\n\r\nimport javax.annotation.Resource;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n\r\n/**\r\n * <p>\r\n *  服务实现类\r\n * </p>\r\n *\r\n * @author lx\r\n * @since 2020-11-09\r\n */\r\n@Service\r\npublic class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder> implements LimoOrderService {\r\n   @Resource\r\n   private LimoOrderMapper limoOrderMapper;\r\n   @Resource\r\n   private LimoProductMapper limoProductMapper;\r\n   @Resource\r\n   private LimoOrderDetailMapper limoOrderDetailMapper;\r\n   @Resource\r\n   private LimoActivityMapper limoActivityMapper;\r\n    /**\r\n     * 新增订单\r\n     * @param orders\r\n     * @throws Exception\r\n     */\r\n    @Override\r\n    @Transactional(rollbackFor = Exception.class)\r\n    public void insertOrder(OrdersParam orders) throws Exception {\r\n        //生成订单表数据\r\n        LimoOrder limoOrder = new LimoOrder();\r\n        limoOrder.setOTotal(orders.getTotal());\r\n        limoOrder.setCId(orders.getCId());\r\n        limoOrder.setUId(orders.getUId());\r\n        limoOrder.setUrId(orders.getUrId());\r\n        limoOrderMapper.insert(limoOrder);\r\n        //取出orders中的商品信息\r\n        List<ProductParam> list = orders.getProduct();\r\n        for(ProductParam p:list){\r\n            //根据商品编号查询商品的库存量，判断是否充足\r\n            LimoProduct product1 = new LimoProduct();\r\n            LimoProduct product = limoProductMapper.selectById(p.getPId());\r\n            product1.setPId(p.getPId());\r\n            product1.setPInven(product.getPInven()-p.getPInven());\r\n            UpdateWrapper<LimoProduct> updateWrapper = new UpdateWrapper<>();\r\n            updateWrapper.ge(\"p_inven\",0);\r\n            int update = limoProductMapper.update(product1, updateWrapper);\r\n            if(update>0){\r\n                //商品库存充足，生成订单详情表数据\r\n                LimoOrderDetail limoOrderDetail = new LimoOrderDetail();\r\n                limoOrderDetail.setOId(limoOrder.getOId());\r\n                limoOrderDetail.setPId(p.getPId());\r\n                limoOrderDetail.setPNum(p.getPInven());\r\n                limoOrderDetail.setPPrice(p.getPNewPrice());\r\n                limoOrderDetail.setOrType(0);\r\n                if(p.getPType()==2 || p.getPType()==3){\r\n                    limoOrderDetail.setOrStartTime(orders.getStartTime());\r\n                    limoOrderDetail.setOrEndTime(orders.getEndTime());\r\n                }\r\n                limoOrderDetailMapper.insert(limoOrderDetail);\r\n            }else{\r\n                throw new RuntimeException(\"商品库存不足\");\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n    /**\r\n     * 查询用户订单信息\r\n     * @param orderParam\r\n     * @return\r\n     * @throws Exception\r\n     */\r\n    @Override\r\n    public List<OrderDto> selectOrders(OrderParam orderParam) throws Exception {\r\n        //查询用户的订单信息\r\n        QueryWrapper<LimoOrder> queryWrapper = new QueryWrapper<>();\r\n        queryWrapper.eq(\"u_id\",orderParam.getUId());\r\n        if(orderParam.getOStatus()!=null){\r\n            queryWrapper.eq(\"o_status\",orderParam.getOStatus());\r\n        }\r\n        ArrayList<OrderDto> orderDtos = new ArrayList<>();\r\n        List<LimoOrder> limoOrders = limoOrderMapper.selectList(queryWrapper);\r\n        for(LimoOrder lo:limoOrders){\r\n            OrderDto orderDto = new OrderDto();\r\n            BeanUtils.copyProperties(lo,orderDto);\r\n            orderDto.setOrderDetailDtos(new ArrayList<OrderDetailDto>());\r\n            QueryWrapper<LimoOrderDetail> detailQueryWrapper = new QueryWrapper<>();\r\n            detailQueryWrapper.eq(\"o_id\",lo.getOId());\r\n            //查询用户订单详情\r\n            List<LimoOrderDetail> limoOrderDetails = limoOrderDetailMapper.selectList(detailQueryWrapper);\r\n            for (LimoOrderDetail ld:limoOrderDetails){\r\n                OrderDetailDto orderDetailDto = new OrderDetailDto();\r\n                BeanUtils.copyProperties(ld,orderDetailDto);\r\n                orderDto.getOrderDetailDtos().add(orderDetailDto);\r\n                //判断订单详情类型，0为商品，1为活动\r\n                if (ld.getOrType()==0){\r\n                    //查询商品信息\r\n                    LimoProduct product = limoProductMapper.selectById(ld.getPId());\r\n                    ProductDto productDto = new ProductDto();\r\n                    BeanUtils.copyProperties(product,productDto);\r\n                    orderDetailDto.setProductDto(productDto);\r\n                }\r\n                if(ld.getOrType()==1){\r\n                    //查询活动信息\r\n                    LimoActivity limoActivity = limoActivityMapper.selectById(ld.getPId());\r\n                    ActivityDto activityDto = new ActivityDto();\r\n                    BeanUtils.copyProperties(limoActivity,activityDto);\r\n                    orderDetailDto.setActivityDto(activityDto);\r\n                }\r\n            }\r\n        }\r\n        return orderDtos;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- campFoods/src/main/java/com/woniuxy/service/impl/LimoOrderServiceImpl.java	(revision b7db495a84119aacc4b5a6b978bb41ecbff8c033)
++++ campFoods/src/main/java/com/woniuxy/service/impl/LimoOrderServiceImpl.java	(date 1605164426987)
+@@ -3,30 +3,29 @@
+ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+-import com.woniuxy.domain.LimoActivity;
+-import com.woniuxy.domain.LimoOrder;
+-import com.woniuxy.domain.LimoOrderDetail;
+-import com.woniuxy.domain.LimoProduct;
++import com.woniuxy.annotation.RedisLock;
++import com.woniuxy.domain.*;
+ import com.woniuxy.dto.ActivityDto;
+ import com.woniuxy.dto.OrderDetailDto;
+ import com.woniuxy.dto.OrderDto;
+ import com.woniuxy.dto.ProductDto;
+-import com.woniuxy.mapper.LimoActivityMapper;
+-import com.woniuxy.mapper.LimoOrderDetailMapper;
+-import com.woniuxy.mapper.LimoOrderMapper;
+-import com.woniuxy.mapper.LimoProductMapper;
++import com.woniuxy.mapper.*;
++import com.woniuxy.param.OrderDetailsParam;
+ import com.woniuxy.param.OrderParam;
+ import com.woniuxy.param.OrdersParam;
+-import com.woniuxy.param.ProductParam;
+ import com.woniuxy.service.LimoOrderService;
+ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
++import org.redisson.api.RLock;
++import org.redisson.api.RedissonClient;
+ import org.springframework.beans.BeanUtils;
++import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ import org.springframework.transaction.annotation.Transactional;
+ 
+ import javax.annotation.Resource;
+ import java.util.ArrayList;
+ import java.util.List;
++import java.util.concurrent.TimeUnit;
+ 
+ 
+ /**
+@@ -47,6 +46,8 @@
+    private LimoOrderDetailMapper limoOrderDetailMapper;
+    @Resource
+    private LimoActivityMapper limoActivityMapper;
++   @Resource
++   private LimoCartMapper limoCartMapper;
+     /**
+      * 新增订单
+      * @param orders
+@@ -54,6 +55,7 @@
+      */
+     @Override
+     @Transactional(rollbackFor = Exception.class)
++    @RedisLock
+     public void insertOrder(OrdersParam orders) throws Exception {
+         //生成订单表数据
+         LimoOrder limoOrder = new LimoOrder();
+@@ -63,32 +65,54 @@
+         limoOrder.setUrId(orders.getUrId());
+         limoOrderMapper.insert(limoOrder);
+         //取出orders中的商品信息
+-        List<ProductParam> list = orders.getProduct();
+-        for(ProductParam p:list){
+-            //根据商品编号查询商品的库存量，判断是否充足
+-            LimoProduct product1 = new LimoProduct();
+-            LimoProduct product = limoProductMapper.selectById(p.getPId());
+-            product1.setPId(p.getPId());
+-            product1.setPInven(product.getPInven()-p.getPInven());
+-            UpdateWrapper<LimoProduct> updateWrapper = new UpdateWrapper<>();
+-            updateWrapper.ge("p_inven",0);
+-            int update = limoProductMapper.update(product1, updateWrapper);
+-            if(update>0){
++        List<OrderDetailsParam> list = orders.getOrderDetailsParams();
++        //订单详情对象
++        LimoOrderDetail limoOrderDetail = new LimoOrderDetail();
++        for(OrderDetailsParam p:list){
++            //判断商品的类型为活动门票还是美食住宿
++            if(p.getPId()!=null && p.getPId()>0){
++                //根据商品编号查询商品的库存量，判断是否充足
++                LimoProduct product = limoProductMapper.selectById(p.getPId());
++                LimoProduct product1 = new LimoProduct();
++                product1.setPId(p.getPId());
++                product1.setPInven(product.getPInven()-p.getNum());
++                UpdateWrapper<LimoProduct> updateWrapper = new UpdateWrapper<>();
++                updateWrapper.ge("p_inven",p.getNum());
++                int update = limoProductMapper.update(product1, updateWrapper);
++                limoOrderDetail.setOrType(0);
++                if(update<=0){
++                    throw new RuntimeException("商品库存不足");
++                }
++            }
++            if (p.getAId()!=null && p.getAId() >0){
++                LimoActivity activity = limoActivityMapper.selectById(p.getAId());
++                LimoActivity limoActivity = new LimoActivity();
++                limoActivity.setAId(p.getAId());
++                limoActivity.setAInven(activity.getAInven()-p.getNum());
++                UpdateWrapper<LimoActivity> updateWrapper = new UpdateWrapper<>();
++                updateWrapper.ge("a_inven",p.getNum());
++                int update = limoActivityMapper.update(limoActivity, updateWrapper);
++                limoOrderDetail.setOrType(1);
++                if (update<=0){
++                    throw new RuntimeException("门票数量不足");
++                }
++            }
+                 //商品库存充足，生成订单详情表数据
+-                LimoOrderDetail limoOrderDetail = new LimoOrderDetail();
+                 limoOrderDetail.setOId(limoOrder.getOId());
+                 limoOrderDetail.setPId(p.getPId());
+-                limoOrderDetail.setPNum(p.getPInven());
+-                limoOrderDetail.setPPrice(p.getPNewPrice());
+-                limoOrderDetail.setOrType(0);
+-                if(p.getPType()==2 || p.getPType()==3){
+-                    limoOrderDetail.setOrStartTime(orders.getStartTime());
+-                    limoOrderDetail.setOrEndTime(orders.getEndTime());
+-                }
++                limoOrderDetail.setPNum(p.getNum());
++                limoOrderDetail.setPPrice(p.getPrice());
++                limoOrderDetail.setAId(p.getAId());
++                limoOrderDetail.setOrStartTime(p.getStartTime());
++                limoOrderDetail.setOrEndTime(p.getEndTime());
+                 limoOrderDetailMapper.insert(limoOrderDetail);
+-            }else{
+-                throw new RuntimeException("商品库存不足");
+-            }
++        }
++        //判断是否是购物车下单，购物车下单修改该条数据的状态
++        if(orders.getCaId()!=null && orders.getCaId()>0){
++            LimoCart limoCart = new LimoCart();
++            limoCart.setCaId(orders.getCaId());
++            limoCart.setCaStatus(1);
++            limoCartMapper.updateById(limoCart);
+         }
+ 
+     }
+@@ -100,7 +124,8 @@
+      * @throws Exception
+      */
+     @Override
+-    public List<OrderDto> selectOrders(OrderParam orderParam) throws Exception {
++    public Page<OrderDto> selectOrders(OrderParam orderParam) throws Exception {
++        Page<LimoOrder> page = new Page<>(orderParam.getPageNum(),orderParam.getPageSize());
+         //查询用户的订单信息
+         QueryWrapper<LimoOrder> queryWrapper = new QueryWrapper<>();
+         queryWrapper.eq("u_id",orderParam.getUId());
+@@ -108,7 +133,8 @@
+             queryWrapper.eq("o_status",orderParam.getOStatus());
+         }
+         ArrayList<OrderDto> orderDtos = new ArrayList<>();
+-        List<LimoOrder> limoOrders = limoOrderMapper.selectList(queryWrapper);
++        limoOrderMapper.selectPage(page,queryWrapper);
++        List<LimoOrder> limoOrders = page.getRecords();
+         for(LimoOrder lo:limoOrders){
+             OrderDto orderDto = new OrderDto();
+             BeanUtils.copyProperties(lo,orderDto);
+@@ -137,7 +163,16 @@
+                     orderDetailDto.setActivityDto(activityDto);
+                 }
+             }
++            orderDtos.add(orderDto);
+         }
+-        return orderDtos;
++        Page<OrderDto> dtoPage = new Page<>();
++        BeanUtils.copyProperties(page,dtoPage);
++        dtoPage.setRecords(orderDtos);
++        return dtoPage;
++    }
++    @Override
++    @RedisLock
++    public void test() {
++        System.out.println(11111111);
+     }
+ }

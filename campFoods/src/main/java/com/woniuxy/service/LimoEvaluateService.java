@@ -16,6 +16,19 @@ import org.apache.velocity.runtime.directive.Evaluate;
  * @since 2020-11-10
  */
 public interface LimoEvaluateService extends IService<LimoEvaluate> {
-    public Page<LimoEvaluate> selectEvaluate(EvaluateParam evaluateParam)throws Exception;
+    /**
+     * 查询评价信息
+     * @param evaluateParam
+     * @return
+     * @throws Exception
+     */
+    public Page<EvaluateDto> selectEvaluate(EvaluateParam evaluateParam)throws Exception;
+
+    /**
+     * 新增评价信息
+     * @param evaluateParam
+     * @throws Exception
+     */
+    public void insertEvaluate(EvaluateParam evaluateParam)throws Exception;
 
 }

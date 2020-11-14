@@ -29,6 +29,7 @@ public class ManageRealm extends AuthorizingRealm {
     private LimoMenuService limoMenuService;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+
 //        LimoManage limoManage=(LimoManage)principals.getPrimaryPrincipal();
 //        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 //        try {
@@ -39,6 +40,7 @@ public class ManageRealm extends AuthorizingRealm {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+
         return null;
     }
 
@@ -52,6 +54,7 @@ public class ManageRealm extends AuthorizingRealm {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+
         return null;
     }
 }
