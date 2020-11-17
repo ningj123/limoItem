@@ -243,9 +243,9 @@ public class LimoActivityController {
             return Result.fail("密码错误");
         }
         HashMap<String, Object> map = new HashMap<>();
-        map.put("id", user.getuId());
-        map.put("name", user.getuName());
-        map.put("email",user.getuEmail());
+        map.put("uId", user.getuId());
+        map.put("uName", user.getuName());
+        map.put("uEmail",user.getuEmail());
 
         String token = LoginUtil.createToken(map, 7 * 24 * 60 * 60);
         Map<String, Object> stringObjectMap = LoginUtil.parseToken(token);
