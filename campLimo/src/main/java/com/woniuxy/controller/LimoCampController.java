@@ -19,6 +19,7 @@ import javax.annotation.Resource;
  * @author shadow
  * @since 2020-11-09
  */
+@CrossOrigin
 @RestController
 @RequestMapping("limo/camp")
 public class LimoCampController {
@@ -36,6 +37,16 @@ public class LimoCampController {
     @GetMapping("selectCampsByCity")
     public JSONResult selectCampsByCity(String city,String context, PageVO pageVO) throws Exception{
         return new JSONResult("200","success",null,campService.selectCampsByCity(city,context,pageVO));
+    }
+
+    /**
+     * 查询所有营地地址
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("selectCamps")
+    public JSONResult selectCamps() throws Exception{
+        return new JSONResult("200","success",campService.selectCamps(),null);
     }
     /**
      * 根据城市分页查询该城市的营地(feign调用)

@@ -56,4 +56,17 @@ public class CampServiceImpl implements CampService {
         }
         return campDto;
     }
+
+    @Override
+    public List<CampDto> selectCamps() throws Exception {
+        List<LimoCamp> limoCamps = limoCampMapper.selectByExample(null);
+        List<CampDto> campDtos = new ArrayList<>();
+        CampDto campDto=null;
+        for (LimoCamp limoCamp:limoCamps) {
+            campDto=new CampDto();
+            BeanUtils.copyProperties(limoCamp,campDto);
+            campDtos.add(campDto);
+        }
+        return campDtos;
+    }
 }
