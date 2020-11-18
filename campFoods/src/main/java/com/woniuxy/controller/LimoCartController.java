@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * <p>
  *  前端控制器
@@ -34,8 +36,8 @@ public class LimoCartController {
      */
     @RequestMapping("/insertCart")
     public JSONResult insertCard(@RequestHeader("x-token")String token, CartParam cartParam)throws Exception{
-        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
-        cartParam.setUId(limoUser.getUId());
+        Map<String, Object> map = LoginUtil.parseToken(token);
+        cartParam.setUId((Integer) map.get("id"));
         limoCartService.insertCart(cartParam);
         return new JSONResult("200","success",null,null);
     }
