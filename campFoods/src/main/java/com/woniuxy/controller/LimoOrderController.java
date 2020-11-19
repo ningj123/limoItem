@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 /**
  * <p>
@@ -34,8 +36,8 @@ public class LimoOrderController {
      */
     @RequestMapping("/insertOrder")
     public JSONResult insertOrder(@RequestBody @RequestHeader("x-token")String token, OrdersParam orders)throws Exception{
-        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
-        orders.setUId(limoUser.getUId());
+        Map<String, Object> map = LoginUtil.parseToken(token);
+        orders.setUId((Integer) map.get("id"));
         limoOrderService.insertOrder(orders);
         return new JSONResult("200","success",null,null);
     }
@@ -49,11 +51,10 @@ public class LimoOrderController {
     @ApiOperation(value = "查询用户订单")
     @RequestMapping("/selectOrders")
     public JSONResult selectOrders(@RequestHeader("x-token")String token,OrderParam orderParam)throws Exception{
-        LimoUser limoUser = LoginUtil.parseToken(token, LimoUser.class);
-        orderParam.setUId(limoUser.getUId());
+        Map<String, Object> map = LoginUtil.parseToken(token);
+        orderParam.setUId((Integer) map.get("id"));
         return new JSONResult("200","success",null,limoOrderService.selectOrders(orderParam));
     }
-
 
 }
 

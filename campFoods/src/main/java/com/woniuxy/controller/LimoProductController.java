@@ -11,6 +11,7 @@ import com.woniuxy.service.LimoCampService;
 import com.woniuxy.service.LimoProductService;
 import com.woniuxy.util.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/product")
+@CrossOrigin
 public class LimoProductController {
     @Autowired
     private LimoProductService limoProductService;
@@ -37,6 +39,7 @@ public class LimoProductController {
      * @return
      * @throws Exception
      */
+
     @RequestMapping("/selectProduct")
     public JSONResult selectProduct(ProductParam product)throws Exception{
         return new JSONResult("200","success",null,limoProductService.selectProduct(product));
