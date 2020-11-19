@@ -1,6 +1,7 @@
 package com.woniuxy.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.woniuxy.doman.LimoCity;
 import com.woniuxy.doman.LimoSortDetail;
@@ -67,7 +68,11 @@ public class LimoCityServiceImpl extends ServiceImpl<LimoCityMapper, LimoCity> i
     public Object selectByCityList(PageParam param, String city) {
         Page<LimoSortDetail> page = new Page<LimoSortDetail>(param.getPageNum(),param.getPageSize());
         QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("so_d_city",city);
+
+        if(StringUtils.isBlank(city)){
+            queryWrapper.eq("so_d_city",city);
+        }
+
         limoSortDetailMapper.selectPage(page, queryWrapper);
         //封装Dto
         Page<LimoCityDto> page2 = new Page<LimoCityDto>();

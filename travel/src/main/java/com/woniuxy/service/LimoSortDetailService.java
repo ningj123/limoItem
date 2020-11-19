@@ -47,7 +47,7 @@ public interface LimoSortDetailService extends IService<LimoSortDetail> {
      * @Param [id]
      * @return com.woniuxy.doman.LimoSortDetail
      **/
-    LimoSortDetail selectById(Integer id)throws Exception;
+    Object selectById(Integer id)throws Exception;
     /**
      * @Author zhuyuli
      * @Description //修改旅游指南

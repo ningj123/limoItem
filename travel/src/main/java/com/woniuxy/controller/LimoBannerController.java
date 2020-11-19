@@ -24,6 +24,7 @@ import javax.naming.Name;
 @RestController
 @RequestMapping("/banner")
 @Api("广告管理")
+@CrossOrigin
 public class LimoBannerController {
     @Autowired
     private LimoBannerService limoBannerService;

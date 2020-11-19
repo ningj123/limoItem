@@ -4,6 +4,7 @@ package com.woniuxy.controller;
 import com.woniuxy.param.PageParam;
 import com.woniuxy.service.LimoCityService;
 import com.woniuxy.util.JSONResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,6 +23,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/city")
+@CrossOrigin
 public class LimoCityController {
     @Resource
     private LimoCityService limoCityService;
