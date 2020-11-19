@@ -11,7 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Hello world!
  *
  */
-@CrossOrigin
 @SpringBootApplication
 @MapperScan("com.woniuxy.mapper")
 @EnableFeignClients(basePackages = "com.woniuxy.feign")

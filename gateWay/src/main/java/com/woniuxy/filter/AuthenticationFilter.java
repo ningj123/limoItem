@@ -1,3 +1,4 @@
+/*
 package com.woniuxy.filter;
 
 import com.woniuxy.util.LoginUtil;
@@ -9,12 +10,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+*/
 /**
  * @ClassName AuthenticationFilter
  * @Author shadow
  * @Date 2020/11/17 9:30
  * @Description TODO
- **/
+ **//*
+
 //@Component
 public class AuthenticationFilter implements GlobalFilter {
     @Override
@@ -40,3 +43,4 @@ public class AuthenticationFilter implements GlobalFilter {
         return chain.filter(exchange);
     }
 }
+*/

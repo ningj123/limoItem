@@ -19,7 +19,6 @@ import javax.annotation.Resource;
  * @author shadow
  * @since 2020-11-09
  */
-@CrossOrigin
 @RestController
 @RequestMapping("limo/camp")
 public class LimoCampController {
@@ -89,7 +88,8 @@ public class LimoCampController {
      */
     @GetMapping("selectProductByCid")
     public JSONResult selectProductByCid(MyProductParam product)throws Exception{
-        JSONResult result = productFeign.selectProductByCid(product);
+        System.out.println(product);
+        JSONResult result = productFeign.selectProduct(product);
         return result;
     }
 

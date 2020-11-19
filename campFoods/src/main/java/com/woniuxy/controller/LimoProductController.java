@@ -42,6 +42,7 @@ public class LimoProductController {
 
     @RequestMapping("/selectProduct")
     public JSONResult selectProduct(ProductParam product)throws Exception{
+        System.out.println(product);
         return new JSONResult("200","success",null,limoProductService.selectProduct(product));
     }
 
