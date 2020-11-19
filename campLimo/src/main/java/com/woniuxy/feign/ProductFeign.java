@@ -23,7 +23,7 @@ public interface ProductFeign {
      * @throws Exception
      */
     @RequestMapping("product/selectProduct")
-    public JSONResult selectProductByCid(@SpringQueryMap MyProductParam product)throws Exception;
+    public JSONResult selectProduct(@SpringQueryMap MyProductParam product)throws Exception;
 
     /**
      * 房车或特色住宿或可以购买房车的信息

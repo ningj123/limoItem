@@ -1,5 +1,7 @@
 package com.woniuxy.service;
 
+import com.woniuxy.domain.LimoCollect;
+
 /**
  * @ClassName CollectService
  * @Author shadow
@@ -14,4 +16,19 @@ public interface CollectService {
      * @throws Exception
      */
     void insertCollect(Integer cId,Integer uId) throws Exception;
+
+    /**
+     * 查询该用户是否收藏了
+     * @param uId
+     * @return
+     * @throws Exception
+     */
+    LimoCollect selectCollect(Integer cId,Integer uId) throws Exception;
+
+    /**
+     * 删除收藏
+     * @param coId
+     * @throws Exception
+     */
+    void deleteCollect(Integer coId) throws Exception;
 }

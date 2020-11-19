@@ -5,6 +5,8 @@ import com.woniuxy.domain.LimoCamp;
 import com.woniuxy.dto.CampDto;
 import com.woniuxy.vo.PageVO;
 
+import java.util.List;
+
 /**
  * @ClassName CampService
  * @Author shadow
@@ -28,4 +30,11 @@ public interface CampService {
      * @throws Exception
      */
     CampDto selectCampById(Integer id) throws Exception;
+
+    /**
+     * selectCamps
+     * @return
+     * @throws Exception
+     */
+    List<CampDto> selectCamps() throws Exception;
 }
