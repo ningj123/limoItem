@@ -38,12 +38,11 @@ public class OnloadFile {
                     String ext = string.substring(string.lastIndexOf("."));
                     //生成文件名
                     String filename= UUID.randomUUID().toString()+ext;
-                    //存放的路径
-                    String path="D:\\UserData\\photo"+filename.replace("\\",File.separator);
+
 
                     //获取文件输入，获取文件源，file(保存地址，文件命名）
                     FileUtils.copyInputStreamToFile(mu.getInputStream(), new File("D:\\UserData\\photo".replace("\\",File.separator),filename));
-                    list.add(path);
+                    list.add(filename);
                 }
                 //文件路径保存到数据库中
             } catch (Exception e) {

@@ -36,6 +36,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/limoSortDetail")
 @Api("旅游指南")
+@CrossOrigin
 public class LimoSortDetailController {
     @Resource
     private LimoSortDetailService limoSortDetailService;
@@ -84,11 +85,11 @@ public class LimoSortDetailController {
             if(id<0){
                throw new TravelExecption("参数不正确");
             }
-        LimoSortDetail detail = limoSortDetailService.selectById(id);
 
 
 
-        return new JSONResult("200","success",null,detail);
+
+        return new JSONResult("200","success",null,limoSortDetailService.selectById(id));
     }
     //查询所有
     @GetMapping("/queryAllByDetail")

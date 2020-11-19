@@ -3,17 +3,17 @@ package com.woniuxy.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fasterxml.jackson.databind.util.BeanUtil;
+
 import com.woniuxy.doman.LimoBanner;
-import com.woniuxy.doman.LimoCity;
+
 import com.woniuxy.dto.LimoBannerDto;
 import com.woniuxy.mapper.LimoBannerMapper;
 import com.woniuxy.param.BanParam;
 import com.woniuxy.service.LimoBannerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,11 +75,8 @@ public class LimoBannerServiceImpl extends ServiceImpl<LimoBannerMapper, LimoBan
         QueryWrapper<LimoBanner> wrapper = new QueryWrapper<>();
         wrapper.eq("type",type);
         List<LimoBanner> list = limoBannerMapper.selectList(wrapper);
-        //封装Dto
-        ArrayList<LimoBannerDto> list1=new ArrayList<>();
-        BeanUtils.copyProperties(list,list1);
-        list=null;
-        return list1;
+
+        return list;
     }
 
     /**

@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -34,7 +35,7 @@ public class LimoSortDetailDto implements Serializable {
 
     private String soDDes;
 
-    private String soDImages;
+    private List soDImages;
 
     private LocalDateTime soDIssueTime;
 

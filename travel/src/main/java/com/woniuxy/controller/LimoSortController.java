@@ -4,6 +4,7 @@ package com.woniuxy.controller;
 import com.woniuxy.exception.TravelExecption;
 import com.woniuxy.service.LimoSortService;
 import com.woniuxy.util.JSONResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,8 +24,9 @@ import javax.annotation.Resource;
  */
 //@RestController
 //@RequestMapping("/limoSort")
+//@CrossOrigin
 public class LimoSortController {
-   //@Resource
+    //@Resource
     private LimoSortService  limoSortService;
 
     /**
