@@ -9,6 +9,7 @@ import com.woniuxy.param.LSDParam;
 import com.woniuxy.param.TypeParam;
 import com.woniuxy.service.LimoSortDetailService;
 import com.woniuxy.util.JSONResult;
+import com.woniuxy.util.LoginUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +25,7 @@ import springfox.documentation.spring.web.json.Json;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -36,6 +38,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/limoSortDetail")
 @Api("旅游指南")
+@CrossOrigin
 public class LimoSortDetailController {
     @Resource
     private LimoSortDetailService limoSortDetailService;
@@ -46,8 +49,8 @@ public class LimoSortDetailController {
     @ApiOperation(value = "新增旅游文章(json格式)")
     @PostMapping
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public JSONResult insertTravelSort(@RequestBody LSDParam param) throws Exception{
-
+    public JSONResult insertTravelSort(@RequestBody LSDParam param, @RequestHeader("x-token")String token) throws Exception{
+        Map<String, Object> map = LoginUtil.parseToken(token);
         LimoSortDetail limo = new LimoSortDetail();
         BeanUtils.copyProperties(param, limo);
         System.out.println(param);
@@ -84,11 +87,11 @@ public class LimoSortDetailController {
             if(id<0){
                throw new TravelExecption("参数不正确");
             }
-        LimoSortDetail detail = limoSortDetailService.selectById(id);
 
 
 
-        return new JSONResult("200","success",null,detail);
+
+        return new JSONResult("200","success",null,limoSortDetailService.selectById(id));
     }
     //查询所有
     @GetMapping("/queryAllByDetail")

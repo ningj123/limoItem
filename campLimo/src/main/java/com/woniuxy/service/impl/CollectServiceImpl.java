@@ -2,6 +2,7 @@ package com.woniuxy.service.impl;
 
 import com.woniuxy.domain.LimoCamp;
 import com.woniuxy.domain.LimoCollect;
+import com.woniuxy.domain.LimoCollectExample;
 import com.woniuxy.exception.ErrorException;
 import com.woniuxy.mapper.LimoCampMapper;
 import com.woniuxy.mapper.LimoCollectMapper;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName CollectServiceImpl
@@ -21,21 +23,32 @@ import javax.annotation.Resource;
 @Service
 public class CollectServiceImpl implements CollectService {
     @Resource
-    private LimoCampMapper limoCampMapper;
-    @Resource
     private LimoCollectMapper limoCollectMapper;
     @Override
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void insertCollect(Integer cId,Integer uId) throws Exception {
-        LimoCamp limoCamp = limoCampMapper.selectByPrimaryKey(cId);
-        LimoCollect limoCollect = new LimoCollect();
-        limoCollect.setCId(limoCamp.getCId());
-        limoCollect.setCoType(1);
-        limoCollect.setUId(uId);
-        if(limoCamp!=null){
-            limoCollectMapper.insertSelective(limoCollect);
-        }else {
-            throw new ErrorException("没有该营地");
+        LimoCollect collect=new LimoCollect();
+        collect.setCId(cId);
+        collect.setCoType(1);
+        collect.setUId(uId);
+        limoCollectMapper.insertSelective(collect);
+    }
+
+    @Override
+    public LimoCollect selectCollect(Integer cId,Integer uId) throws Exception {
+        LimoCollectExample example = new LimoCollectExample();
+        example.createCriteria().andUIdEqualTo(uId);
+        List<LimoCollect> limoCollects = limoCollectMapper.selectByExample(example);
+        for (LimoCollect limoCollect :limoCollects) {
+            if(limoCollect.getCId()==cId){
+                return limoCollect;
+            }
         }
+        return null;
+    }
+
+    @Override
+    public void deleteCollect(Integer coId) throws Exception {
+        limoCollectMapper.deleteByPrimaryKey(coId);
     }
 }

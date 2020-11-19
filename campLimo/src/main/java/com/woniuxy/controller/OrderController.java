@@ -31,11 +31,10 @@ public class OrderController {
     @PostMapping("insertOrder")
     public JSONResult insertOrder(@RequestBody OrderParam orderParam) throws Exception{
         /*ServletRequestAttributes ra=(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        String token = ra.getRequest().getHeader("x-token");*/
-        LimoUser user = LoginUtil.parseToken("eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2MDU5MjY0OTN9.v-VRblKoWd-RqyCxnNTIKVoXgAiEdysn_pLGfTjcd6__Ru7B98-8e9oYGaqirPhmrK5hhw8Ex3tPcLDhyFYFkQ", LimoUser.class);
-        System.out.println(user);
-//        Integer uId=1;
-//        orderService.insertOrder(orderParam,uId);
+        String token = ra.getRequest().getHeader("x-token");
+        LimoUser limoUser = LoginUtil.parseToken(token,LimoUser.class);*/
+        Integer uId=1;
+        orderService.insertOrder(orderParam,uId);
         return new JSONResult("200","success",null,null);
     }
 }

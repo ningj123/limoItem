@@ -4,6 +4,7 @@ package com.woniuxy.controller;
 import com.woniuxy.doman.LimoSecSpot;
 import com.woniuxy.doman.LimoSort;
 import com.woniuxy.dto.LimoSecSpotDto;
+import com.woniuxy.exception.TravelExecption;
 import com.woniuxy.param.PointParam;
 import com.woniuxy.param.SortParam;
 import com.woniuxy.param.SortTypeParam;
@@ -23,16 +24,13 @@ import org.springframework.data.geo.GeoResults;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -47,6 +45,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/limoSecSpot")
 @Api("周边景点")
+@CrossOrigin
 public class LimoSecSpotController {
     @Resource
     private LimoSecSpotService limoSecSpotService;
@@ -74,9 +73,12 @@ public class LimoSecSpotController {
     @GetMapping("/queryById")
     @ApiOperation(value = "根据主键查询周边景点")
     public JSONResult queryById(Integer id) throws Exception{
-        LimoSecSpotDto limoSecSpotDto = limoSecSpotService.queryById(id);
+        if(id<=0){
+            throw new TravelExecption("参数异常");
+        }
+        //LimoSecSpotDto limoSecSpotDto = limoSecSpotService.queryById(id);
 
-        return  new JSONResult("200","success",null,limoSecSpotDto);
+        return  new JSONResult("200","success",null,limoSecSpotService.getById(id));
     }
     @GetMapping("/queryBySec")
     @ApiOperation(value = "初始化所有的经纬度")

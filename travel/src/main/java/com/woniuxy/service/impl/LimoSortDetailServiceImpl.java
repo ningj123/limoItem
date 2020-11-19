@@ -2,6 +2,8 @@ package com.woniuxy.service.impl;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.alibaba.druid.sql.ast.statement.SQLIfStatement;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.jta.WebSphereUowTransactionManager;
 
 import javax.annotation.Resource;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,8 +65,18 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
             QueryWrapper<LimoSortDetail> queryWrapper = new QueryWrapper<>();
             Page<LimoSortDetail> Page = new Page<LimoSortDetail>(1,2);
             queryWrapper.eq("so_d_type",i);
+
             limoSortDetailMapper.selectPage(Page,queryWrapper);
-            map.put(src[i],Page.getRecords());
+            List<LimoSortDetail> records = Page.getRecords();
+            ArrayList<LimoSortDetailDto> dtos = new ArrayList<>();
+            for(int j=0;j<records.size();j++){
+                LimoSortDetailDto detailDto = new LimoSortDetailDto();
+                BeanUtils.copyProperties(records.get(j),detailDto);
+                List list = JSON.parseObject(records.get(j).getSoDImages(), List.class);
+                detailDto.setSoDImages(list);
+                dtos.add(detailDto);
+            }
+            map.put(src[i],dtos);
         }
         //查询城市的类别
         Page<LimoCity> Page = new Page<LimoCity>(1,2);
@@ -101,8 +114,18 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
         }
         limoSortDetailMapper.selectPage(Page,queryWrapper);
         Page<LimoSortDetailDto> page2 = new Page<LimoSortDetailDto>();
+        List<LimoSortDetail> records = Page.getRecords();
+        ArrayList<LimoSortDetailDto> dtos = new ArrayList<>();
+        for(int j=0;j<records.size();j++){
+            LimoSortDetailDto detailDto = new LimoSortDetailDto();
+            BeanUtils.copyProperties(records.get(j),detailDto);
+            List list = JSON.parseObject(records.get(j).getSoDImages(), List.class);
+            detailDto.setSoDImages(list);
+            dtos.add(detailDto);
+        }
         BeanUtils.copyProperties(Page,page2);
         Page=null;
+        page2.setRecords(dtos);
         return page2;
     }
 
@@ -121,9 +144,11 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
     }
 
     @Override
-    public LimoSortDetail selectById(Integer id) {
+    public Object selectById(Integer id) {
 
         LimoSortDetail detail = limoSortDetailMapper.selectById(id);
+
+
         redisTemplate.opsForValue().increment("sort:"+detail.getSoDId(), 1);
         String s = redisTemplate.opsForValue().get("sort:" + detail.getSoDId());
         Integer i=Integer.parseInt(s);
@@ -134,7 +159,11 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
             updateWrapper.set("so_d_two",i);
             limoSortDetailMapper.update(null,updateWrapper);
         }
-        return detail;
+        List list = JSON.parseObject(detail.getSoDImages(), List.class);
+        LimoSortDetailDto detailDto = new LimoSortDetailDto();
+        BeanUtils.copyProperties(detail,detailDto);
+        detailDto.setSoDImages(list);
+        return detailDto;
     }
 
     /**
@@ -151,5 +180,4 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
         BeanUtils.copyProperties(param, limo);
         limoSortDetailMapper.updateById(limo);
     }
-
 }

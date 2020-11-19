@@ -16,9 +16,6 @@ import lombok.*;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Getter
-@Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class LimoSecSpot implements Serializable {
