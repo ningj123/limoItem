@@ -15,7 +15,7 @@ spring:
 #      discovery:
 #        server-addr: localhost:8848
   redis:
-    host: 192.168.223.128
+    host: 192.168.25.128
     port: 6379
 mybatis-plus:
   configuration:
@@ -27,3 +27,8 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   #别名所在包
   type-aliases-package: com.woniuxy.domain
+#  消息队列配置
+rocketmq:
+  name-server: 192.168.25.128:9876
+  producer:
+    group: limo-order

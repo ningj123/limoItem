@@ -3,6 +3,7 @@ package com.woniuxy.config;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.woniuxy.util.LoginUtil;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
+import java.util.HashMap;
+
+import static javax.swing.UIManager.put;
 
 @Configuration
 public class MPConfiguration {
@@ -33,10 +37,5 @@ public class MPConfiguration {
         redisTemplate.setHashValueSerializer(jsonRedisSerializer);
         redisTemplate.setHashKeySerializer(jsonRedisSerializer);
         return redisTemplate;
-    }
-    @LoadBalanced
-    @Bean
-    public RestTemplate userTest() {
-        return new RestTemplate();
     }
 }

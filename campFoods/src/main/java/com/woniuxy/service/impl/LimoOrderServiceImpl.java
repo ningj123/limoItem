@@ -15,15 +15,20 @@ import com.woniuxy.param.OrderDetailsParam;
 import com.woniuxy.param.OrderParam;
 import com.woniuxy.param.OrdersParam;
 import com.woniuxy.service.LimoOrderService;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -48,6 +53,8 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
    private LimoCartMapper limoCartMapper;
    @Autowired
    private RedisTemplate rt;
+   @Autowired
+   private RocketMQTemplate rocketMQTemplate;
     /**
      * 新增订单
      * @param orders
@@ -58,11 +65,8 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
     @RedisLock(key = "order")
     public void insertOrder(OrdersParam orders) throws Exception {
         //生成订单表数据
-        LimoOrder limoOrder = new LimoOrder();
-        limoOrder.setOTotal(orders.getTotal());
-        limoOrder.setCId(orders.getCId());
-        limoOrder.setUId(orders.getUId());
-        limoOrder.setUrId(orders.getUrId());
+        LimoOrder limoOrder = LimoOrder.builder().oTotal(orders.getTotal()).cId(orders.getCId())
+                .uId(orders.getUId()).urId(orders.getUrId()).build();
         limoOrderMapper.insert(limoOrder);
         //取出orders中的商品信息
         List<OrderDetailsParam> list = orders.getOrderDetailsParams();
@@ -110,6 +114,10 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
                 throw new RuntimeException("商品库存不足");
             }
         }
+        Message<Integer> build = MessageBuilder.withPayload(limoOrder.getOId())
+                .setHeader(RocketMQHeaders.KEYS, UUID.randomUUID().toString())
+                .build();
+        rocketMQTemplate.syncSend("order",build,1000*60*30,2);
     }
 
     /**
