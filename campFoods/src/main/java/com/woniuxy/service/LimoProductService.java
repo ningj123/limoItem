@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.woniuxy.dto.ProductDto;
 import com.woniuxy.param.ProductParam;
 import com.woniuxy.util.JSONResult;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -34,4 +35,11 @@ public interface LimoProductService extends IService<LimoProduct> {
      * @throws Exception
      */
     public List<ProductDto> recommendProduct(String city, Integer pType)throws Exception;
+
+    /**
+     * 条件查询商品
+     * @return
+     * @throws Exception
+     */
+    public Page<ProductDto> selectProductByPName(ProductParam productParam)throws Exception;
 }

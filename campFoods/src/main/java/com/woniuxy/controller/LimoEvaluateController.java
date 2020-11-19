@@ -11,14 +11,13 @@ import com.woniuxy.service.LimoEvaluateService;
 import com.woniuxy.service.LimoUserService;
 import com.woniuxy.util.JSONResult;
 import com.woniuxy.util.LoginUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,8 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/evaluate")
+@CrossOrigin
+@Api(value = "评论模块")
 public class LimoEvaluateController {
     @Autowired
     private LimoEvaluateService limoEvaluateService;
@@ -45,7 +46,8 @@ public class LimoEvaluateController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/selectEvaluate")
+    @GetMapping("/selectEvaluate")
+    @ApiOperation(value = "根据用户编号或商品编号查询相应的评价信息")
     public JSONResult selectEvaluate(EvaluateParam evaluateParam)throws Exception{
         return new JSONResult("200","success",null,limoEvaluateService.selectEvaluate(evaluateParam));
     }
@@ -57,10 +59,12 @@ public class LimoEvaluateController {
      * @throws Exception
      */
     @PostMapping("/insertEvaluate")
+    @ApiOperation(value = "新增评价信息")
     public JSONResult insertEvaluate(@RequestHeader("x-token")String token, EvaluateParam evaluateParam)throws Exception{
         Map<String, Object> map = LoginUtil.parseToken(token);
-        evaluateParam.setUId((Integer) map.get("id"));
-        return new JSONResult("200","success",null,limoEvaluateService.selectEvaluate(evaluateParam));
+        evaluateParam.setUId((Integer) map.get("uId"));
+        limoEvaluateService.insertEvaluate(evaluateParam);
+        return new JSONResult("200","success",null,null);
     }
 
 }

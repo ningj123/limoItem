@@ -3,6 +3,7 @@ package com.woniuxy.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.woniuxy.annotation.RedisLock;
 import com.woniuxy.domain.*;
 import com.woniuxy.dto.ActivityDto;
@@ -14,7 +15,6 @@ import com.woniuxy.param.OrderDetailsParam;
 import com.woniuxy.param.OrderParam;
 import com.woniuxy.param.OrdersParam;
 import com.woniuxy.service.LimoOrderService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -77,6 +77,7 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
                 UpdateWrapper<LimoProduct> updateWrapper = new UpdateWrapper<>();
                 updateWrapper.ge("p_inven",p.getNum());
                 update = limoProductMapper.update(product1, updateWrapper);
+
             }
             if(p.getAId()!=null&&p.getAId()>0){
                 LimoActivity limoActivity = new LimoActivity();
@@ -98,18 +99,17 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
                 limoOrderDetail.setOrStartTime(p.getStartTime());
                 limoOrderDetail.setOrEndTime(p.getEndTime());
                 limoOrderDetailMapper.insert(limoOrderDetail);
+                if (p.getCaId()!=null && p.getCaId()>0){
+                    LimoCart limoCart = new LimoCart();
+                    limoCart.setCaId(p.getCaId());
+                    limoCart.setCaStatus(1);
+                    limoCartMapper.updateById(limoCart);
+                    rt.opsForHash().delete("cart","product"+p.getCaId());
+                }
             }else{
                 throw new RuntimeException("商品库存不足");
             }
         }
-        if (orders.getCaId()!=null && orders.getCaId()>0){
-            LimoCart limoCart = new LimoCart();
-            limoCart.setCaId(orders.getCaId());
-            limoCart.setCaStatus(1);
-            limoCartMapper.updateById(limoCart);
-            rt.opsForHash().delete("cart","product"+orders.getCaId());
-        }
-
     }
 
     /**
