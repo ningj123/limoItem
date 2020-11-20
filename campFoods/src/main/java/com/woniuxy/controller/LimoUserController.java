@@ -7,7 +7,10 @@ import com.woniuxy.service.LimoUserService;
 import com.woniuxy.util.JSONResult;
 import com.woniuxy.util.LoginUtil;
 import com.woniuxy.utils.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,6 +31,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/user")
+@Api(value ="用户模块" )
 public class LimoUserController {
     @Autowired
     private LimoUserService limoUserService;
@@ -38,7 +42,8 @@ public class LimoUserController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/selectCampById")
+    @GetMapping("/selectCampById")
+    @ApiOperation(value = "根据用户编号查询用户信息")
     public JSONResult selectUserById(Integer uId)throws Exception{
         return new JSONResult("200","success",null,limoUserService.getById(uId));
     }

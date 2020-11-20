@@ -15,7 +15,6 @@ import java.util.List;
 public class OrdersParam implements Serializable {
     private Integer uId;
     private Integer cId;
-    private Integer caId;
     private Integer urId;
     private double total;
     private List<OrderDetailsParam> orderDetailsParams;

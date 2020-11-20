@@ -11,9 +11,14 @@ import com.woniuxy.mapper.LimoCampMapper;
 import com.woniuxy.mapper.LimoJoinMapper;
 import com.woniuxy.mapper.LimoManageMapper;
 import com.woniuxy.mapper.LimoRoleMapper;
+import com.woniuxy.param.JoinParam;
 import com.woniuxy.service.LimoJoinService;
 import com.woniuxy.util.MD5Util;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.woniuxy.util.MD5Util;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 

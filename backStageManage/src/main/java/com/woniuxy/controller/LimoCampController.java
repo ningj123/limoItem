@@ -33,14 +33,18 @@ public class LimoCampController {
 
     /**
      * 分页条件查询所有营地
-     * @param campParam
+     * @param
      * @return
      * @throws Exception
      */
     @ApiOperation(value = "分页查询营地")
     @GetMapping("/selectcamp")
-    public JSONResult selectCamp(CampParam campParam)throws Exception{
-        return new JSONResult("200","success",null,limoCampService.selectCamp(campParam));
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum",value = "页码"),
+            @ApiImplicitParam(name = "pageSize",value = "每页显示条数")
+    })
+    public JSONResult selectCamp(Integer pageNum,Integer pageSize)throws Exception{
+        return new JSONResult("200","success",null,limoCampService.selectCamp(pageNum,pageSize));
     }
 
     /**
@@ -50,12 +54,12 @@ public class LimoCampController {
      * @return
      * @throws Exception
      */
-    @ApiOperation(value = "下架营地")
-    @PutMapping("/stopCamp")
-    public JSONResult stopCamp(Integer cId,Integer cStatus)throws Exception{
-        limoCampService.stopCamp(cId,cStatus);
-        return new JSONResult("200","success",null,null);
-    }
+//    @ApiOperation(value = "下架营地")
+//    @PutMapping("/stopCamp")
+//    public JSONResult stopCamp(Integer cId,Integer cStatus)throws Exception{
+//        limoCampService.stopCamp(cId,cStatus);
+//        return new JSONResult("200","success",null,null);
+//    }
 
     /**
      * 新增营地
@@ -65,6 +69,12 @@ public class LimoCampController {
      */
     @ApiOperation(value = "新增营地")
     @PostMapping("/insertCamp")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "cName",value = "营地名称"),
+            @ApiImplicitParam(name = "cAddress",value = "营地地址"),
+            @ApiImplicitParam(name = "cPhone",value = "营地联系电话"),
+            @ApiImplicitParam(name = "cOpenTime",value = "营地开业时间"),
+    })
     public JSONResult insertCamp(CampParam campParam)throws Exception{
         limoCampService.insertCamp(campParam);
         return new JSONResult("200","success",null,null);

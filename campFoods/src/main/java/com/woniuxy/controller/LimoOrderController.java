@@ -7,10 +7,12 @@ import com.woniuxy.param.OrdersParam;
 import com.woniuxy.service.LimoOrderService;
 import com.woniuxy.util.JSONResult;
 import com.woniuxy.util.LoginUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -24,6 +26,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/order")
+@Api(value = "订单模块")
 public class LimoOrderController {
     @Autowired
     private LimoOrderService limoOrderService;
@@ -34,10 +37,11 @@ public class LimoOrderController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/insertOrder")
+    @PostMapping("/insertOrder")
+    @ApiOperation(value = "新增订单")
     public JSONResult insertOrder(@RequestBody @RequestHeader("x-token")String token, OrdersParam orders)throws Exception{
         Map<String, Object> map = LoginUtil.parseToken(token);
-        orders.setUId((Integer) map.get("id"));
+        orders.setUId((Integer) map.get("uId"));
         limoOrderService.insertOrder(orders);
         return new JSONResult("200","success",null,null);
     }
@@ -49,10 +53,10 @@ public class LimoOrderController {
      * @throws Exception
      */
     @ApiOperation(value = "查询用户订单")
-    @RequestMapping("/selectOrders")
+    @GetMapping("/selectOrders")
     public JSONResult selectOrders(@RequestHeader("x-token")String token,OrderParam orderParam)throws Exception{
         Map<String, Object> map = LoginUtil.parseToken(token);
-        orderParam.setUId((Integer) map.get("id"));
+        orderParam.setUId((Integer) map.get("uId"));
         return new JSONResult("200","success",null,limoOrderService.selectOrders(orderParam));
     }
 
