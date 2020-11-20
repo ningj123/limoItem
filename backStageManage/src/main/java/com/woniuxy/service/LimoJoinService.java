@@ -16,17 +16,17 @@ import com.woniuxy.param.JoinParam;
 public interface LimoJoinService extends IService<LimoJoin> {
     /**
      * 查询加盟信息
-     * @param joinParam
+     * @param
      * @return
      * @throws Exception
      */
-    public Page<LimoJoin> selectJion(JoinParam joinParam)throws Exception;
+    public Page<LimoJoin> selectJion(Integer pageNum,Integer pageSize)throws Exception;
 
     /**
      * 根据加盟编号修改加盟状态
-     * @param joinParam
+     * @param
      * @throws Exception
      */
-    public void updateStatus(JoinParam joinParam)throws Exception;
+    public void updateStatus(Integer jId,Integer jStatus)throws Exception;
 
 }

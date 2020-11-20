@@ -14,11 +14,14 @@ import com.woniuxy.dto.LimoSortDetailDto;
 import com.woniuxy.mapper.LimoCityMapper;
 import com.woniuxy.mapper.LimoSortDetailMapper;
 import com.woniuxy.param.LSDParam;
+import com.woniuxy.param.LSDParam1;
 import com.woniuxy.param.TypeParam;
 import com.woniuxy.service.LimoSortDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.ibatis.jdbc.SQL;
 import org.apache.velocity.runtime.directive.Foreach;
+import org.redisson.Redisson;
+import org.redisson.api.RLock;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -32,6 +35,7 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -49,6 +53,8 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
     private LimoCityMapper limoCityMapper;
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
+    @Resource
+    private Redisson redisson;
     /**
      * @Author zhuyuli
      * @Description //查询旅游攻略（4个指南）
@@ -179,5 +185,15 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
         LimoSortDetail limo = new LimoSortDetail();
         BeanUtils.copyProperties(param, limo);
         limoSortDetailMapper.updateById(limo);
+    }
+
+    @Override
+    public void saveDetail(LSDParam1 param, Map<String, Object> map) {
+        RLock lock = redisson.getLock("mylock");
+        lock.lock();
+        LimoSortDetail limo = new LimoSortDetail();
+        BeanUtils.copyProperties(param, limo);
+        limoSortDetailMapper.insert(limo);
+        lock.unlock();
     }
 }

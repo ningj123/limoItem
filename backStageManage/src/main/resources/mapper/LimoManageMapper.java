@@ -1,8 +1,8 @@
-package com.woniuxy.mapper;
+package com.woniuxy.dao;
 
-import com.woniuxy.domain.LimoManage;
+import com.woniuxy.doman.LimoManage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.woniuxy.domain.LimoMenu;
+import com.woniuxy.doman.LimoMenu;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  *  Mapper 接口
  * </p>
  *
- * @author shadow
+ * @author cgx
  * @since 2020-11-12
  */
 public interface LimoManageMapper extends BaseMapper<LimoManage> {

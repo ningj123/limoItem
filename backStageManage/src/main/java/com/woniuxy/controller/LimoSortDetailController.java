@@ -7,6 +7,7 @@ import com.woniuxy.param.LSDParam;
 import com.woniuxy.param.TypeParam;
 import com.woniuxy.service.LimoSortDetailService;
 import com.woniuxy.util.JSONResult;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/limoSortDetail")
+@Api(tags = "旅游管理")
 public class LimoSortDetailController {
     @Resource
     private LimoSortDetailService limoSortDetailService;
@@ -69,13 +71,13 @@ public class LimoSortDetailController {
 
         return  new JSONResult("200","success",lits,null);
     }
-    //修改旅游文章(json格式)
-    @ApiOperation(value = "修改旅游文章(json格式)")
-    @PostMapping
-    public JSONResult updateTravelSort(@RequestBody LSDParam param) throws Exception{
-
-        limoSortDetailService.updateTravelSort(param);
-        return new JSONResult("200","success",null,null);
-    }
+    ////修改旅游文章(json格式)
+    //@ApiOperation(value = "修改旅游文章(json格式)")
+    //@PostMapping
+    //public JSONResult updateTravelSort(@RequestBody LSDParam param) throws Exception{
+    //
+    //    limoSortDetailService.updateTravelSort(param);
+    //    return new JSONResult("200","success",null,null);
+    //}
 }
 

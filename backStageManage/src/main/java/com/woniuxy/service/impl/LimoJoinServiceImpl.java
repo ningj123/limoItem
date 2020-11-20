@@ -2,6 +2,7 @@ package com.woniuxy.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.woniuxy.domain.LimoCamp;
 import com.woniuxy.domain.LimoJoin;
 import com.woniuxy.domain.LimoManage;
@@ -10,12 +11,9 @@ import com.woniuxy.mapper.LimoCampMapper;
 import com.woniuxy.mapper.LimoJoinMapper;
 import com.woniuxy.mapper.LimoManageMapper;
 import com.woniuxy.mapper.LimoRoleMapper;
-import com.woniuxy.param.JoinParam;
 import com.woniuxy.service.LimoJoinService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.BeanUtils;
+import com.woniuxy.util.MD5Util;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 
@@ -39,40 +37,41 @@ public class LimoJoinServiceImpl extends ServiceImpl<LimoJoinMapper, LimoJoin> i
     private LimoRoleMapper limoRoleMapper;
     /**
      * 查询加盟信息
-     * @param joinParam
+     * @param
      * @return
      * @throws Exception
      */
     @Override
-    public Page<LimoJoin> selectJion(JoinParam joinParam) throws Exception {
-        Page<LimoJoin> page = new Page<>(joinParam.getPageNum(), joinParam.getPageSize());
-        QueryWrapper<LimoJoin> queryWrapper = new QueryWrapper<>();
-        if(joinParam.getjType()!=null){
-            queryWrapper.eq("j_type",joinParam.getjType());
-        }
-        if(!StringUtils.isEmpty(joinParam.getjPhone())){
-            queryWrapper.eq("j_phone",joinParam.getjPhone());
-        }
-        if(!StringUtils.isEmpty(joinParam.getjName())){
-            queryWrapper.like("j_name",joinParam.getjName());
-        }
-        limoJoinMapper.selectPage(page,queryWrapper);
+    public Page<LimoJoin> selectJion(Integer pageNum, Integer pageSize) throws Exception {
+        Page<LimoJoin> page = new Page<>(pageNum,pageSize);
+//        QueryWrapper<LimoJoin> queryWrapper = new QueryWrapper<>();
+//        if(joinParam.getjType()!=null){
+//            queryWrapper.eq("j_type",joinParam.getjType());
+//        }
+//        if(!StringUtils.isEmpty(joinParam.getjPhone())){
+//            queryWrapper.eq("j_phone",joinParam.getjPhone());
+//        }
+//        if(!StringUtils.isEmpty(joinParam.getjName())){
+//            queryWrapper.like("j_name",joinParam.getjName());
+//        }
+        limoJoinMapper.selectPage(page,null);
         return page;
     }
 
     /**
      * 根据加盟编号修改加盟状态
-     * @param joinParam
+     * @param
      * @throws Exception
      */
     @Override
-    public void updateStatus(JoinParam joinParam) throws Exception {
+    public void updateStatus(Integer jId,Integer jStatus) throws Exception {
         LimoJoin limoJoin = new LimoJoin();
-        BeanUtils.copyProperties(joinParam,limoJoin);
+        limoJoin.setjId(jId);
+        limoJoin.setjStatus(jStatus);
         int update = limoJoinMapper.updateById(limoJoin);
-        if (joinParam.getjStatus()==1 && update>0){
+        if (jStatus==1 && update>0){
             //将营地信息存入营地表
-            LimoJoin join = limoJoinMapper.selectById(joinParam.getjId());
+            LimoJoin join = limoJoinMapper.selectById(jId);
             LimoCamp limoCamp = new LimoCamp();
             limoCamp.setcAddress(join.getjLimoAddress());
             limoCamp.setcCity(join.getCity());
@@ -88,7 +87,8 @@ public class LimoJoinServiceImpl extends ServiceImpl<LimoJoinMapper, LimoJoin> i
             queryWrapper.eq("r_name","营地管理员");
             LimoRole limoRole = limoRoleMapper.selectOne(queryWrapper);
             limoManage.setrId(limoRole.getrId());
-            limoManage.setmPassword("123456");
+            String s = MD5Util.MD5EncodeUtf8("123456");
+            limoManage.setmPassword(s);
             limoManageMapper.insert(limoManage);
         }
     }

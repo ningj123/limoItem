@@ -3,7 +3,6 @@ package com.woniuxy.param;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * @author zhuyuli
@@ -16,9 +15,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LSDParam implements Serializable {
+public class LSDParam1 implements Serializable {
 
-    private Integer soDId;
+
     private String soDName;
 
     private String soDDes;

@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("camp")
 public interface CampClient {
 
-    @RequestMapping("limo/camp/selectCampById")
+    @RequestMapping("/limo/camp/selectCampById")
     public JSONResult selectCampById(@RequestParam("id") Integer id)throws Exception;
 }
