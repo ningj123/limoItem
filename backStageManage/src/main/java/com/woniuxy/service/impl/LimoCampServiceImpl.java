@@ -46,21 +46,21 @@ public class LimoCampServiceImpl extends ServiceImpl<LimoCampMapper, LimoCamp> i
 
     /**
      * 分页条件查询营地
-     * @param campParam
+     * @param
      * @return
      * @throws Exception
      */
     @Override
-    public Page<CampDto> selectCamp(CampParam campParam) throws Exception {
-        Page<LimoCamp> page = new Page<>(campParam.getPageNum(), campParam.getPageSize());
-        QueryWrapper<LimoCamp> queryWrapper = new QueryWrapper<>();
-        if (campParam.getcStatus()!=null){
-            queryWrapper.eq("c_status",campParam.getcStatus());
-        }
-        if (!StringUtils.isEmpty(campParam.getcName())){
-            queryWrapper.eq("c_name",campParam.getcName());
-        }
-        limoCampMapper.selectPage(page,queryWrapper);
+    public Page<CampDto> selectCamp(Integer pageNum,Integer pageSize) throws Exception {
+        Page<LimoCamp> page = new Page<>(pageNum,pageSize);
+//        QueryWrapper<LimoCamp> queryWrapper = new QueryWrapper<>();
+//        if (campParam.getcStatus()!=null){
+//            queryWrapper.eq("c_status",campParam.getcStatus());
+//        }
+//        if (!StringUtils.isEmpty(campParam.getcName())){
+//            queryWrapper.eq("c_name",campParam.getcName());
+//        }
+        limoCampMapper.selectPage(page,null);
         Page<CampDto> dtoPage = new Page<>();
         BeanUtils.copyProperties(page,dtoPage);
         return dtoPage;

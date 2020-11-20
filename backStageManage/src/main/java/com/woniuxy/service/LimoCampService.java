@@ -24,11 +24,11 @@ import java.util.List;
 public interface LimoCampService extends IService<LimoCamp> {
     /**
      * 分页条件查询所有营地
-     * @param campParam
+     * @param
      * @return
      * @throws Exception
      */
-    Page<CampDto> selectCamp(CampParam campParam)throws Exception;
+    Page<CampDto> selectCamp(Integer pageNum,Integer pageSize)throws Exception;
 
     /**
      * 下架营地
