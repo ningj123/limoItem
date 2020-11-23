@@ -4,6 +4,7 @@ package com.woniuxy.controller;
 import com.woniuxy.param.BanParam;
 import com.woniuxy.service.LimoBannerService;
 import com.woniuxy.util.JSONResult;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Controller;
  */
 @RestController
 @RequestMapping("/limoBanner")
+@Api(tags = "广告管理")
 public class LimoBannerController {
     @Autowired
     private LimoBannerService limoBannerService;

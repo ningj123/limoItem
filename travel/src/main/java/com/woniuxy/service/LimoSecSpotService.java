@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.woniuxy.dto.LimoSecSpotDto;
 import com.woniuxy.param.PointParam;
 import com.woniuxy.param.SortParam;
+import com.woniuxy.param.SortParam1;
 import com.woniuxy.param.SortTypeParam;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.redis.connection.RedisGeoCommands;
@@ -29,7 +30,7 @@ public interface LimoSecSpotService extends IService<LimoSecSpot> {
      **/
     Object queryByParam(SortTypeParam param)throws  Exception;
 
-    void insertSport(SortParam param) throws  Exception;
+    void insertSport(SortParam1 param) throws  Exception;
 
     Long redisGeoAdd()throws Exception;
 

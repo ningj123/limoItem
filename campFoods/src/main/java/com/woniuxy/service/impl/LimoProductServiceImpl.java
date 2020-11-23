@@ -47,9 +47,6 @@ public class LimoProductServiceImpl extends ServiceImpl<LimoProductMapper, LimoP
         if(productParam.getCId()!=null){
             queryWrapper.eq("c_id",productParam.getCId());
         }
-        if(!StringUtils.isEmpty(productParam.getPName())){
-            queryWrapper.like("p_name",productParam.getPName());
-        }
         if(productParam.getUrId()!=null){
             queryWrapper.eq("ur_id",productParam.getUrId());
         }
@@ -81,5 +78,18 @@ public class LimoProductServiceImpl extends ServiceImpl<LimoProductMapper, LimoP
             }
         }
         return productDtos;
+    }
+
+    @Override
+    public Page<ProductDto> selectProductByPName(ProductParam productParam) throws Exception {
+        Page<LimoProduct> page = new Page<>(productParam.getPageNum(),productParam.getPageSize());
+        QueryWrapper<LimoProduct> queryWrapper = new QueryWrapper<>();
+        if(!StringUtils.isEmpty(productParam.getPName())){
+            queryWrapper.like("p_name",productParam.getPName());
+        }
+        limoProductMapper.selectPage(page,queryWrapper);
+        Page<ProductDto> dtoPage = new Page<>();
+        BeanUtils.copyProperties(page,dtoPage);
+        return dtoPage;
     }
 }

@@ -3,6 +3,7 @@ package com.woniuxy.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.woniuxy.annotation.RedisLock;
 import com.woniuxy.domain.*;
 import com.woniuxy.dto.ActivityDto;
@@ -14,16 +15,20 @@ import com.woniuxy.param.OrderDetailsParam;
 import com.woniuxy.param.OrderParam;
 import com.woniuxy.param.OrdersParam;
 import com.woniuxy.service.LimoOrderService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -48,6 +53,8 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
    private LimoCartMapper limoCartMapper;
    @Autowired
    private RedisTemplate rt;
+   @Autowired
+   private RocketMQTemplate rocketMQTemplate;
     /**
      * 新增订单
      * @param orders
@@ -58,11 +65,8 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
     @RedisLock(key = "order")
     public void insertOrder(OrdersParam orders) throws Exception {
         //生成订单表数据
-        LimoOrder limoOrder = new LimoOrder();
-        limoOrder.setOTotal(orders.getTotal());
-        limoOrder.setCId(orders.getCId());
-        limoOrder.setUId(orders.getUId());
-        limoOrder.setUrId(orders.getUrId());
+        LimoOrder limoOrder = LimoOrder.builder().oTotal(orders.getTotal()).cId(orders.getCId())
+                .uId(orders.getUId()).urId(orders.getUrId()).build();
         limoOrderMapper.insert(limoOrder);
         //取出orders中的商品信息
         List<OrderDetailsParam> list = orders.getOrderDetailsParams();
@@ -77,6 +81,7 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
                 UpdateWrapper<LimoProduct> updateWrapper = new UpdateWrapper<>();
                 updateWrapper.ge("p_inven",p.getNum());
                 update = limoProductMapper.update(product1, updateWrapper);
+
             }
             if(p.getAId()!=null&&p.getAId()>0){
                 LimoActivity limoActivity = new LimoActivity();
@@ -98,18 +103,21 @@ public class LimoOrderServiceImpl extends ServiceImpl<LimoOrderMapper, LimoOrder
                 limoOrderDetail.setOrStartTime(p.getStartTime());
                 limoOrderDetail.setOrEndTime(p.getEndTime());
                 limoOrderDetailMapper.insert(limoOrderDetail);
+                if (p.getCaId()!=null && p.getCaId()>0){
+                    LimoCart limoCart = new LimoCart();
+                    limoCart.setCaId(p.getCaId());
+                    limoCart.setCaStatus(1);
+                    limoCartMapper.updateById(limoCart);
+                    rt.opsForHash().delete("cart","product"+p.getCaId());
+                }
             }else{
                 throw new RuntimeException("商品库存不足");
             }
         }
-        if (orders.getCaId()!=null && orders.getCaId()>0){
-            LimoCart limoCart = new LimoCart();
-            limoCart.setCaId(orders.getCaId());
-            limoCart.setCaStatus(1);
-            limoCartMapper.updateById(limoCart);
-            rt.opsForHash().delete("cart","product"+orders.getCaId());
-        }
-
+        Message<Integer> build = MessageBuilder.withPayload(limoOrder.getOId())
+                .setHeader(RocketMQHeaders.KEYS, UUID.randomUUID().toString())
+                .build();
+        rocketMQTemplate.syncSend("order",build,1000*60*30,2);
     }
 
     /**

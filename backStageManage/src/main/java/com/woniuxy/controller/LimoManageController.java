@@ -1,6 +1,7 @@
 package com.woniuxy.controller;
 
 
+
 import com.woniuxy.util.JSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -15,18 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
- * @author shadow
+ * @author cgx
  * @since 2020-11-12
  */
 @RestController
 @RequestMapping("/limoManage")
 @Api(tags = "管理员接口")
 public class LimoManageController {
+
     @GetMapping("manageLogin")
     @ApiOperation("管理员登录")
     @ApiImplicitParams({
@@ -43,7 +47,7 @@ public class LimoManageController {
             subject.login(token);
             return new JSONResult("200","登陆成功",null,null);
         }else {
-            return new JSONResult("410","重复登录",null,null);
+            return new JSONResult("400","重复登录",null,null);
         }
     }
 }

@@ -3,9 +3,11 @@ package com.woniuxy.service;
 import com.woniuxy.doman.LimoSortDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.woniuxy.param.LSDParam;
+import com.woniuxy.param.LSDParam1;
 import com.woniuxy.param.TypeParam;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -56,4 +58,6 @@ public interface LimoSortDetailService extends IService<LimoSortDetail> {
      * @return void
      **/
     void updateTravelSort(LSDParam param)throws Exception;
+
+    void saveDetail(LSDParam1 param, Map<String, Object> map);
 }

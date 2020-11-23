@@ -18,8 +18,8 @@ import javax.annotation.Resource;
  * @author shadow
  * @since 2020-11-12
  */
-@Controller
-@RequestMapping("/limoSort")
+//@Controller
+//@RequestMapping("/limoSort")
 public class LimoSortController {
     @Resource
     private LimoSortService limoSortService;

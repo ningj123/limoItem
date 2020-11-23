@@ -13,6 +13,7 @@ import com.woniuxy.exception.TravelExecption;
 import com.woniuxy.mapper.LimoSecSpotMapper;
 import com.woniuxy.param.PointParam;
 import com.woniuxy.param.SortParam;
+import com.woniuxy.param.SortParam1;
 import com.woniuxy.param.SortTypeParam;
 import com.woniuxy.service.LimoSecSpotService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -22,6 +23,8 @@ import org.springframework.data.geo.*;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -82,7 +85,8 @@ public class LimoSecSpotServiceImpl extends ServiceImpl<LimoSecSpotMapper, LimoS
      * @return void
      **/
     @Override
-    public void insertSport(SortParam param) throws  Exception{
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+    public void insertSport(SortParam1 param) throws  Exception{
         LimoSecSpot sort = new LimoSecSpot();
         BeanUtils.copyProperties(param,sort);
         limoSecSpotMapper.insert(sort);
@@ -181,10 +185,10 @@ public class LimoSecSpotServiceImpl extends ServiceImpl<LimoSecSpotMapper, LimoS
         redisTemplates.opsForGeo().add("sec", new Point(113.12931, 29.37197), "岳阳楼");
         redisTemplates.opsForGeo().add("sec", new Point(110.55042, 29.34589), "张家界");
         redisTemplates.opsForGeo().add("sec", new Point(100.066132, 29.309271), "稻城·亚丁");
-        List<LimoSecSpot> secSpots = limoSecSpotMapper.selectList(null);
-        for(LimoSecSpot i:secSpots){
-            redisTemplates.opsForHash().put("secNew","sec:"+i.getSecId(),i);
-        }
+        //List<LimoSecSpot> secSpots = limoSecSpotMapper.selectList(null);
+        //for(LimoSecSpot i:secSpots){
+        //    redisTemplates.opsForHash().put("secNew","sec:"+i.getSecId(),i);
+        //}
 
         return 200l;
     }

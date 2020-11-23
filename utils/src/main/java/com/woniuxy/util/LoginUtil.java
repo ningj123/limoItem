@@ -7,6 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import java.lang.reflect.Field;
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -57,5 +58,13 @@ public class LoginUtil {
         }else {
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        Map<String,Object> ma=new HashMap<>();
+        ma.put("id",1);
+        ma.put("name","张三");
+        String token = LoginUtil.createToken(ma, 20);
+        System.out.println(token);
     }
 }

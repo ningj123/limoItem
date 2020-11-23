@@ -12,7 +12,7 @@ public class UtilsConfig {
     public RedissonClient createRedission(){
         Config config = new Config();
         config.useSingleServer()
-                .setAddress("redis://192.168.223.128:6379");
+                .setAddress("redis://192.168.25.128:6379");
         return Redisson.create(config);
     }
 }

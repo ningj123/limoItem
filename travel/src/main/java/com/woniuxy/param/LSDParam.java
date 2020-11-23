@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class LSDParam implements Serializable {
+
     private Integer soDId;
     private String soDName;
 

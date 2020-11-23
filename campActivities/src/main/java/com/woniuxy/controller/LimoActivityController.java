@@ -10,6 +10,7 @@ import com.woniuxy.doman.*;
 import com.woniuxy.dto.*;
 import com.woniuxy.param.*;
 import com.woniuxy.service.*;
+import com.woniuxy.util.JSONResult;
 import com.woniuxy.util.JwtUtilLong;
 import com.woniuxy.util.LoginUtil;
 import com.woniuxy.util.Result;
@@ -22,11 +23,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -205,16 +202,27 @@ public class LimoActivityController {
     @ApiOperation("联系客服")
     public Result selectCampCustomerService() throws Exception {
         //前端写
+        //<a href="tel:158****5689" >直接拨号</a>
         return null;
     }
 
     //立即购买当前营地活动门票，下订单
-    @GetMapping("CampActivitiesDownOrder")
+    @PostMapping("CampActivitiesDownOrder")
     @ApiOperation("立即购买当前营地活动门票，下订单")
-    public Result CampActivitiesDownOrder(OrdersParam orders) throws Exception {
-        orderClient.insertOrder(orders);
-        return Result.success(200,"success",null);
+    public JSONResult CampActivitiesDownOrder(@RequestBody OrdersParam orders,@RequestHeader("x-token")String token) throws Exception {
+        JSONResult jsonResult = orderClient.insertOrder( orders,token);
+        return jsonResult;
     }
+
+    //新增评论
+    @PostMapping("insertEvaluate")
+    @ApiOperation("新增评论")
+    public JSONResult insertEvaluate(@RequestBody EvaluateParam evaluateParam,@RequestHeader("x-token")String token)throws Exception{
+        JSONResult jsonResult = orderClient.insertEvaluate(evaluateParam, token);
+        System.out.println(jsonResult+"---------------------");
+        return jsonResult;
+    }
+
 
     //查看当前用户购物车
     @GetMapping("selectUserCar")
@@ -286,6 +294,7 @@ public class LimoActivityController {
         if (one != null) {
             return Result.fail("该手机已经被注册");
         } else {
+
             //发送短信    "SMS_204297678"是已经自定义的项目短信模板，写死
             boolean isSend = messageHandler.send(phone, "SMS_205455937", param);
             if (isSend) {
@@ -293,7 +302,7 @@ public class LimoActivityController {
                 redisTemplate.opsForValue().set(phone, code, 300, TimeUnit.SECONDS);
                 return Result.success(200, "执行成功", code);
             } else {
-                return Result.fail("null");
+                return Result.fail(500,"不能不填哦",null);
             }
         }
     }
