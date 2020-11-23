@@ -1,7 +1,7 @@
 server:
   port: 8082
 spring:
-#配置数据源
+  #配置数据源
   datasource:
     url: jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8
     password: item1234
@@ -10,10 +10,10 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   application:
     name: campFoods
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr: localhost:8848
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
   redis:
     host: 192.168.223.128
     port: 6379
@@ -23,7 +23,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     #转驼峰
     map-underscore-to-camel-case: true
-   #扫描文件地址
+    #扫描文件地址
   mapper-locations: classpath:mapper/*Mapper.xml
   #别名所在包
   type-aliases-package: com.woniuxy.domain

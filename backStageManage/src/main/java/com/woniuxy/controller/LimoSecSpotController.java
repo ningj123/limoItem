@@ -59,7 +59,7 @@ public class LimoSecSpotController {
         return  new JSONResult("200","success",null,limoSecSpotService.getById(id));
     }
     //新增周边景点
-    @PostMapping
+    @PostMapping("update")
     @ApiOperation(value = "更新周边景点")
     public JSONResult updateSport(SortParam param) throws Exception{
 

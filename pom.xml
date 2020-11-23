@@ -16,6 +16,9 @@
         <module>campFoods</module>
         <module>campActivities</module>
         <module>backStageManage</module>
+        <module>publicItem</module>
+        <module>userItem</module>
+        <module>backStageManager</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

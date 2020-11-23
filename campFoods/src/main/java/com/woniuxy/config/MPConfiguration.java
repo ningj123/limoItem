@@ -36,7 +36,7 @@ public class MPConfiguration {
     }
     @LoadBalanced
     @Bean
-    public RestTemplate userTest() {
+    public RestTemplate oneTest() {
         return new RestTemplate();
     }
 }

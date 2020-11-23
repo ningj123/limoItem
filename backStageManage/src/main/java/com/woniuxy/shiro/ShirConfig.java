@@ -25,7 +25,7 @@ import java.util.Map;
 @Configuration
 public class ShirConfig {
     @Bean
-    public ManageRealm initRealm(){
+    public ManageRealm initRealm() {
         return new ManageRealm();
     }
     @Bean
@@ -45,7 +45,7 @@ public class ShirConfig {
         return cookieRememberMeManager;
     }
     @Bean
-    public ShiroFilterFactoryBean shirFilter() throws UnsupportedEncodingException {
+    public ShiroFilterFactoryBean shiroFilter() throws UnsupportedEncodingException {
         //实例化Filter工厂
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         //注册securityManager
@@ -56,20 +56,21 @@ public class ShirConfig {
         //配置不会被拦截地址规则
         //anon:所有的url都可以不登陆的情况下访问
         //authc：所有url都必须认证通过才可以访问
-        filterChainDefinitionMap.put("/*", "anon");
-//        filterChainDefinitionMap.put("/page/login.html", "anon");
-//        filterChainDefinitionMap.put("/page/user/login.html", "anon");
-//        filterChainDefinitionMap.put("/page/user/index.html", "anon");
-//        filterChainDefinitionMap.put("/js/**", "anon");
-//        filterChainDefinitionMap.put("/css/**", "anon");
-//        filterChainDefinitionMap.put("/img/**", "anon");
-//        filterChainDefinitionMap.put("/employees/login", "anon");
-//        filterChainDefinitionMap.put("/user/login", "anon");
-//        filterChainDefinitionMap.put("/user/register", "anon");
-//        filterChainDefinitionMap.put("/menu/user", "anon");
-//        //如果不满足上方所有的规则 则需要进行登录验证
-//        filterChainDefinitionMap.put("/logout", "logout");
-//        filterChainDefinitionMap.put("/**", "user");
+        filterChainDefinitionMap.put("/**", "anon");
+        /*filterChainDefinitionMap.put("/page/register.html", "anon");
+        filterChainDefinitionMap.put("/page/login.html", "anon");
+        filterChainDefinitionMap.put("/page/user/login.html", "anon");
+        filterChainDefinitionMap.put("/page/user/index.html", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/img/**", "anon");
+        filterChainDefinitionMap.put("/employees/login", "anon");
+        filterChainDefinitionMap.put("/user/login", "anon");
+        filterChainDefinitionMap.put("/user/register", "anon");
+        filterChainDefinitionMap.put("/menu/user", "anon");
+        //如果不满足上方所有的规则 则需要进行登录验证
+        filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/**", "user");*/
 
         //未登录时重定向的网页地址
         shiroFilterFactoryBean.setLoginUrl("/page/login.html");
