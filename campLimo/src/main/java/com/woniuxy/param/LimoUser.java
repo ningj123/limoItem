@@ -64,4 +64,12 @@ public class LimoUser implements Serializable {
                 ", uEmail='" + uEmail + '\'' +
                 '}';
     }
+
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
 }
