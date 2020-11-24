@@ -62,16 +62,16 @@ public class LimoBannerController {
         return new JSONResult("200","success",limoBannerService.queryBannerByType(type),null);
     }
     //更新广告
-    @PostMapping("/update")
-    @ApiOperation(value = "更新广告")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id",value = "id",defaultValue = "1"),
-            @ApiImplicitParam(name = "imgUrl",value = "图片路径",defaultValue = "sadwqfsvf.jpg"),
-            @ApiImplicitParam(name = "lianId",value = "关联的id",defaultValue = "1") ,
-    })
-    public JSONResult updateBannerById(@RequestBody BanParam param)throws Exception{
-        limoBannerService.updateBannerById(param);
-        return new JSONResult("200","success",null,null);
-    }
+    //@PostMapping("/update")
+    //@ApiOperation(value = "更新广告")
+    //@ApiImplicitParams({
+    //        @ApiImplicitParam(name = "id",value = "id",defaultValue = "1"),
+    //        @ApiImplicitParam(name = "imgUrl",value = "图片路径",defaultValue = "sadwqfsvf.jpg"),
+    //        @ApiImplicitParam(name = "lianId",value = "关联的id",defaultValue = "1") ,
+    //})
+    //public JSONResult updateBannerById(@RequestBody BanParam param)throws Exception{
+    //    limoBannerService.updateBannerById(param);
+    //    return new JSONResult("200","success",null,null);
+    //}
 }
 

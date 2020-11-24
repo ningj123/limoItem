@@ -33,8 +33,9 @@ public class SortParam1 extends PageParam{
     private String secSportImgurl;
 
     private Double secSportPrice;
-    //经度
-    private  Float precision;
-    //纬度
-    private  Float dimension;
+
+    private Long precision;
+
+    private Long dimension;
+
 }

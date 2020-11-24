@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.woniuxy.doman.LimoBanner;
 import com.woniuxy.doman.LimoCity;
@@ -18,10 +19,11 @@ import com.woniuxy.param.LSDParam1;
 import com.woniuxy.param.TypeParam;
 import com.woniuxy.service.LimoSortDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.woniuxy.util.IpAddress;
 import org.apache.ibatis.jdbc.SQL;
 import org.apache.velocity.runtime.directive.Foreach;
-import org.redisson.Redisson;
-import org.redisson.api.RLock;
+//import org.redisson.Redisson;
+//import org.redisson.api.RLock;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -31,11 +33,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.jta.WebSphereUowTransactionManager;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -53,8 +57,8 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
     private LimoCityMapper limoCityMapper;
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
-    @Resource
-    private Redisson redisson;
+    //@Resource
+    //private Redisson redisson;
     /**
      * @Author zhuyuli
      * @Description //查询旅游攻略（4个指南）
@@ -150,12 +154,17 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
     }
 
     @Override
-    public Object selectById(Integer id) {
+    public Object selectById(Integer id, HttpServletRequest request) {
 
         LimoSortDetail detail = limoSortDetailMapper.selectById(id);
+        String ipAddr = IpAddress.getIpAddr(request);
+        String s1 = redisTemplate.opsForValue().get("ip:" + ipAddr+":"+detail.getSoDId());
+        if(StringUtils.isBlank(s1)){
+           // redisTemplate.expire("ip:"+ipAddr,60, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set("ip:"+ipAddr+":"+detail.getSoDId(), "detail.getSoDId()", 60, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().increment("sort:"+detail.getSoDId(), 1);
+        }
 
-
-        redisTemplate.opsForValue().increment("sort:"+detail.getSoDId(), 1);
         String s = redisTemplate.opsForValue().get("sort:" + detail.getSoDId());
         Integer i=Integer.parseInt(s);
         detail.setSoDTwo(i);
@@ -189,11 +198,11 @@ public class LimoSortDetailServiceImpl extends ServiceImpl<LimoSortDetailMapper,
 
     @Override
     public void saveDetail(LSDParam1 param, Map<String, Object> map) {
-        RLock lock = redisson.getLock("mylock");
-        lock.lock();
+        //RLock lock = redisson.getLock("mylock");
+        //lock.lock();
         LimoSortDetail limo = new LimoSortDetail();
         BeanUtils.copyProperties(param, limo);
         limoSortDetailMapper.insert(limo);
-        lock.unlock();
+        //lock.unlock();
     }
 }

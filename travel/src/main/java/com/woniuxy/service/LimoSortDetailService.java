@@ -6,6 +6,7 @@ import com.woniuxy.param.LSDParam;
 import com.woniuxy.param.LSDParam1;
 import com.woniuxy.param.TypeParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +50,7 @@ public interface LimoSortDetailService extends IService<LimoSortDetail> {
      * @Param [id]
      * @return com.woniuxy.doman.LimoSortDetail
      **/
-    Object selectById(Integer id)throws Exception;
+    Object selectById(Integer id, HttpServletRequest request)throws Exception;
     /**
      * @Author zhuyuli
      * @Description //修改旅游指南

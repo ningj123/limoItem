@@ -76,8 +76,10 @@ public class LimoSecSpotController {
     @ApiOperation(value = "条件查询周边景点")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "city",value = "城市"),
-            @ApiImplicitParam(name = "cId",value = "营地ID"),
-            @ApiImplicitParam(name = "secname",value = "景点id")
+            @ApiImplicitParam(name = "CId",value = "营地ID"),
+            @ApiImplicitParam(name = "secname",value = "景点名字"),
+            @ApiImplicitParam(name = "pageNum",value = "第几页"),
+            @ApiImplicitParam(name = "pageSize",value = "显示多少条")
 
     })
     public JSONResult queryByParam(SortTypeParam param) throws Exception{
@@ -88,7 +90,7 @@ public class LimoSecSpotController {
     //根据主键查询周边景点
     @GetMapping("/queryById")
     @ApiOperation(value = "根据主键查询周边景点")
-    @ApiParam(name = "id",value = "主键")
+    @ApiParam(name = "id",value = "主键",defaultValue = "1")
     public JSONResult queryById(Integer id) throws Exception{
         if(id<=0){
             throw new TravelExecption("参数异常");
@@ -107,9 +109,9 @@ public class LimoSecSpotController {
     @GetMapping("/queryBypa")
     @ApiOperation(value = "通过地方的经纬度查询周边")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "precision",value = "经度"),
-            @ApiImplicitParam(name = "dimension",value = "纬度"),
-            @ApiImplicitParam(name = "distance",value = "范围")
+            @ApiImplicitParam(name = "precision",value = "经度",defaultValue = "107.738144"),
+            @ApiImplicitParam(name = "dimension",value = "纬度",defaultValue = "29.487602"),
+            @ApiImplicitParam(name = "distance",value = "范围",defaultValue = "700")
 
     })
     public JSONResult queryBypa(PointParam param) throws Exception{
