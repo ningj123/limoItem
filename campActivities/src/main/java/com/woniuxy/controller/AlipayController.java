@@ -4,6 +4,7 @@ import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.factory.Factory.Payment;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
 import com.woniuxy.config.ZhiFuBaoConfig;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +18,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
-@RestController
+//@RestController
+//@Api(tags = "支付宝沙箱接口")
 public class AlipayController {
     @RequestMapping(value = "/pay",produces = "text/html; charset=UTF-8",method= RequestMethod.GET)
     public void pay(int totalAmount, HttpServletResponse response){

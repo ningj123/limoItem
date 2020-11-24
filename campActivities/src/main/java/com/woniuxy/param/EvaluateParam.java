@@ -24,12 +24,6 @@ public class EvaluateParam {
      */
     private Integer aId;
 
-    private Integer pId;
-
     private Integer uId;
 
-    /**
-     * 0 商品评价 1活动评价
-     */
-    private Integer evType;
 }
