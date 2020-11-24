@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,11 +17,12 @@ public class LimoUserParam {
     private Integer uId;
 
     private String uName;
-    @NotNull(message = "不能为空")
+    @NotNull(message = "密码不能为空")
     private String uPassword;
 
     private String uEmail;
-    @NotNull(message = "不能为空")
+    @NotNull(message = "电话不能为空")
+    @Length(min = 11,max = 11,message = "长度只能为11位")
     private String uPhone;
 
     private Integer uAge;

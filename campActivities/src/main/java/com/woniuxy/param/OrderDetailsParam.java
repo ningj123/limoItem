@@ -16,6 +16,7 @@ public class OrderDetailsParam {
     private Integer num;
     private double price;
     private Integer oId;
+    private Integer caId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 }

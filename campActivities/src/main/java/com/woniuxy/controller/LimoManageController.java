@@ -1,8 +1,11 @@
 package com.woniuxy.controller;
 
 
+import com.woniuxy.util.MD5Util;
 import com.woniuxy.util.Result;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -25,14 +28,20 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 @RequestMapping("/limoManage")
-@Api("管理员接口")
+@Api(tags = "管理员接口")
 public class LimoManageController {
 
     @GetMapping("manageLogin")
     @ApiOperation("管理员登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "phone",value = "管理员电话",defaultValue = "123456"),
+            @ApiImplicitParam(name = "password",value = "管理员密码",defaultValue = "123456")
+    })
     public Result manageLogin(String phone, String password) throws Exception {
         //把登陆操作委托给shiro完成
-        UsernamePasswordToken token = new UsernamePasswordToken(phone, password);
+        //密码加密
+        String md = MD5Util.MD5EncodeUtf8(password);
+        UsernamePasswordToken token = new UsernamePasswordToken(phone, md);
         //调用shiro的login方法
         Subject subject = SecurityUtils.getSubject();
         //在没登陆的情况才进行登陆
