@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.mapper.LimoHotelMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoHotel">
+        <id column="h_id" property="hId" />
+        <result column="h_name" property="hName" />
+        <result column="h_price" property="hPrice" />
+        <result column="h_images" property="hImages" />
+        <result column="h_des" property="hDes" />
+        <result column="h_type" property="hType" />
+        <result column="c_id" property="cId" />
+        <result column="h_status" property="hStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        h_id, h_name, h_price, h_images, h_des, h_type, c_id, h_status
+    </sql>
+
+</mapper>

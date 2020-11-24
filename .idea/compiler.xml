@@ -8,21 +8,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="campFoods" />
-        <module name="campLimo" />
         <module name="publicItem" />
         <module name="backStageManage" />
+        <module name="userItem" />
         <module name="utils" />
         <module name="campActivities" />
+        <module name="backStageManager" />
         <module name="travel" />
-        <module name="userItem" />
+        <module name="campLimo" />
         <module name="gateWay" />
         <module name="campFood" />
-      </profile>
-      <profile name="Annotation profile for limoItem" enabled="true">
-        <sourceOutputDir name="../../../target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../../../target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="backStageManager" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

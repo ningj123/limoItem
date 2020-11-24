@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.mapper.LimoAppointDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoAppointDetail">
+        <id column="apd_id" property="apdId" />
+        <result column="h_id" property="hId" />
+        <result column="re_id" property="reId" />
+        <result column="apd_total" property="apdTotal" />
+        <result column="apd_type" property="apdType" />
+        <result column="apd_start_time" property="apdStartTime" />
+        <result column="apd_end_time" property="apdEndTime" />
+        <result column="re_num" property="reNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        apd_id, h_id, re_id, apd_total, apd_type, apd_start_time, apd_end_time, re_num
+    </sql>
+
+</mapper>
