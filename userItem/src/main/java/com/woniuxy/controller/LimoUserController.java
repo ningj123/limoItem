@@ -25,16 +25,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-//@RestController
-//@RequestMapping("/limoUser")
-//@Api(tags = "用户接口")
+@RestController
+@RequestMapping("/limoUser")
+@Api(tags = "用户接口")
 public class LimoUserController {
     @Autowired
     public RedisTemplate<String, String> redisTemplate;
@@ -51,7 +50,12 @@ public class LimoUserController {
             @ApiImplicitParam(name = "UPassword", value = "注册密码", defaultValue = "123456789"),
             @ApiImplicitParam(name = "code", value = "验证码"),
     })
-    public Result insertUserRegister(@Validated LimoUserParam userParam, String code) throws Exception {
+    public Result insertUserRegister(@Validated LimoUserParam userParam, BindingResult bindingResult,String code) throws Exception {
+        //参数检验的信息放在bindingResult对象里。
+        if (bindingResult.hasErrors()) {
+            List<ObjectError> errors = bindingResult.getAllErrors();
+            return Result.fail(500, "XXXXX", errors);
+        }
         LimoUser limoUser = new LimoUser();
         BeanUtils.copyProperties(userParam, limoUser);
         QueryWrapper<LimoUser> userQueryWrapper = new QueryWrapper<>();

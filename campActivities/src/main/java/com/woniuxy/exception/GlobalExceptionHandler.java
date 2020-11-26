@@ -51,15 +51,15 @@ public class GlobalExceptionHandler {
     }
 
     //接受参数校验，处理器
-    @ExceptionHandler({BindException.class, ValidationException.class})
-    public Result handlerBindException(Exception e, BindingResult bindingResult) {
-        e.printStackTrace();
-        //参数检验的信息放在bindingResult对象里。
-        if (bindingResult.hasErrors()) {
-            String defaultMessage = bindingResult.getFieldError().getDefaultMessage();
-            return Result.fail(defaultMessage);
-        }
-        return null;
-    }
+//    @ExceptionHandler({BindException.class, ValidationException.class})
+//    public Result handlerBindException(Exception e, BindingResult bindingResult) {
+//        e.printStackTrace();
+//        //参数检验的信息放在bindingResult对象里。
+//        if (bindingResult.hasErrors()) {
+//            String defaultMessage = bindingResult.getFieldError().getDefaultMessage();
+//            return Result.fail(defaultMessage);
+//        }
+//        return null;
+//    }
 
 }

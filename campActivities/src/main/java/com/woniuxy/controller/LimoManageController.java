@@ -26,9 +26,9 @@ import javax.servlet.http.HttpSession;
  * @author cgx
  * @since 2020-11-12
  */
-@RestController
-@RequestMapping("/limoManage")
-@Api(tags = "管理员接口")
+//@RestController
+//@RequestMapping("/limoManage")
+//@Api(tags = "管理员接口")
 public class LimoManageController {
 
     @GetMapping("manageLogin")
