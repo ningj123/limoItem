@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>角色管理</title>
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/js/vue.js"></script>
+<script src="/js/index.js"></script>
+<link rel="stylesheet"
+	href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+		<template>
+			<el-table :data="roleMapper" border style="width: 100%"> 
+			<el-table-column fixed prop="id" label="编号" > </el-table-column> 
+			<el-table-column prop="name" label="部门名称" > </el-table-column> 
+			<el-table-column label="操作">
+			<template slot-scope="scope">
+				<el-button @click="handleClick(scope.row.id)" v-if="updataBtn" type="text" size="small">修改角色</el-button>
+				<el-button @click="deleClick(scope.row.id)" v-if="updatamenu" type="text" size="small">设置角色权限</el-button>
+				<el-button @click="deletedept(scope.row.id)" v-if="deleteBtn" type="text" size="small">删除角色</el-button>
+			</template>
+			 </el-table-column> 
+			</el-table-column>
+		 </el-table>
+		</template>
+		<el-dialog title="修改部门" :visible.sync="dialogVisible" height="800px">
+	  		<template>
+  				 <input type="text" v-model="deptMess.name" />
+			</template>
+	    <el-button @click="dialogVisible = false">取 消</el-button>
+	    <el-button type="primary" @click="updataMess">修 改</el-button>
+  		</span>
+	</el-dialog>
+	<el-dialog title="设置权限" :visible.sync="dia" height="800px">
+		<div id="container">
+			<el-tree ref="tree" node-key="id" :data="menus" :props="props" show-checkbox
+				:default-expand-all="true"
+				:check-strictly="true" :check-on-click-node="true"
+				@check-change="handleCheckChange" :expand-on-click-node="false"
+				@node-click="clickNode"> </el-tree>
+
+		</div>
+		<el-button @click="dia = false">取 消</el-button>
+	    <el-button type="primary" @click="updataper">设 置</el-button>
+  		</span>
+	</el-dialog>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data:{
+				props:{
+					label:"name",
+					children:"child"
+				},
+				roleMapper:[],
+				deptMess:{
+					id:0,
+					name:""
+				},
+				updataBtn:false,
+				updatamenu:false,
+				deleteBtn:false,
+				dialogVisible:false,
+				dia:false,
+				menus:[],
+				permissions:[],
+				permissionsForm:{pid:0,permissions:[]},
+				isIndeterminate: false,
+			},
+			created:function(){
+				this.select();
+			},
+			methods:{
+				select:function(){
+					var _this=this;
+					$.ajax({
+						url:"/role",
+						success:function(data){
+							_this.roleMapper=data.list;
+						}
+					});
+					var reg = new RegExp("(^|&)id=([^&]*)(&|$)");
+					var r = window.location.search.substr(1).match(reg);
+					var id = unescape(r[2]);
+					console.log(id);
+					var _this=this;
+					$.ajax({
+						url: "/role/query",
+						data:{pid:id},
+						success:function(data){
+							if(data.code==200){
+								for(var i=0;i<data.list.length;i++){
+									if(data.list[i].name=="修改角色"){
+										_this.updataBtn=true;
+									}
+									if(data.list[i].name=="设置角色权限"){
+										_this.updatamenu=true;
+									}
+									if(data.list[i].name=="删除角色"){
+										_this.deleteBtn=true;
+									}
+								}
+							}
+						}
+					});
+				},
+				handleClick:function(id){
+					this.dialogVisible=true;
+					var _this=this;
+					$.ajax({
+						url:"/role/Qwun",
+						data:{id:id},
+						success:function(data){
+							_this.deptMess=data.object;
+						}
+					});
+				},
+				//修改角色
+				updataMess:function(){
+					var _this=this;
+					$.ajax({
+						url:"/role/updatarole",
+						data:_this.deptMess,
+						success:function(data){
+							if(data.code=200){
+								alert("修改成功 ");
+								_this.dialogVisible=false;
+								_this.select();
+							}
+						}
+					});
+				},
+				//点击设置权限
+				deleClick:function(id){
+					isIndeterminate:true;
+					this.dia=true;
+					var _this=this;
+					$.ajax({
+						url:"/menu",
+						success:function(data){
+							_this.menus=data.list;
+							
+						}
+					});
+					//查询部门自己的权限
+					$.ajax({
+						url:"/role/permission",
+						data:{id:id},
+						success:function(data){
+							console.log(data);
+							//重置部门拥有权限的数组
+							_this.permissions=data.list;
+							_this.permissionsForm.permissions=_this.permissions;
+							_this.permissionsForm.pid=id;
+							//设置选中
+							_this.$refs.tree.setCheckedKeys(_this.permissions);
+						}
+					});
+				},
+				handleCheckChange: function(node, checked) {
+					if (checked) {
+						if(this.permissions.indexOf(node.id)==-1){
+							this.permissions.push(node.id);
+						}
+					} else {
+						//遍历数组删除节点id
+						for (var i = 0; i < this.permissions.length; i++) {
+							if (this.permissions[i] == node.id) {
+								this.permissions.splice(i, 1);
+								break;
+							}
+						}
+					}
+				},
+				clickNode: function(data, node) {
+					//全选/全不选子节点
+					var children = node.childNodes;
+					for (var i = 0; i < children.length; i++) {
+						children[i].checked = node.checked;
+					}
+					//点击子设置父
+					var parent = node.parent;
+					while (parent) {
+						//判断字节点是否至少有一个被选中
+						for (var i = 0; i < parent.childNodes.length; i++) {
+							if (parent.childNodes[i].checked) {
+								parent.checked = true;
+								break;
+							}
+						}
+						parent=parent.parent;
+					}
+
+				},
+				//设置权限
+				updataper:function(){
+					console.log(this.permissionsForm);
+					var _this=this;
+					$.ajax({
+						url:"/role/insertpermission",
+						type:"post",
+						data:JSON.stringify(_this.permissionsForm),
+						contentType:"application/json;charset=utf-8",
+						success:function(data){
+							if(data.code==200){
+								alert("设置成功");
+								_this.dia=false;
+								_this.select();
+							}
+						}
+					});		 
+				 },
+				deletedept:function(){
+					alert("删除成功");
+				},
+			}
+		})
+	</script>
+</body>
+</html>

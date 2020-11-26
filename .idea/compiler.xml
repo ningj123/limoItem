@@ -9,15 +9,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="campFoods" />
         <module name="publicItem" />
-        <module name="backStageManage" />
-        <module name="userItem" />
+        <module name="gateWay" />
+        <module name="backStageManager" />
         <module name="utils" />
         <module name="campActivities" />
-        <module name="backStageManager" />
         <module name="travel" />
         <module name="campLimo" />
-        <module name="gateWay" />
+        <module name="userItem" />
         <module name="campFood" />
+        <module name="backStageManage" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

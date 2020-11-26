@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.mapper.LimoReleasMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoReleas">
+        <id column="id" property="id" />
+        <result column="p_id" property="pId" />
+        <result column="m_id" property="mId" />
+        <result column="number" property="number" />
+        <result column="createTime" property="createTime" />
+        <result column="overTime" property="overTime" />
+        <result column="old_price" property="oldPrice" />
+        <result column="new_price" property="newPrice" />
+        <result column="buy_number" property="buyNumber" />
+        <result column="status" property="status" />
+        <result column="p_type" property="pType" />
+        <result column="cId" property="cId" />
+        <result column="city" property="city" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, p_id, m_id, number, createTime, overTime, old_price, new_price, buy_number, status, p_type, cId, city
+    </sql>
+
+</mapper>

@@ -24,13 +24,13 @@ public class LimoAppoint implements Serializable {
     @TableId(value = "ap_id", type = IdType.AUTO)
     private Integer apId;
 
-    private LocalDateTime apTime;
-
-    private Integer apStatus;
-
-    private Double apTotal;
-
     private Integer cId;
+
+    private Integer hId;
+
+    private LocalDateTime orStartTime;
+
+    private LocalDateTime orEndTime;
 
     private Integer uId;
 
@@ -45,9 +45,14 @@ public class LimoAppoint implements Serializable {
     private String rePhone;
 
     /**
-     * 入住人数
+     * 几人住宿
      */
-    private Integer apNum;
+    private Integer reNum;
+
+    /**
+     * 0 待付款 1 预约成功 2 预约失败
+     */
+    private Integer apStatus;
 
 
 }

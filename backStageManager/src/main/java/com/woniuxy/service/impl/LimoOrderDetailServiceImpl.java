@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author zhuyuli
- * @since 2020-11-24
+ * @since 2020-11-25
  */
 @Service
 public class LimoOrderDetailServiceImpl extends ServiceImpl<LimoOrderDetailMapper, LimoOrderDetail> implements LimoOrderDetailService {

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author zhuyuli
- * @since 2020-11-24
+ * @since 2020-11-25
  */
 public interface LimoOrderDetailMapper extends BaseMapper<LimoOrderDetail> {
 

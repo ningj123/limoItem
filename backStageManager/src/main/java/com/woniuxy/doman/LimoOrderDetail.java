@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,7 +15,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author zhuyuli
- * @since 2020-11-24
+ * @since 2020-11-25
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,6 +33,8 @@ public class LimoOrderDetail implements Serializable {
 
     private Integer pId;
 
+    private Integer hId;
+
     private Integer pNum;
 
     private Double pPrice;
@@ -38,7 +42,7 @@ public class LimoOrderDetail implements Serializable {
     private Double pTotal;
 
     /**
-     * 0 商品 1 活动 2 住宿
+     * 0 商品 1 活动 2 住宿 3 物资
      */
     private Integer orType;
 
@@ -49,9 +53,9 @@ public class LimoOrderDetail implements Serializable {
 
     private Integer oId;
 
-    private LocalDateTime orStartTime;
+    private String orStartTime;
 
-    private LocalDateTime orEndTime;
+    private String orEndTime;
 
 
 }

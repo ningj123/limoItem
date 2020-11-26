@@ -1,0 +1,830 @@
+Index: backStageManager/src/main/java/com/woniuxy/App.java
+===================================================================
+--- backStageManager/src/main/java/com/woniuxy/App.java	(revision 8977d4c67498c4dda08e2faa18839f565ba09e72)
++++ backStageManager/src/main/java/com/woniuxy/App.java	(revision 8977d4c67498c4dda08e2faa18839f565ba09e72)
+@@ -1,13 +0,0 @@
+-package com.woniuxy;
+-
+-/**
+- * Hello world!
+- *
+- */
+-public class App 
+-{
+-    public static void main( String[] args )
+-    {
+-        System.out.println( "Hello World!" );
+-    }
+-}
+Index: backStageManager/target/classes/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/application.properties	(date 1606205430284)
++++ backStageManager/target/classes/application.properties	(date 1606205430284)
+@@ -0,0 +1,24 @@
++server.port=8085
++spring.application.name=back
++#数据源配置
++spring.datasource.url=jdbc:mysql://cdb-rt2lrzfm.cd.tencentcdb.com:10007/limo?useSSL=false&useUnicode=true&characterEncoding=utf-8&socketTimeout=3000&autoReconnect=true
++
++spring.datasource.username=root
++spring.datasource.password=item1234
++spring.datasource.driver-class-name=com.mysql.jdbc.Driver
++spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
++
++#mybatis_Plus
++#xml的配置位置
++mybatis-plus.mapper-locations=classpath*:mapper/**/*.xml
++#别名所在包
++mybatis-plus.type-aliases-package=com.woniuxy.doman
++#转驼峰
++mybatis-plus.configuration.map-underscore-to-camel-case=true
++#日志
++mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
++logging.level.com.squirrel.gitdemo=debug
++
++
++
++
+Index: backStageManager/target/classes/mapper/LimoActivityMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoActivityMapper.xml	(date 1606198728644)
++++ backStageManager/target/classes/mapper/LimoActivityMapper.xml	(date 1606198728644)
+@@ -0,0 +1,29 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoActivityMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoActivity">
++        <id column="a_id" property="aId" />
++        <result column="a_name" property="aName" />
++        <result column="a_inven" property="aInven" />
++        <result column="a_images" property="aImages" />
++        <result column="a_des" property="aDes" />
++        <result column="a_price" property="aPrice" />
++        <result column="a_type" property="aType" />
++        <result column="a_sell_num" property="aSellNum" />
++        <result column="a_sell_time" property="aSellTime" />
++        <result column="a_start_time" property="aStartTime" />
++        <result column="a_end_time" property="aEndTime" />
++        <result column="c_id" property="cId" />
++        <result column="a_status" property="aStatus" />
++        <result column="a_city" property="aCity" />
++        <result column="a_two" property="aTwo" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        a_id, a_name, a_inven, a_images, a_des, a_price, a_type, a_sell_num, a_sell_time, a_start_time, a_end_time, c_id, a_status, a_city, a_two
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoBannerMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoBannerMapper.xml	(date 1606198728952)
++++ backStageManager/target/classes/mapper/LimoBannerMapper.xml	(date 1606198728952)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoBannerMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoBanner">
++        <id column="id" property="id" />
++        <result column="img_url" property="imgUrl" />
++        <result column="type" property="type" />
++        <result column="lian_id" property="lianId" />
++        <result column="status" property="status" />
++        <result column="c_id" property="cId" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        id, img_url, type, lian_id, status, c_id
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoCampMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoCampMapper.xml	(date 1606198729011)
++++ backStageManager/target/classes/mapper/LimoCampMapper.xml	(date 1606198729011)
+@@ -0,0 +1,27 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoCampMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoCamp">
++        <id column="c_id" property="cId" />
++        <result column="c_name" property="cName" />
++        <result column="c_address" property="cAddress" />
++        <result column="c_phone" property="cPhone" />
++        <result column="c_open_time" property="cOpenTime" />
++        <result column="c_special" property="cSpecial" />
++        <result column="c_city" property="cCity" />
++        <result column="c_des" property="cDes" />
++        <result column="c_images" property="cImages" />
++        <result column="c_status" property="cStatus" />
++        <result column="j_id" property="jId" />
++        <result column="c_one" property="cOne" />
++        <result column="m_id" property="mId" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        c_id, c_name, c_address, c_phone, c_open_time, c_special, c_city, c_des, c_images, c_status, j_id, c_one, m_id
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoAppointDetailMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoAppointDetailMapper.xml	(date 1606198728860)
++++ backStageManager/target/classes/mapper/LimoAppointDetailMapper.xml	(date 1606198728860)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoAppointDetailMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoAppointDetail">
++        <id column="apd_id" property="apdId" />
++        <result column="h_id" property="hId" />
++        <result column="re_id" property="reId" />
++        <result column="apd_total" property="apdTotal" />
++        <result column="apd_type" property="apdType" />
++        <result column="apd_start_time" property="apdStartTime" />
++        <result column="apd_end_time" property="apdEndTime" />
++        <result column="re_num" property="reNum" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        apd_id, h_id, re_id, apd_total, apd_type, apd_start_time, apd_end_time, re_num
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoAppointMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoAppointMapper.xml	(date 1606198728806)
++++ backStageManager/target/classes/mapper/LimoAppointMapper.xml	(date 1606198728806)
+@@ -0,0 +1,23 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoAppointMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoAppoint">
++        <id column="ap_id" property="apId" />
++        <result column="ap_time" property="apTime" />
++        <result column="ap_status" property="apStatus" />
++        <result column="ap_total" property="apTotal" />
++        <result column="c_id" property="cId" />
++        <result column="u_id" property="uId" />
++        <result column="re_name" property="reName" />
++        <result column="re_phone" property="rePhone" />
++        <result column="ap_num" property="apNum" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        ap_id, ap_time, ap_status, ap_total, c_id, u_id, re_name, re_phone, ap_num
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoCollectMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoCollectMapper.xml	(date 1606198729122)
++++ backStageManager/target/classes/mapper/LimoCollectMapper.xml	(date 1606198729122)
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoCollectMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoCollect">
++        <id column="co_id" property="coId" />
++        <result column="p_id" property="pId" />
++        <result column="u_id" property="uId" />
++        <result column="c_id" property="cId" />
++        <result column="a_id" property="aId" />
++        <result column="co_type" property="coType" />
++        <result column="co_time" property="coTime" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        co_id, p_id, u_id, c_id, a_id, co_type, co_time
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoEvaluateMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoEvaluateMapper.xml	(date 1606198729147)
++++ backStageManager/target/classes/mapper/LimoEvaluateMapper.xml	(date 1606198729147)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoEvaluateMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoEvaluate">
++        <id column="ev_id" property="evId" />
++        <result column="ev_des" property="evDes" />
++        <result column="ev_images" property="evImages" />
++        <result column="ev_time" property="evTime" />
++        <result column="a_id" property="aId" />
++        <result column="p_id" property="pId" />
++        <result column="u_id" property="uId" />
++        <result column="ev_type" property="evType" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        ev_id, ev_des, ev_images, ev_time, a_id, p_id, u_id, ev_type
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoCartMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoCartMapper.xml	(date 1606198729044)
++++ backStageManager/target/classes/mapper/LimoCartMapper.xml	(date 1606198729044)
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoCartMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoCart">
++        <id column="ca_id" property="caId" />
++        <result column="p_id" property="pId" />
++        <result column="a_id" property="aId" />
++        <result column="p_num" property="pNum" />
++        <result column="ca_type" property="caType" />
++        <result column="u_id" property="uId" />
++        <result column="ca_status" property="caStatus" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        ca_id, p_id, a_id, p_num, ca_type, u_id, ca_status
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoCityMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoCityMapper.xml	(date 1606198729094)
++++ backStageManager/target/classes/mapper/LimoCityMapper.xml	(date 1606198729094)
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoCityMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoCity">
++        <id column="id" property="id" />
++        <result column="city" property="city" />
++        <result column="city_url" property="cityUrl" />
++        <result column="tatol" property="tatol" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        id, city, city_url, tatol
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoManageMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoManageMapper.xml	(date 1606198729244)
++++ backStageManager/target/classes/mapper/LimoManageMapper.xml	(date 1606198729244)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoManageMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoManage">
++        <id column="m_id" property="mId" />
++        <result column="m_name" property="mName" />
++        <result column="m_phone" property="mPhone" />
++        <result column="m_password" property="mPassword" />
++        <result column="m_email" property="mEmail" />
++        <result column="r_id" property="rId" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        m_id, m_name, m_phone, m_password, m_email, r_id
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoManageRoleMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoManageRoleMapper.xml	(date 1606198729271)
++++ backStageManager/target/classes/mapper/LimoManageRoleMapper.xml	(date 1606198729271)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoManageRoleMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoManageRole">
++        <id column="id" property="id" />
++        <result column="uid" property="uid" />
++        <result column="rid" property="rid" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        id, uid, rid
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoHotelMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoHotelMapper.xml	(date 1606198729182)
++++ backStageManager/target/classes/mapper/LimoHotelMapper.xml	(date 1606198729182)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoHotelMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoHotel">
++        <id column="h_id" property="hId" />
++        <result column="h_name" property="hName" />
++        <result column="h_price" property="hPrice" />
++        <result column="h_images" property="hImages" />
++        <result column="h_des" property="hDes" />
++        <result column="h_type" property="hType" />
++        <result column="c_id" property="cId" />
++        <result column="h_status" property="hStatus" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        h_id, h_name, h_price, h_images, h_des, h_type, c_id, h_status
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoJoinMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoJoinMapper.xml	(date 1606198729216)
++++ backStageManager/target/classes/mapper/LimoJoinMapper.xml	(date 1606198729216)
+@@ -0,0 +1,31 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoJoinMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoJoin">
++        <id column="j_id" property="jId" />
++        <result column="j_name" property="jName" />
++        <result column="j_phone" property="jPhone" />
++        <result column="j_serail" property="jSerail" />
++        <result column="j_limo_address" property="jLimoAddress" />
++        <result column="j_limo_type" property="jLimoType" />
++        <result column="c_id" property="cId" />
++        <result column="j_card_images" property="jCardImages" />
++        <result column="j_limo_images" property="jLimoImages" />
++        <result column="j_start_time" property="jStartTime" />
++        <result column="j_end_time" property="jEndTime" />
++        <result column="j_type" property="jType" />
++        <result column="j_email" property="jEmail" />
++        <result column="j_remark" property="jRemark" />
++        <result column="j_camp_name" property="jCampName" />
++        <result column="j_status" property="jStatus" />
++        <result column="city" property="city" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        j_id, j_name, j_phone, j_serail, j_limo_address, j_limo_type, c_id, j_card_images, j_limo_images, j_start_time, j_end_time, j_type, j_email, j_remark, j_camp_name, j_status, city
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoOrderMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoOrderMapper.xml	(date 1606198729311)
++++ backStageManager/target/classes/mapper/LimoOrderMapper.xml	(date 1606198729311)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoOrderMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoOrder">
++        <id column="o_id" property="oId" />
++        <result column="o_time" property="oTime" />
++        <result column="o_status" property="oStatus" />
++        <result column="o_total" property="oTotal" />
++        <result column="u_id" property="uId" />
++        <result column="c_id" property="cId" />
++        <result column="ur_id" property="urId" />
++        <result column="a_id" property="aId" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        o_id, o_time, o_status, o_total, u_id, c_id, ur_id, a_id
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoPermissionMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoPermissionMapper.xml	(date 1606198729498)
++++ backStageManager/target/classes/mapper/LimoPermissionMapper.xml	(date 1606198729498)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoPermissionMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoPermission">
++        <id column="pe_id" property="peId" />
++        <result column="r_id" property="rId" />
++        <result column="m_id" property="mId" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        pe_id, r_id, m_id
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoMenuMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoMenuMapper.xml	(date 1606198729292)
++++ backStageManager/target/classes/mapper/LimoMenuMapper.xml	(date 1606198729292)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoMenuMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoMenu">
++        <id column="m_id" property="mId" />
++        <result column="m_name" property="mName" />
++        <result column="m_level" property="mLevel" />
++        <result column="p_id" property="pId" />
++        <result column="m_resource" property="mResource" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        m_id, m_name, m_level, p_id, m_resource
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoOrderDetailMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoOrderDetailMapper.xml	(date 1606198729474)
++++ backStageManager/target/classes/mapper/LimoOrderDetailMapper.xml	(date 1606198729474)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoOrderDetailMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoOrderDetail">
++        <id column="or_id" property="orId" />
++        <result column="a_id" property="aId" />
++        <result column="p_id" property="pId" />
++        <result column="p_num" property="pNum" />
++        <result column="p_price" property="pPrice" />
++        <result column="p_total" property="pTotal" />
++        <result column="or_type" property="orType" />
++        <result column="or_status" property="orStatus" />
++        <result column="o_id" property="oId" />
++        <result column="or_start_time" property="orStartTime" />
++        <result column="or_end_time" property="orEndTime" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        or_id, a_id, p_id, p_num, p_price, p_total, or_type, or_status, o_id, or_start_time, or_end_time
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoRoleMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoRoleMapper.xml	(date 1606198729578)
++++ backStageManager/target/classes/mapper/LimoRoleMapper.xml	(date 1606198729578)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoRoleMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoRole">
++        <id column="r_id" property="rId" />
++        <result column="r_name" property="rName" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        r_id, r_name
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoRolePermissionMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoRolePermissionMapper.xml	(date 1606198729601)
++++ backStageManager/target/classes/mapper/LimoRolePermissionMapper.xml	(date 1606198729601)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoRolePermissionMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoRolePermission">
++        <id column="id" property="id" />
++        <result column="rid" property="rid" />
++        <result column="mid" property="mid" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        id, rid, mid
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoProductMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoProductMapper.xml	(date 1606198729526)
++++ backStageManager/target/classes/mapper/LimoProductMapper.xml	(date 1606198729526)
+@@ -0,0 +1,29 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoProductMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoProduct">
++        <id column="p_id" property="pId" />
++        <result column="p_name" property="pName" />
++        <result column="p_inven" property="pInven" />
++        <result column="p_old_price" property="pOldPrice" />
++        <result column="p_new_price" property="pNewPrice" />
++        <result column="p_sell_price" property="pSellPrice" />
++        <result column="p_images" property="pImages" />
++        <result column="p_des" property="pDes" />
++        <result column="p_type" property="pType" />
++        <result column="ur_id" property="urId" />
++        <result column="c_id" property="cId" />
++        <result column="p_status" property="pStatus" />
++        <result column="j_id" property="jId" />
++        <result column="c_city" property="cCity" />
++        <result column="p_two" property="pTwo" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        p_id, p_name, p_inven, p_old_price, p_new_price, p_sell_price, p_images, p_des, p_type, ur_id, c_id, p_status, j_id, c_city, p_two
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoReleasMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoReleasMapper.xml	(date 1606198729553)
++++ backStageManager/target/classes/mapper/LimoReleasMapper.xml	(date 1606198729553)
+@@ -0,0 +1,27 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoReleasMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoReleas">
++        <id column="id" property="id" />
++        <result column="p_id" property="pId" />
++        <result column="m_id" property="mId" />
++        <result column="number" property="number" />
++        <result column="createTime" property="createTime" />
++        <result column="overTime" property="overTime" />
++        <result column="old_price" property="oldPrice" />
++        <result column="new_price" property="newPrice" />
++        <result column="buy_number" property="buyNumber" />
++        <result column="status" property="status" />
++        <result column="p_type" property="pType" />
++        <result column="cId" property="cId" />
++        <result column="city" property="city" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        id, p_id, m_id, number, createTime, overTime, old_price, new_price, buy_number, status, p_type, cId, city
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoSortMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoSortMapper.xml	(date 1606198729654)
++++ backStageManager/target/classes/mapper/LimoSortMapper.xml	(date 1606198729654)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoSortMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoSort">
++        <id column="so_id" property="soId" />
++        <result column="so_name" property="soName" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        so_id, so_name
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoUrlMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoUrlMapper.xml	(date 1606198729706)
++++ backStageManager/target/classes/mapper/LimoUrlMapper.xml	(date 1606198729706)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoUrlMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoUrl">
++        <id column="ur_id" property="urId" />
++        <result column="ur_name" property="urName" />
++        <result column="c_id" property="cId" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        ur_id, ur_name, c_id
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoSecSpotMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoSecSpotMapper.xml	(date 1606198729630)
++++ backStageManager/target/classes/mapper/LimoSecSpotMapper.xml	(date 1606198729630)
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoSecSpotMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoSecSpot">
++        <id column="sec_id" property="secId" />
++        <result column="sec_sport_name" property="secSportName" />
++        <result column="sec_sport_address" property="secSportAddress" />
++        <result column="sec_sport_city" property="secSportCity" />
++        <result column="c_id" property="cId" />
++        <result column="c_name" property="cName" />
++        <result column="sec_sport_opentime" property="secSportOpentime" />
++        <result column="sec_sport_server" property="secSportServer" />
++        <result column="sec_sport_imgurl" property="secSportImgurl" />
++        <result column="sec_sport_price" property="secSportPrice" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        sec_id, sec_sport_name, sec_sport_address, sec_sport_city, c_id, c_name, sec_sport_opentime, sec_sport_server, sec_sport_imgurl, sec_sport_price
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoSortDetailMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoSortDetailMapper.xml	(date 1606198729682)
++++ backStageManager/target/classes/mapper/LimoSortDetailMapper.xml	(date 1606198729682)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoSortDetailMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoSortDetail">
++        <id column="so_d_id" property="soDId" />
++        <result column="so_d_name" property="soDName" />
++        <result column="so_d_des" property="soDDes" />
++        <result column="so_d_images" property="soDImages" />
++        <result column="so_d_issue_time" property="soDIssueTime" />
++        <result column="so_d_type" property="soDType" />
++        <result column="so_d_city" property="soDCity" />
++        <result column="so_id" property="soId" />
++        <result column="so_d_status" property="soDStatus" />
++        <result column="so_d_keyword" property="soDKeyword" />
++        <result column="so_d_two" property="soDTwo" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        so_d_id, so_d_name, so_d_des, so_d_images, so_d_issue_time, so_d_type, so_d_city, so_id, so_d_status, so_d_keyword, so_d_two
++    </sql>
++
++</mapper>
+Index: backStageManager/target/classes/mapper/LimoUserMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- backStageManager/target/classes/mapper/LimoUserMapper.xml	(date 1606198729732)
++++ backStageManager/target/classes/mapper/LimoUserMapper.xml	(date 1606198729732)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.woniuxy.mapper.LimoUserMapper">
++
++    <!-- 通用查询映射结果 -->
++    <resultMap id="BaseResultMap" type="com.woniuxy.doman.LimoUser">
++        <id column="u_id" property="uId" />
++        <result column="u_name" property="uName" />
++        <result column="u_password" property="uPassword" />
++        <result column="u_email" property="uEmail" />
++        <result column="u_phone" property="uPhone" />
++        <result column="u_age" property="uAge" />
++        <result column="u_sex" property="uSex" />
++        <result column="u_status" property="uStatus" />
++        <result column="u_register_time" property="uRegisterTime" />
++        <result column="u_one" property="uOne" />
++        <result column="u_two" property="uTwo" />
++    </resultMap>
++
++    <!-- 通用查询结果列 -->
++    <sql id="Base_Column_List">
++        u_id, u_name, u_password, u_email, u_phone, u_age, u_sex, u_status, u_register_time, u_one, u_two
++    </sql>
++
++</mapper>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登陆</title>
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/js/vue.js" ></script>
+<script src="/js/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="ad">
+	<div class="background">
+    <img src="/img/shouye.jpg" width="100%" height="100%"  />
+	</div>
+	
+	<el-form label-width="100px" class="demo-ruleForm">
+		<h1>登陆页面</h1>
+		<el-col :span="8" :offset="2">
+			<el-form-item label="用户名" >
+				<el-input type="text" v-model="user.username"></el-input>
+			</el-form-item>
+			<el-form-item label="密码" >
+				<el-input type="password" v-model="user.password"></el-input>
+			</el-form-item>
+			<el-form-item>
+				<el-button type="primary" @click="login">登陆</el-button>
+				<el-switch
+  		v-model="user.rememberMe"
+ 		active-text="自动登录"
+  		inactive-text="取消自动登录">
+		</el-switch>
+			</el-form-item>
+			
+		</el-col>
+	</el-form>
+	
+</div>
+<script type="text/javascript">
+	var mu=new Vue({
+		el:"#ad",
+		data:{
+			user:{
+				username:"",
+				password:"",
+				rememberMe:false
+			},
+		
+		},
+		methods: {
+			login: function() {
+				var _this = this;
+				$.ajax({
+					url: "/user/login",
+					data: _this.user,
+					success: function(data) {
+						if (data.code == "200") {
+							alert(data.mess);
+							location.href="/page/index.html";
+						}else{
+							alert(data.mess);
+						}
+					}
+				})
+			}
+		},
+	})
+</script>
+</body>
+<style>
+.background{
+    width:100%;  
+    height:100%;  /**宽高100%是为了图片铺满屏幕 */
+    z-index:-1;
+    position: absolute;
+}
+.front{
+    z-index:1;
+    position: absolute;
+}
+</style>
+</html>

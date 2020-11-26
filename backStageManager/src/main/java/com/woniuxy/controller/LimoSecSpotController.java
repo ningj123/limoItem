@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
  * @author zhuyuli
  * @since 2020-11-24
  */
-@Controller
-@RequestMapping("/limoSecSpot")
+//@Controller
+//@RequestMapping("/limoSecSpot")
 public class LimoSecSpotController {
 
 }

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户管理</title>
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/js/vue.js"></script>
+<script src="/js/index.js"></script>
+<link rel="stylesheet"
+	href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="list">
+		<template>
+			<el-table :data="users" border style="width: 100%"> 
+			<el-table-column fixed prop="id" label="编号" > </el-table-column> 
+			<el-table-column prop="username" label="用户名" > </el-table-column> 
+			<el-table-column prop="phone" label="电话"> </el-table-column>
+			<el-table-column prop="sex" label="性别"> </el-table-column>
+			<el-table-column prop="age" label="年龄"> </el-table-column> 
+			<el-table-column label="操作">
+			<template slot-scope="scope">
+				<el-button @click="handleClick(scope.row.id)" v-if="updataBtn" type="text" size="small">修改用户角色</el-button>
+				<el-button @click="deleClick(scope.row.id)" v-if="deleteBtn" type="text" size="small">设置权限</el-button>
+			</template>
+			 </el-table-column> 
+			</el-table-column>
+		 </el-table>
+		</template>
+		<el-dialog title="修改用户角色" :visible.sync="dialogVisible" height="800px">
+	  		<template>
+  				 <el-checkbox-group v-model="userrole">
+      				<el-checkbox :label="role.id" v-for="role in roles" >{{role.name}}</el-checkbox>
+      			</el-checkbox-group>
+			</template>
+	    <el-button @click="dialogVisible = false">取 消</el-button>
+	    <el-button type="primary" @click="updataMess">修 改</el-button>
+  		</span>
+	</el-dialog>
+	<el-dialog title="设置权限" :visible.sync="dia" height="800px">
+		<div id="container">
+			<el-tree ref="tree" node-key="id" :data="menus" :props="props" show-checkbox
+				:default-expand-all="true"
+				:check-strictly="true" :check-on-click-node="true"
+				@check-change="handleCheckChange" :expand-on-click-node="false"
+				@node-click="clickNode"> </el-tree>
+
+		</div>
+		<el-button @click="dia = false">取 消</el-button>
+	    <el-button type="primary" @click="updataper">设 置</el-button>
+  		</span>
+	</el-dialog>
+	</div>
+	<script type="text/javascript">
+	new Vue({
+		el:"#list",
+		data:{
+			props:{
+				label:"name",
+				children:"child"
+			},
+			users:[],
+			roles:[],
+			userrole:[],
+			permissions:[],// 查询自己的权限
+			permissionsForm:{uid:0,permissions:[]},
+			userform:{uid:0,userrole:[]},
+			updataBtn:false,
+			deleteBtn:false,
+			dialogVisible:false,
+			dia:false,
+			isIndeterminate: false,
+			menus:[]
+		},
+		created:function(){
+			this.select();
+			this.selectBtn();
+		},
+		methods:{
+			//查询出所有用户
+			select:function(){
+				var _this=this;
+				$.ajax({
+					url:"/user",
+					success:function(data){
+					
+						_this.users=data.list;
+					}
+				})
+			},
+			selectBtn:function(){
+				var reg = new RegExp("(^|&)id=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				var id = unescape(r[2]);
+				console.log(id);
+				var _this=this;
+				$.ajax({
+					url: "/user/btton",
+					data:{pid:id},
+					success: function(data) {
+						console.log(data);
+						if(data.code==200){
+							for(var i=0;i<data.list.length;i++){
+								if(data.list[i].name=="修改用户角色"){
+									_this.updataBtn=true;
+								}
+								if(data.list[i].name=="设置权限"){
+									_this.deleteBtn=true;
+								}
+							}
+						}
+					}
+				})
+			},
+			handleClick:function(id){
+				this.dialogVisible=true;
+				this.userform.uid=id;
+				var _this=this;
+				$.ajax({
+					url:"/role",
+					success:function(data){
+					
+						_this.roles=data.list;
+					}
+				});
+				$.ajax({
+					url:"/user/role",
+					data:{uid:id},
+					success:function(data){
+						_this.userrole=data.list;
+						_this.userform.userrole=_this.userrole;
+					}
+				})
+			},
+			updataMess:function(){
+				this.userform.userrole=this.userrole;
+				
+				var _this=this;
+				$.ajax({
+					url:"/role",
+					data:JSON.stringify(_this.userform),
+					type:"post",
+					contentType:"application/json;charset=utf-8",
+					success:function(data){
+						if(data.code==200){
+							alert("修改成功");
+							_this.dialogVisible = false;
+							_this.select();
+						}
+					}
+				})
+			},
+			//点击设置权限
+			deleClick:function(id){
+				isIndeterminate: true;
+				this.dia=true;
+				var _this=this;
+				$.ajax({
+					url:"/menu",
+					success:function(data){
+						_this.menus=data.list;
+					}
+				});
+				//查询用户自己的权限
+				$.ajax({
+					url:"/user/permission",
+					data:{id:id},
+					success:function(data){
+						//重置用户拥有权限的数组
+						_this.permissions=data.list;
+						_this.permissionsForm.permissions=_this.permissions;
+						_this.permissionsForm.uid=id;
+						//设置选中
+						_this.$refs.tree.setCheckedKeys(_this.permissions);
+					}
+				});
+			},
+			handleCheckChange: function(node, checked) {
+				if (checked) {
+					if(this.permissions.indexOf(node.id)==-1){
+						this.permissions.push(node.id);
+					}
+				} else {
+					//遍历数组删除节点id
+					for (var i = 0; i < this.permissions.length; i++) {
+						if (this.permissions[i] == node.id) {
+							this.permissions.splice(i, 1);
+							break;
+						}
+					}
+				}
+			},
+			clickNode: function(data, node) {
+				//全选/全不选子节点
+				var children = node.childNodes;
+				for (var i = 0; i < children.length; i++) {
+					children[i].checked = node.checked;
+				}
+				//点击子设置父
+				var parent = node.parent;
+				while (parent) {
+					//判断字节点是否至少有一个被选中
+					for (var i = 0; i < parent.childNodes.length; i++) {
+						if (parent.childNodes[i].checked) {
+							parent.checked = true;
+							break;
+						}
+					}
+					parent=parent.parent;
+				}
+
+			},
+			//设置权限
+			updataper:function(){
+				var _this=this;
+				$.ajax({
+					url:"/user/insertpermission",
+					type:"post",
+					data:JSON.stringify(_this.permissionsForm),
+					contentType:"application/json;charset=utf-8",
+					success:function(data){
+						if(data.code==200){
+							alert("设置成功");
+							_this.dia=false;
+							_this.select();
+						}
+					}
+				});		 
+			 }
+		},
+	})
+</script>
+</body>
+</html>

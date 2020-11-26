@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
  * @author zhuyuli
  * @since 2020-11-24
  */
-@Controller
-@RequestMapping("/limoEvaluate")
+//@Controller
+//@RequestMapping("/limoEvaluate")
 public class LimoEvaluateController {
 
 }

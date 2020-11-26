@@ -21,22 +21,18 @@ public class LimoAppointDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "apd_id", type = IdType.AUTO)
-    private Integer apdId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-    private Integer hId;
+    private Integer apId;
 
-    private Integer reId;
+    private String name;
 
-    private Double apdTotal;
+    private Integer sex;
 
-    private Integer apdType;
+    private String card;
 
-    private LocalDateTime apdStartTime;
-
-    private LocalDateTime apdEndTime;
-
-    private Integer reNum;
+    private LocalDateTime creattime;
 
 
 }

@@ -1,0 +1,684 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]" date="1606206337464" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020/11/24 16:25 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoUser.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUser.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoJoinServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoJoinServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoCityService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCityService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoMenuController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoMenuController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/exception/GloableExecption.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/GloableExecption.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoAppointDetailService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointDetailService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoHotelServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoHotelServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoRoleService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRoleService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoUrlService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUrlService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoAppointDetailServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointDetailServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoManageRoleMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageRoleMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoCampMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCampMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoUserService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUserService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoCollect.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCollect.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoCartMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCartMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoSortDetailController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortDetailController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoSortServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoSecSpot.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSecSpot.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoHotelMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoHotelMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoManageServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoAppointServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoCampController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCampController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoCityServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCityServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/exception/BackExecption.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/BackExecption.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoCityMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCityMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoSortDetailServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortDetailServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoCollectMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCollectMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoBannerServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoBannerServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoAppointDetailController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointDetailController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoUserServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUserServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoUrl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUrl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoRoleController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRoleController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoPermissionServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoPermissionServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoManageController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoOrder.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrder.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoMenu.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoMenu.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoUrlMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUrlMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoSortDetailService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortDetailService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoJoin.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoJoin.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoBannerMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoBannerMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoCartController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCartController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoProduct.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoProduct.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoSortMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoSortService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoManage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoOrderDetailController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderDetailController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoCartServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCartServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoRoleMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRoleMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoPermissionService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoPermissionService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoAppoint.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppoint.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoCollectService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCollectService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/utils/Util.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/Util.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoActivityMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoActivityMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoRolePermissionServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRolePermissionServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="utils/target/classes/com/woniuxy/util/LoginUtil.class" />
+    <option name="AFTER_PATH" value="utils/target/classes/com/woniuxy/util/LoginUtil.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LoginUtil.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoPermission.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoPermission.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoProductController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoProductController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoBannerController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoBannerController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoUserController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUserController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoCollectServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCollectServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoProductService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoProductService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoOrderController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoRolePermissionController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRolePermissionController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoPermissionMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoPermissionMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoOrderDetailMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderDetailMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoCart.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCart.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoReleasMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoReleasMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoJoinService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoJoinService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoActivityController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoActivityController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoAppointDetail.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointDetail.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoSort.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSort.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoRolePermission.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRolePermission.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoAppointMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoActivityService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoActivityService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoProductServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoProductServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoMenuServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoMenuServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoSecSpotMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSecSpotMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoManageRole.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageRole.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoJoinMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoJoinMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoOrderDetailService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderDetailService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoManageService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/App.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/App.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoAppointDetailMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointDetailMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoUrlController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUrlController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoOrderDetail.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderDetail.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoManageRoleService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageRoleService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoEvaluate.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoEvaluate.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoBanner.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoBanner.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoCampService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCampService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoCityController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCityController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoBannerService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoBannerService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoSortController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoJoinController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoJoinController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoManageRoleServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageRoleServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoOrderMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoActivityServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoActivityServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoSortDetail.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortDetail.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoEvaluateMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoEvaluateMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoAppointService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoRolePermissionMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRolePermissionMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoReleasServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoReleasServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoProductMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoProductMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoEvaluateServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoEvaluateServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoSecSpotServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSecSpotServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoOrderService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoOrderDetailServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderDetailServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoAppointController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoAppointController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoReleasController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoReleasController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoHotel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoHotel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoHotelController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoHotelController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoCartService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCartService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoPermissionController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoPermissionController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoMenuService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoMenuService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoOrderServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoOrderServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoCollectController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCollectController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoEvaluateController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoEvaluateController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoCamp.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCamp.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoSecSpotService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSecSpotService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoMenuMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoMenuMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoRolePermissionService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRolePermissionService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoUrlServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUrlServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoManageMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoUserMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoUserMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoHotelService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoHotelService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/test-classes/com/woniuxy/AppTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/AppTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoManageRoleController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoManageRoleController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoRoleServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRoleServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoCity.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCity.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/mapper/LimoSortDetailMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSortDetailMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoReleas.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoReleas.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoRole.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoRole.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoEvaluateService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoEvaluateService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/controller/LimoSecSpotController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoSecSpotController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/LimoReleasService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoReleasService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/service/impl/LimoCampServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoCampServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="backStageManager/target/classes/com/woniuxy/doman/LimoActivity.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_24_16_25_[Default_Changelist]/LimoActivity.class" />
+  </binary>
+</changelist>

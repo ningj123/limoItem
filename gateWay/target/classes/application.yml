@@ -18,6 +18,11 @@ spring:
             allowedOrigins: "*"
             allowedMethods: "*"
             allowedHeaders: "*"
+#      routes:
+#        - id:travel-routes
+#          uri:lb://travel
+#          predicates:
+#            - Path=/travel/**
 management:
   endpoint:
     gateway:

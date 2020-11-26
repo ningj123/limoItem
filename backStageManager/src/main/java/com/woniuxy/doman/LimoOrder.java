@@ -26,6 +26,9 @@ public class LimoOrder implements Serializable {
 
     private LocalDateTime oTime;
 
+    /**
+     * 0 未支付 1 已支付,未使用 2 使用中 3 已完成 4 失效订单
+     */
     private Integer oStatus;
 
     private Double oTotal;

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>营地管理</title>
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/js/vue.js"></script>
+<script src="/js/index.js"></script>
+<link rel="stylesheet"
+	href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+	<div id="list">
+		<template>
+			<el-select v-model="int1" placeholder="请选择营地">
+				<el-option
+						v-for="item in list"
+						:key="item.cid"
+						:label="item.cname"
+						:value="item.cid">
+				</el-option>
+			</el-select>
+			<el-button @click="query" size="small">查询</el-button>
+		</template>
+		<template>
+			<el-table :data="camplist" border style="width: 100%">
+			<el-table-column fixed prop="hid" label="房车编号" > </el-table-column>
+			<el-table-column prop="hname" label="房车名字" > </el-table-column>
+			<el-table-column prop="cname" label="所属营地"> </el-table-column>
+			<el-table-column prop="hprice" label="价格"> </el-table-column>
+			<el-table-column prop="hdes" label="描述"> </el-table-column>
+			<el-table-column prop="htype" label="类型"> </el-table-column>
+			<el-table-column prop="himages" label="状态"> </el-table-column>
+			<el-table-column label="操作">
+			<template slot-scope="scope">
+				<el-button @click="handleClick(scope.row.hid)" type="text" size="small">查看预约信息</el-button>
+				<el-button @click="querywork(scope.row.hid,scope.row.hstatus)" type="text" size="small">查看使用情况</el-button>
+				<el-button @click="deleClick(scope.row.hid,scope.row.cid,scope.row.hstatus,scope.row.hprice)"  type="text" size="small">申请住宿</el-button>
+				<el-button @click="insert(scope.row.hid)" type="text" size="small">添加信息</el-button>
+			</template>
+			</el-table-column>
+		 </el-table>
+		</template>
+		<el-dialog title="查询预约信息" :visible.sync="dia" height="800px">
+			<template>
+				<el-table :data="list" border style="width: 100%">
+					<el-table-column fixed prop="apid" label="预约编号" > </el-table-column>
+					<el-table-column prop="rename" label="姓名" > </el-table-column>
+					<el-table-column prop="rephone" label="电话" > </el-table-column>
+					<el-table-column prop="orstarttime" label="开始时间"> </el-table-column>
+					<el-table-column prop="renum" label="人数"> </el-table-column>
+					<el-table-column prop="orendtime" label="结束时间"> </el-table-column>
+				</el-table>
+			</template>
+		</el-dialog>
+		<el-dialog title="查询使用情况" :visible.sync="diaeork" height="800px">
+			<template>
+				<el-table :data="oo" border style="width: 100%">
+					<el-table-column fixed prop="apId" label="编号" > </el-table-column>
+					<el-table-column prop="reName" label="姓名" > </el-table-column>
+					<el-table-column prop="rePhone" label="电话" > </el-table-column>
+					<el-table-column prop="orStartTime" label="开始时间"> </el-table-column>
+					<el-table-column prop="reNum" label="人数"> </el-table-column>
+					<el-table-column prop="orEndTime" label="结束时间"> </el-table-column>
+					<el-table-column label="操作">
+						<template slot-scope="scope">
+							<el-button @click="outclick(scope.row.apId,scope.row.hid)" type="text" size="small">退房</el-button>
+						</template>
+					</el-table-column>
+				</el-table>
+			</template>
+		</el-dialog>
+		<el-dialog title="申请住房" :visible.sync="dia2" height="800px">
+			<template>
+				<el-input v-model="de.name" placeholder="请输入用户名" ></el-input>
+				<el-input v-model="num" placeholder="人数" ></el-input>
+				<el-input v-model="de.phone" placeholder="电话" ></el-input>
+				<el-input v-model="de.card" placeholder="身份证" ></el-input>
+				<div class="block">
+					<span class="demonstration">默认</span>
+					<el-date-picker
+							v-model="value1"
+							type="daterange"
+							value-format="yyyy-MM-dd HH:mm:ss"
+							:picker-options="pickerOptions"
+							range-separator="至"
+							start-placeholder="开始日期"
+							end-placeholder="结束日期"
+							:default-time="['18:00:00', '14:00:00']">
+					</el-date-picker>
+				</div>
+				<el-button @click="selectdebtn">申请</el-button>
+				<el-button @click="dia2=false">取消</el-button>
+			</template>
+		</el-dialog>
+	</div>
+	<script type="text/javascript">
+	new Vue({
+		el:"#list",
+		data:{
+			de:{
+				hid:0,
+				cid:0,
+				name:"",
+				num:0,
+				phone:"",
+				card:"",
+				price:0.0,
+				starttime:"",
+				endtime:""
+			},
+			num:"",
+			list:[],
+			int1:"",
+			cid:0,
+			oo:[],
+			detail:[],
+			hid:0,
+			value1:"",
+			camplist:[],
+			dia:false,
+			dia2:false,
+			diaeork:false,
+			insertBtn:false,
+			updataBtn:false,
+			deleteBtn:false,
+			pickerOptions: {
+				disabledDate(time) {
+					return time.getTime() < Date.now() - 8.64e7;
+				},
+			}
+		},
+		created:function(){
+			this.select();
+			//this.selectBtn();
+		},
+		methods: {
+			select:function(){
+				var _this = this;
+				$.ajax({
+					url:"/limoCamp/selectByCamp",
+					success: function(data) {
+						if(data.code=="200"){
+							console.log(data);
+							_this.list = data.list;
+						}else{
+							alert(data.mess);
+						}
+					}
+				})
+			},
+			handleClick:function(id){
+				this.dia=true;
+				console.log(id);
+				var _this = this;
+				$.ajax({
+					url:"/limoCamp/selectByHtolList",
+					data:{id:id},
+					success: function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							_this.list = data.list;
+						}else{
+							alert(data.mess);
+						}
+					}
+				})
+			},
+		// selectBtn:function(){
+		// 	// var reg = new RegExp("(^|&)id=([^&]*)(&|$)");
+		// 	// var r = window.location.search.substr(1).match(reg);
+		// 	// var id = unescape(r[2]);
+		// 	// console.log(id);
+		// 	var _this = this;
+		// 	$.ajax({
+		// 		url: "/user/btton",
+		// 		data:{pid:_this},
+		// 		success: function(data) {
+		// 			console.log(data);
+		// 			if(data.code==200){
+		// 				for(var i=0;i<data.list.length;i++){
+		// 					if(data.list[i].name=="删除课程"){
+		// 						_this.deleteBtn=true;
+		// 					}
+		// 					if(data.list[i].name=="修改课程"){
+		// 						_this.updataBtn=true;
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+		// 	})
+		// },
+			//退房
+			outclick:function(apid,hid){
+				var _this=this;
+				$.ajax({
+					url: "/limoHotel/outHotel",
+					data:{apId:apid,hid:hid},
+					type:"post",
+					success: function(data) {
+						console.log(data);
+						if(data.code==200){
+							alert("操作成功");
+							_this.diaeork=false;
+						}
+					}
+				})
+			},
+			deleClick:function(hid,cid,hstatus,price){
+				// if(hstatus!=0){
+				// 	alert("使用中,不能申请,请在网上预约");
+				// }else{
+					this.dia2=true;
+					this.de.hid=hid;
+					this.de.cid=cid;
+					this.de.price=price;
+				//}
+			},
+			query:function(){
+				var _this=this;
+				$.ajax({
+					url: "/limoCamp/selectByCampCar",
+					data:{cid:_this.int1},
+					success: function(data) {
+						console.log(data);
+						if(data.code==200){
+							var ss=data.list;
+							_this.camplist=data.list;
+							for(var i=0;i<ss.length;i++){
+								_this.camplist[i].htype=ss[i].htype==1?"房车":"特色住宿";
+								_this.camplist[i].himages=ss[i].hstatus==0?"空位":"使用中";
+							}
+						}
+					}
+				})
+			},
+			//查询使用情况
+			querywork:function(id,sta){
+				this.diaeork=true;
+				var _this=this;
+				$.ajax({
+					url: "/limoHotel/queryWork",
+					data:{hid:id,status:sta},
+					success: function(data) {
+						console.log(data);
+						if(data.code==200){
+							_this.oo=data.list;
+							_this.dia2=false;
+						}
+					}
+				})
+			},
+			//申请
+			selectdebtn:function(){
+				this.de.starttime=this.value1[0];
+				this.de.endtime=this.value1[1];
+				this.de.num=this.num;
+
+				console.log(this.de);
+				var _this=this;
+				$.ajax({
+					url: "/limoHotel/insertHoteldetail",
+					type:"post",
+					data:_this.de,
+					success: function(data) {
+						console.log(data);
+						if(data.code==200){
+							alert("操作成功");
+							_this.dia2=false;
+						}
+					}
+				})
+		},
+	}
+})
+	</script>
+</body>
+</html>

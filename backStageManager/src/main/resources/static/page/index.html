@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/js/vue.js" ></script>
+<script src="/js/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<style>
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+
+  
+
+  .main{
+  		width: 100%;
+		height: 700px;
+  }
+  .a-class{
+  	color: white;
+  	text-decoration: none;
+  	 color:cadetblue;
+  }
+</style>
+
+<body>
+	<div id="app">
+		<el-container> 
+			<el-header>蜗牛系统
+				<el-button ><a href="/logout" target="parent">注销</a></el-button>
+			</el-header> 
+		<el-container>
+			<el-aside width="200px">
+				<el-menu default-active="2" class="el-menu-vertical-demo" background-color="#E9EEF3" active-text-color="#ffd04b">
+						<el-submenu v-for="menu in menus" :index="menu.id+''">
+							<template slot="title">
+								<i class="el-icon-location"></i>
+								<span>{{menu.name}}</span>
+							</template>
+							<el-menu-item-group>
+								<el-menu-item v-for="child in menu.child" :index="child.id+''">
+									<a class="a-class" :href="child.resource+'?id='+child.id" target="main" >{{child.name}}</a>
+								</el-menu-item>
+							</el-menu-item-group>
+						</el-submenu>
+				</el-menu>
+			</el-aside> 
+			<el-main>
+				<iframe frameborder="1" name="main" class="main">
+				</iframe>
+			</el-main> 
+		</el-container>
+	 </el-container>
+	
+	</div>
+	<script type="text/javascript">
+	var mu=new Vue({
+		el:"#app",
+		data:{
+			menus:[]
+		},
+		created:function(){
+			this.select();
+		},
+		methods: {
+			select:function(){
+				var _this = this;
+				$.ajax({
+					url: "/user/menu",
+					success: function(data) {
+						_this.menus = data.list;
+					}
+				})
+			}
+		},
+		
+	})
+</script>
+</body>
+</html>
