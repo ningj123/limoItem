@@ -4,32 +4,29 @@ package com.woniuxy.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.woniuxy.client.OrderClient;
-import com.woniuxy.config.MessageHandler;
 import com.woniuxy.dao.LimoActivityMapper;
 import com.woniuxy.doman.*;
 import com.woniuxy.dto.*;
 import com.woniuxy.param.*;
 import com.woniuxy.service.*;
 import com.woniuxy.util.JSONResult;
-import com.woniuxy.util.JwtUtilLong;
 import com.woniuxy.util.LoginUtil;
 import com.woniuxy.util.Result;
-import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -63,7 +60,7 @@ public class LimoActivityController {
     //从首页传入当前的城市。显示当前城市的营地,并判断当前营地是否为正常状态，正常则显示。
     @GetMapping("selectCamp")
     @ApiOperation("从首页传入当前的城市。显示当前城市的营地")
-    @ApiImplicitParam(name = "city",value = "城市名",defaultValue = "重庆")
+    @ApiImplicitParam(name = "city", value = "城市名", defaultValue = "重庆")
     public Result selectCamp(String city) throws Exception {
         List<LimoCampDto> limoCampDto = activityService.selectCamp(city);
         if (limoCampDto.size() == 0) {
@@ -78,8 +75,8 @@ public class LimoActivityController {
     @ApiOperation("进入活动首页,根据传过来的当前城市，分页展示当前城市营地活动")
     //String city,Integer pageIndex
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "ACity",value = "城市名",defaultValue = "重庆"),
-            @ApiImplicitParam(name = "pageIndex",value = "页码",defaultValue = "1")
+            @ApiImplicitParam(name = "ACity", value = "城市名", defaultValue = "重庆"),
+            @ApiImplicitParam(name = "pageIndex", value = "页码", defaultValue = "1")
     })
     public Result selectCampActivitiesLimt(@Validated LimoActivityVoParam limoActivityParam, BindingResult bindingResult) throws Exception {
         //参数检验的信息放在bindingResult对象里。
@@ -92,10 +89,9 @@ public class LimoActivityController {
         Page<LimoActivity> page = activityMapper.selectPage(new Page<LimoActivity>(limoActivityParam.getPageIndex(), 2), queryWrapper);
         if (page.getTotal() == 0) {
             return Result.fail(500, "没有该城市的营地活动", null);
+        } else {
+            return Result.success(200, "success", page);
         }
-        return Result.success(200, "success", page);
-
-
 //        if (pageIndex==null){
 //            return Result.fail(500,"请传入页码",null);
 //        }
@@ -109,11 +105,11 @@ public class LimoActivityController {
     // +1：点击某个营地展示当前营地下的营地活动。
     @GetMapping("selectCampActive")
     @ApiOperation("点击某个营地展示当前营地下的营地活动")
-    @ApiImplicitParam(name = "name",value = "当前营地名",defaultValue = "花马山房车露营基地")
+    @ApiImplicitParam(name = "name", value = "当前营地名", defaultValue = "花马山房车露营基地")
     public Result selectCampActive(String name) throws Exception {
         List<LimoActivity> limoActivities = activityService.selectCampActive(name);
         if (limoActivities.size() == 0) {
-            return Result.fail(500, "没有该营地下的活动", null);
+            return Result.fail(500, "没有该营地下的活动/没有该营地", null);
         }
         return Result.success(200, "success", limoActivities);
     }
@@ -121,7 +117,7 @@ public class LimoActivityController {
     //根据营地活动名称模糊查询具体的营地活动
     @GetMapping("selectCampActivitiesName")
     @ApiOperation("根据营地活动名称模糊查询具体的营地活动")
-    @ApiImplicitParam(name = "name",value = "营地活动名称",defaultValue = "夏")
+    @ApiImplicitParam(name = "name", value = "营地活动名称", defaultValue = "夏")
     public Result selectCampActivitiesName(String name) throws Exception {
         QueryWrapper<LimoActivity> queryWrapper = new QueryWrapper<LimoActivity>();
         queryWrapper.like("a_name", name);
@@ -136,60 +132,77 @@ public class LimoActivityController {
     //根据营地活动的分类标签查询活动
     @GetMapping("selectCampActivitiesType")
     @ApiOperation("根据营地活动的分类标签查询活动")
-    @ApiImplicitParam(name = "type",value = "营地活动标签类型0/1/2",defaultValue = "0")
+    @ApiImplicitParam(name = "type", value = "营地活动标签类型0/1/2", defaultValue = "0")
     public Result selectCampActivitiesType(Integer type) throws Exception {
-        QueryWrapper<LimoActivity> queryWrapper = new QueryWrapper<LimoActivity>();
-        queryWrapper.eq("a_type", type);
-        List<LimoActivity> list = activityService.list(queryWrapper);
-        return Result.success(200, "success", list);
+        if (type == 0 || type == 1 || type == 2) {
+            QueryWrapper<LimoActivity> queryWrapper = new QueryWrapper<LimoActivity>();
+            queryWrapper.eq("a_type", type);
+            List<LimoActivity> list = activityService.list(queryWrapper);
+            return Result.success(200, "success", list);
+        } else {
+            return Result.fail("无");
+        }
     }
 
     //根据营地活动的门票价格高低排序
     @GetMapping("selectCampActivitiesPrice")
     @ApiOperation("根据营地活动的门票价格高低排序")
-    @ApiImplicitParam(name = "priceId",value = "价格高低1/2",defaultValue = "1")
+    @ApiImplicitParam(name = "priceId", value = "价格高低1/2", defaultValue = "1")
     public Result selectCampActivitiesPrice(Integer priceId) throws Exception {
         QueryWrapper<LimoActivity> queryWrapper = new QueryWrapper<LimoActivity>();
         if (priceId == 1) {
             QueryWrapper<LimoActivity> queryWrapper1 = queryWrapper.orderByAsc("a_price");
             List<LimoActivity> ascPrice = activityService.list(queryWrapper1);
             return Result.success(200, "success", ascPrice);
-        }
-        if (priceId == 2) {
+        } else if (priceId == 2) {
             QueryWrapper<LimoActivity> queryWrapper2 = queryWrapper.orderByDesc("a_price");
             List<LimoActivity> descPrice = activityService.list(queryWrapper2);
             return Result.success(200, "success", descPrice);
+        }else {
+            return Result.fail("无");
         }
-        return null;
     }
 
     //进入具体营地活动页面查看营地活动具体详情
     @GetMapping("selectCampActivitiesJuSpecific")
     @ApiOperation("进入具体营地活动页面查看营地活动具体详情")
-    @ApiImplicitParam(name = "id",value = "营地活动id",defaultValue = "1")
+    @ApiImplicitParam(name = "id", value = "营地活动id", defaultValue = "1")
     public Result selectCampActivitiesJuSpecific(Integer id) throws Exception {
         QueryWrapper<LimoActivity> queryWrapper = new QueryWrapper<LimoActivity>();
         queryWrapper.eq("a_id", id);
-        LimoActivity one = activityService.getOne(queryWrapper);
-        return Result.success(200, "success", one);
+        LimoActivity activitytime = activityService.getOne(queryWrapper);
+        if (activitytime == null) {
+            return Result.fail("没有");
+        } else {
+            if (activitytime.getAStatus() == 1) {
+                return Result.fail("该活动暂未上架，不能操作");
+            } else if (activitytime.getAStatus() == 0) {
+                return Result.success(200, "success", activitytime);
+            } else {
+                return Result.fail("没有");
+            }
+        }
     }
 
     //查看某营地活动的评论
     @GetMapping("selectCampActivitiesEvaluate")
     @ApiOperation("查看某营地活动的评论")
-    @ApiImplicitParam(name = "aid",value = "营地活动id",defaultValue = "2")
+    @ApiImplicitParam(name = "aid", value = "营地活动id", defaultValue = "2")
     public Result selectCampActivitiesEvaluate(Integer aid) throws Exception {
         QueryWrapper<LimoEvaluate> queryWrapper = new QueryWrapper<LimoEvaluate>();
         queryWrapper.eq("a_id", aid);
         List<LimoEvaluate> list = evaluateService.list(queryWrapper);
+        if (list.size()==0 || list==null){
+            return Result.fail("没有");
+        }
         return Result.success(200, "success", list);
     }
 
     //收藏营地活动到个人中心
     @GetMapping("insertCampActivitiesCollection")
     @ApiOperation("收藏营地活动到个人中心")
-    @ApiImplicitParam(name = "AId",value = "营地活动id",defaultValue = "2")
-    public Result insertCampActivitiesCollection(LimoCollectVoParam collectParam,@RequestHeader("x-token")String token) throws Exception {
+    @ApiImplicitParam(name = "AId", value = "营地活动id", defaultValue = "2")
+    public Result insertCampActivitiesCollection(LimoCollectVoParam collectParam, @RequestHeader("x-token") String token) throws Exception {
         LimoCollect limoCollect = new LimoCollect();
         BeanUtils.copyProperties(collectParam, limoCollect);
         //先查询某活动属于哪个营地
@@ -206,10 +219,10 @@ public class LimoActivityController {
     @GetMapping("insertCampActivitiesCar")
     @ApiOperation("营地活动加入购物车")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "AId",value = "营地活动id",defaultValue = "1"),
-            @ApiImplicitParam(name = "PNum",value = "购买数量",defaultValue = "10")
+            @ApiImplicitParam(name = "AId", value = "营地活动id", defaultValue = "1"),
+            @ApiImplicitParam(name = "PNum", value = "购买数量", defaultValue = "10")
     })
-    public Result insertCampActivitiesCar(LimoCartVoParam limoCartParam,@RequestHeader("x-token")String token) throws Exception {
+    public Result insertCampActivitiesCar(LimoCartVoParam limoCartParam, @RequestHeader("x-token") String token) throws Exception {
         LimoCart limoCart = new LimoCart();
         BeanUtils.copyProperties(limoCartParam, limoCart);
         Map<String, Object> map = LoginUtil.parseToken(token);
@@ -231,15 +244,15 @@ public class LimoActivityController {
     @PostMapping("CampActivitiesDownOrder")
     @ApiOperation("立即购买当前营地活动门票，下订单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "cid",value = "营地id",defaultValue = "1"),
-            @ApiImplicitParam(name = "aid",value = "营地活动id",defaultValue = "1"),
-            @ApiImplicitParam(name = "num",value = "购买数量",defaultValue = "2"),
-            @ApiImplicitParam(name = "price",value = "单价",defaultValue = "110"),
-            @ApiImplicitParam(name = "total",value = "总价",defaultValue = "220"),
+            @ApiImplicitParam(name = "cid", value = "营地id", defaultValue = "1"),
+            @ApiImplicitParam(name = "aid", value = "营地活动id", defaultValue = "1"),
+            @ApiImplicitParam(name = "num", value = "购买数量", defaultValue = "2"),
+            @ApiImplicitParam(name = "price", value = "单价", defaultValue = "110"),
+            @ApiImplicitParam(name = "total", value = "总价", defaultValue = "220"),
     })
-    public JSONResult CampActivitiesDownOrder(@RequestBody OrdersParam orders,@RequestHeader("x-token")String token) throws Exception {
+    public JSONResult CampActivitiesDownOrder(@RequestBody OrdersParam orders, @RequestHeader("x-token") String token) throws Exception {
         System.out.println("====================");
-        JSONResult jsonResult = orderClient.insertOrder( orders,token);
+        JSONResult jsonResult = orderClient.insertOrder(orders, token);
         return jsonResult;
     }
 
@@ -247,13 +260,13 @@ public class LimoActivityController {
     @PostMapping("insertEvaluate")
     @ApiOperation("新增评论")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "Aid",value = "营地活动id",defaultValue = "1"),
-            @ApiImplicitParam(name = "evDes",value = "评论内容",defaultValue = "想要成为rapstar嘛"),
-            @ApiImplicitParam(name = "x-token",value = "令牌,取用户id"),
+            @ApiImplicitParam(name = "Aid", value = "营地活动id", defaultValue = "1"),
+            @ApiImplicitParam(name = "evDes", value = "评论内容", defaultValue = "想要成为rapstar嘛"),
+            @ApiImplicitParam(name = "x-token", value = "令牌,取用户id"),
     })
-    public JSONResult insertEvaluate(EvaluateParam evaluateParam,@RequestHeader("x-token")String token)throws Exception{
+    public JSONResult insertEvaluate(EvaluateParam evaluateParam, @RequestHeader("x-token") String token) throws Exception {
         JSONResult jsonResult = orderClient.insertEvaluate(evaluateParam, token);
-        System.out.println(jsonResult+"---------------------");
+        System.out.println(jsonResult + "---------------------");
         return jsonResult;
     }
 
